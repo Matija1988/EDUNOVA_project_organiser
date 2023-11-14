@@ -12,7 +12,8 @@ uniqueIDnumber varchar(50) not null, -- identifikacijska sifra projekta npr. K.K
 name varchar(50) not null, -- puni naziv projekta
 dateStart datetime,  
 dateEnd datetime, 
-isFinished bit 
+isFinished bit,
+
 );
 
 create table teams(
@@ -36,17 +37,18 @@ isTeamLeader bit -- if true - pravo dodijeljivanja aktivnosti clanovima, promjen
 
 create table activities(
 id int not null primary key identity(1,1),
-name varchar(50),
+name varchar(50) not null,
 description varchar(500),  
-dateStart datetime, 
+dateStart datetime not null, 
 dateFinish datetime,
-isFinished bit
+isFinished bit -- team leader ima ovlastenje zatvoriti pojedinu aktivnost 
 );
 
 create table proofOfDelivery(
 id int not null primary key identity(1,1), 
-documentName varchar(50) not null -- dokument dokaznice npr. izvjesce o provedenoj 
---aktivnosti 4.1. izrada cost benefit analize 
+documentName varchar(50) not null, -- dokument dokaznice npr. izvjesce o provedenoj 
+--aktivnosti 4.1. izrada cost benefit analize
+location varchar(100)
 );
 
 create table connector(
