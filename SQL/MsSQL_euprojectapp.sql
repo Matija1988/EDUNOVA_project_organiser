@@ -41,7 +41,7 @@ create table proofOfDelivery(
 id int not null primary key identity(1,1), 
 documentName varchar(50) not null, -- dokument dokaznice npr. izvjesce o provedenoj 
 --aktivnosti 4.1. izrada cost benefit analize
-location varchar(100)
+location varchar(100) not null
 );
 
 
@@ -52,7 +52,7 @@ contractActivityName varchar(50) not null, -- ovo je ujedno i folder name. Ako j
 -- naziv aktivnosti 1.2. izrada komunikacijske strategije ili 3.1. zakup medijskog prostora 
 -- nacionalnih radio postaja zbog kvalitete organizacije korisnik ne treba imati mogucnost
 -- slobodnog odabira naziva 
-proofOfDelivery int
+proofOfDelivery int 
 );
 
 create table activitiesConnector(
