@@ -1,12 +1,12 @@
 use master;
 go
-drop database EUprojectsAPP;
+drop database projectsAPP;
 go
-create database EUprojectsApp;
+create database projectsApp;
 go
-use EUprojectsApp;
+use projectsApp;
 
-create table EUprojects (
+create table projects (
 id int not null primary key identity (1,1), 
 uniqueIDnumber varchar(50) not null, -- identifikacijska sifra projekta npr. K.K. 1012
 name varchar(50) not null, -- puni naziv projekta
@@ -56,12 +56,12 @@ proofOfDelivery int
 );
 
 create table activitiesConnector(
-EUproject int not null,
+project int not null,
 activity int not null,
 member int not null
 );
 alter table activities add foreign key (folder) references folders(id);
-alter table activitiesConnector add foreign key (EUproject) references EUprojects(id);
+alter table activitiesConnector add foreign key (project) references projects(id);
 alter table activitiesConnector add foreign key (activity) references activities(id); 
 alter table activitiesConnector add foreign key (member) references members(id);
 alter table folders add foreign key (id) references proofOfDelivery(id); 
