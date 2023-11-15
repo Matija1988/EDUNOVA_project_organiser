@@ -31,17 +31,19 @@ create table activities(
 id int not null primary key identity(1,1),
 name varchar(50) not null,
 description varchar(500),  
-dateStart datetime not null, 
-dateFinish datetime,
+dateStart datetime not null, -- planirani pocetak aktivnosti
+dateFinish datetime not null, -- planirani kraj aktivnosti
 folder int,
-isFinished bit -- team leader ima ovlastenje zatvoriti pojedinu aktivnost 
+isFinished bit, -- team leader ima ovlastenje zatvoriti pojedinu aktivnost
+dateFinished datetime -- kraj aktivnosti
 );
 
 create table proofOfDelivery(
 id int not null primary key identity(1,1), 
 documentName varchar(50) not null, -- dokument dokaznice npr. izvjesce o provedenoj 
 --aktivnosti 4.1. izrada cost benefit analize
-location varchar(100) not null
+location varchar(100) not null,
+dateCreated datetime
 );
 
 
