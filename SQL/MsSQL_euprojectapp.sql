@@ -43,7 +43,7 @@ projectID int not null -- jedna aktivnost pripada jednom projektu
 
 create table proofOfDelivery(
 id int not null primary key identity(1,1), 
-documentName varchar(50) not null, -- dokument dokaznice npr. izvjesce o provedenoj 
+documentName varchar(100) not null, -- dokument dokaznice npr. izvjesce o provedenoj 
 --aktivnosti 4.1. izrada cost benefit analize
 location varchar(100) not null,
 dateCreated datetime
@@ -81,7 +81,9 @@ values ('Analiza troškova i koristi','C:\user\documents\','2023-12-15 12:00:00'
 ('Komunikacijska strategija','F:\A4-K-7-762\1.3 Izrada komunikacijske strategije\','2019-10-22'),
 ('Zapisnik sa koordinacijskog sastanka', 'D:\razno\', '2021-1-15 11:00:00'),
 ('export.zip', 'G:\foto\', '2020-4-17 21:00:00'),
-('Mađari predavanje','D:\','2023-5-5 10:00:00');
+('Mađari predavanje','D:\','2023-5-5 10:00:00'),
+('Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca.mp4',
+'C:\user\downloads\','2023-9-12 12:00:00');
 
 insert into folders (location, contractActivityName, proofOfDelivery)
 values ('d:\JP21-21KD\1.1. Izrada analize troškova i korsti','Analiza troškova i koristi',1),
@@ -90,7 +92,9 @@ values ('d:\JP21-21KD\1.1. Izrada analize troškova i korsti','Analiza troškova
 Otvoreni radio',3), ('d:\UZ-54-2-I\4.1. Koordinacijski sastanci\4.1.1.\','Dokaznica o održanom mjesećnom 
 koordinacijskom sastanku 2021_1_15',4), 
 ('d:\A4-K-7-762\3.2. Redovno fotografiranje aktivnosti projekta\','Postavljanje edukativnih tabli.zip',5),
-('d:\INTER-REG HU-CRO','2.1. Educational workshop on agricultural sustainability',6);
+('d:\INTER-REG HU-CRO','2.1. Educational workshop on agricultural sustainability',6),
+('d:\UZ-54-2-I\7. Izrada videozapisa o aktivnostima projekta\7.12.\',
+'7.12.Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca.zip',7);
 
 insert activities (name, description, dateStart, dateFinish, folderID, isFinished, dateAccepted, projectID)
 values ('1.1.Izrada analize troškova i koristi','Energetska obnova zgrade ... mora uključivati
@@ -112,13 +116,17 @@ ključne faze provedbe projekta, 10x dostvljanje min rezolucije 4000x3000 300dpi
 na temu održivosti u poljoprivredi - obavezan predavač iz Mađarske (kontaktirati partnere) i iz
 Hrvatske - osigurati audio tehniku i projektor - minimalno 30 sudionika - catering za 40 osoba - 
 promocija na lokalnom web protalu (banner na 10 000 impresija i pr članak)','2023-5-4 9:00:00',
-'2023-5-4 11:00:00',6,1,'2023-5-7 13:00:00',4);
+'2023-5-4 11:00:00',6,1,'2023-5-7 13:00:00',4),
+('7.2.Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca',
+'Videozapis o stručnom usavršavanju mentora kod poslodavaca - dvodnevna radionica 
+isporuka u 1920x1080, audio EBU R 128 standard, trajanje 5 minuta, PAL',
+'2023-9-9 09:00:00','2023-9-10 18:00:00',7,1,'2023-9-13 15:00:00',2);
 
 insert into members (name, lastName, userName, password, isTeamLeader)
 values ('Chuck','Norris','N0rr1s','Sifra12345678889',1),('Marko','Marković','MM007','JamesBlond069',0),
 ('Petar','Bočkaj','Guc2A','OsvetaKanižlićeve',0);
 
 insert into activitiesConnector(activityID, memberID) 
-values (1,1),(2,1),(3,1),(1,2),(2,3),(4,3),(5,1), (6,2); 
+values (1,1),(2,1),(3,1),(1,2),(2,3),(4,3),(5,1),(6,2), (7,3), (7,1); 
 
 
