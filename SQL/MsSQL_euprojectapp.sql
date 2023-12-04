@@ -87,11 +87,15 @@ values ('Analiza troškova i koristi','C:\user\documents\','2023-12-15 12:00:00'
 ('Zapisnik','D:\razno\','2021-2-20 12:00:00');
 
 insert into folders (location, contractActivityName, proofOfDelivery)
-values ('d:\JP21-21KD\1.1. Izrada analize troškova i korsti','Analiza troškova i koristi',1),
-('d:\UZ-54-2-I\1.3 Izrada komunikacijske strategije\', 'Izrada komunikacijske strategije',2),
-('d:\A4-K-7-762\2.1. Zakup medijskog prostora na nacionalnim radio postajama','Potvrda o emitiranju
-Otvoreni radio',3), ('d:\UZ-54-2-I\4.1. Koordinacijski sastanci\4.1.1.\','Dokaznica o održanom mjesečnom 
-koordinacijskom sastanku 2021_1_15',4), 
+values 
+('d:\JP21-21KD\1.1. Izrada analize troškova i korsti',
+'Analiza troškova i koristi',1),
+('d:\UZ-54-2-I\1.3 Izrada komunikacijske strategije\', 
+'Izrada komunikacijske strategije',2),
+('d:\A4-K-7-762\2.1. Zakup medijskog prostora na nacionalnim radio postajama',
+'Potvrda o emitiranju Otvoreni radio',3), 
+('d:\UZ-54-2-I\4.1. Koordinacijski sastanci\4.1.1.\',
+'Dokaznica o održanom mjesečnom koordinacijskom sastanku 2021_1_15',4), 
 ('d:\A4-K-7-762\3.2. Redovno fotografiranje aktivnosti projekta\','Postavljanje edukativnih tabli.zip',5),
 ('d:\INTER-REG HU-CRO','2.1. Educational workshop on agricultural sustainability',6),
 ('d:\UZ-54-2-I\7. Izrada videozapisa o aktivnostima projekta\7.12.\',
