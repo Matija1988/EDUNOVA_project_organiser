@@ -43,9 +43,9 @@ projectID int not null -- jedna aktivnost pripada jednom projektu
 
 create table proofOfDelivery(
 id int not null primary key identity(1,1), 
-documentName varchar(100) not null, -- dokument dokaznice npr. izvjesce o provedenoj 
+documentName varchar(100), -- dokument dokaznice npr. izvjesce o provedenoj 
 --aktivnosti 4.1. izrada cost benefit analize
-location varchar(100) not null,
+location varchar(200),
 dateCreated datetime
 );
 
