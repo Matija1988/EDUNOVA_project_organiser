@@ -86,7 +86,7 @@ values ('Analiza troškova i koristi','\documents\','2023-12-15 12:00:00'),
 ('Mađari predavanje','\','2023-5-5 10:00:00'),
 ('Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca.mp4',
 'downloads\','2023-9-12 12:00:00'),
-('Zapisnik','D:\razno\','2021-2-20 12:00:00');
+('Zapisnik','razno\','2021-2-20 12:00:00');
 
 insert into folders (location, contractActivityName, proofOfDelivery)
 values 
