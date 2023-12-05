@@ -70,15 +70,19 @@ alter table folders add foreign key (id) references proofOfDelivery(id);
 alter table proofOfDelivery add foreign key (memberID) references members(id);
 
 insert into projects (uniqueIDnumber, projectName, dateStart, dateEnd, isFinished) 
-values ('JP21-21KD', 'Poboljšanje energetske učinkovitosti zgrade Zamišljena Adresa 2', '2023-5-21 09:00:00', 
-'2024-11-21 12:00:00', 0),('UZ-54-2-I','Uspostava regionalnog centra kompetentnosti Srednja strukovna
-škola Bubimir','2021-1-1 09:00:00','2023-12-29',0), ('A4-K-7-762','Zelene staze Dunava i Drave',
-'2019-4-12 8:00:00','2022-5-1 17:00:00',1),
-('INTER-HU-CRO-213-D-91','INTEREG-Hungary-Croatia cluster sustainability du dah','2023-1-20 10:00:00',
-'2023-10-20',1);
+values 
+('JP21-21KD', 'Poboljšanje energetske učinkovitosti zgrade Zamišljena Adresa 2', '2023-5-21 09:00:00', 
+'2024-11-21 12:00:00', 0),
+('UZ-54-2-I','Uspostava regionalnog centra kompetentnosti Srednja strukovna
+škola Bubimir','2021-1-1 09:00:00','2023-12-29',0), 
+('A4-K-7-762','Zelene staze Dunava i Drave', '2019-4-12 8:00:00',
+'2022-5-1 17:00:00',1),
+('INTER-HU-CRO-213-D-91','INTEREG-Hungary-Croatia cluster sustainability du dah'
+,'2023-1-20 10:00:00','2023-10-20',1);
 
 insert into proofOfDelivery (documentName, location, dateCreated)
-values ('Analiza troškova i koristi','\documents\','2023-12-15 12:00:00'),
+values 
+('Analiza troškova i koristi','\documents\','2023-12-15 12:00:00'),
 ('RCKSSB marketing plan Otvoreni radio','\documents','2021-10-10 11:00:00'), 
 ('Komunikacijska strategija','1.3 Izrada komunikacijske strategije\','2019-10-22'),
 ('Zapisnik sa koordinacijskog sastanka', 'razno\', '2021-1-15 11:00:00'),
@@ -105,7 +109,8 @@ values
 ('UZ-54-2-I\4.1. Koordinacijski sastanci\4.1.2.\','Dokaznica o održanom mjesečnom 
 koordinacijskom sastanku 2021_2_20',4); 
 insert activities (activityName, description, dateStart, dateFinish, folderID, isFinished, dateAccepted, projectID)
-values ('1.1.Izrada analize troškova i koristi','Energetska obnova zgrade ... mora uključivati
+values 
+('1.1.Izrada analize troškova i koristi','Energetska obnova zgrade ... mora uključivati
 izolaciju vanjskog zida, dizalicu topline, ugradnju PVC stolarije, fotonaponske ćelije 12 kw/h ...
 ','2023-6-1 09:00:00','2023-8-1 09:00:00',1, 1,'2023-7-29 12:00:00', 1),
 ('2.1. Zakup medijskog prostora na nacionalnim radio postajama','Izrada radio jingla 30 sekundi, zakup
@@ -140,8 +145,9 @@ values ('Chuck','Norris','N0rr1s','Sifra12345678889',1),('Marko','Marković','MM
 insert into activitiesConnector(activityID, memberID) 
 values (1,1),(2,1),(3,1),(1,2),(2,3),(4,3),(5,1),(6,2), (7,3), (7,1), (8,2); 
 
-select a.projectName, b.activityName, c.contractActivityName 
+select a.projectName, b.activityName, d.documentName 
 from projects a inner join activities b on a.id = b.projectID
 inner join folders c on b.folderID = c.id
+inner join proofOfDelivery d on d.id = c.proofOfDelivery
 where b.projectID is not null 
 order by 1 desc;
