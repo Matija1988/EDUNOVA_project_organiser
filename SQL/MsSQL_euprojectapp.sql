@@ -24,7 +24,7 @@ id int not null primary key identity(1,1),
 name varchar(50),
 lastName varchar(50),
 userName varchar(50),
-password varchar(50),
+password varchar(100),
 isTeamLeader bit -- if true - pravo dodjeljivanja aktivnosti clanovima, promjene rokova veifikacije 
 -- dokaznica
 );
@@ -50,7 +50,7 @@ dateCreated datetime
 );
 
 
-create table folders( -- uzima dokaznice sa više lokacija i objedinjuje ih 
+create table folders(  
 id int not null primary key identity(1,1), 
 location varchar(100) not null,
 contractActivityName varchar(100) not null, -- ovo je ujedno i folder name. 
