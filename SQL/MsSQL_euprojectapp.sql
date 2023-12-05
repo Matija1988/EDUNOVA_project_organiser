@@ -25,7 +25,7 @@ firstName varchar(50),
 lastName varchar(50),
 userName varchar(50),
 password varchar(100),
-isTeamLeader bit -- if true - pravo dodjeljivanja aktivnosti clanovima, promjene rokova veifikacije 
+isTeamLeader bit -- if true - pravo dodjeljivanja aktivnosti clanovima, promjene rokova, verifikacije 
 -- dokaznica
 );
 
