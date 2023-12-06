@@ -47,7 +47,6 @@ create table proofOfDelivery(
 id int not null primary key identity(1,1), 
 documentName varchar(100), -- dokument dokaznice npr. izvjesce o provedenoj 
 --aktivnosti 4.1. izrada cost benefit analize
-location varchar(200),
 memberID int,
 dateCreated datetime
 );
@@ -92,21 +91,21 @@ values
 --------------INSERTS-------------
 
 
-insert into proofOfDelivery (documentName, location, dateCreated)
+insert into proofOfDelivery (documentName, dateCreated)
 values 
-('Analiza troškova i koristi','\documents\','2023-12-15 12:00:00'),
-('RCKSSB marketing plan Otvoreni radio','\documents','2021-10-10 11:00:00'), 
-('Komunikacijska strategija','1.3 Izrada komunikacijske strategije\','2019-10-22'),
-('Zapisnik sa koordinacijskog sastanka', 'razno\', '2021-1-15 11:00:00'),
-('export.zip', 'foto\', '2020-4-17 21:00:00'),
-('Mađari predavanje','\','2023-5-5 10:00:00'),
+('Analiza troškova i koristi','2023-12-15 12:00:00'),
+('RCKSSB marketing plan Otvoreni radio','2021-10-10 11:00:00'), 
+('Komunikacijska strategija', '2019-10-22'),
+('Zapisnik sa koordinacijskog sastanka', '2021-1-15 11:00:00'),
+('export.zip',  '2020-4-17 21:00:00'),
+('Mađari predavanje', '2023-5-5 10:00:00'),
 ('Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca.mp4',
-'downloads\','2023-9-12 12:00:00'),
-('Zapisnik','razno\','2021-2-20 12:00:00');
+'2023-9-12 12:00:00'),
+('Zapisnik', '2021-2-20 12:00:00');
 
 insert into folders (location, contractActivityName, proofOfDelivery)
 values 
-('JP21-21KD\1.1. Izrada analize troškova i korsti',
+('JP21-21KD\1.1. Izrada analize troškova i korsti/',
 'Analiza troškova i koristi',1),
 
 ('UZ-54-2-I\1.3 Izrada komunikacijske strategije\', 
