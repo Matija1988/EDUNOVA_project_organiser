@@ -92,7 +92,7 @@ namespace PO
             switch (U01UserInputs.InputInt("\n" + "Project menu input: "))
             {
                 case 1:
-                    Console.WriteLine("\n " + "List active projects" + "\n" +
+                    Console.WriteLine("\n" + "List active projects" + "\n" +
                                       "************************************************************");
                     ListActiveProjects();
                     ProjectsMenu();
@@ -145,7 +145,7 @@ namespace PO
             {
                 var pro = Projects[Utilities.U01UserInputs.InputInt("ID of the project you wish to enter: ") - 1];
 
-                Console.WriteLine("\n " + "Entering selected project");
+                Console.WriteLine("\n" + "Entering selected project" + "\n");
                 SelectedProjectMenu(pro); 
 
             } catch 
@@ -209,7 +209,7 @@ namespace PO
 
         private void ActivitiesMenu (O02Project pro)
         {
-            Console.WriteLine("Working on " + pro.Name + ", " + pro.UniqueID + " activities.");
+            Console.WriteLine("\n" + "Working on " + pro.Name + ", " + pro.UniqueID + " activities.");
             
             Console.WriteLine("\n" +
                               "1) List project activities");
@@ -228,7 +228,7 @@ namespace PO
             switch(Utilities.U01UserInputs.InputInt("Input: "))
             {
                 case 1:
-                    Console.WriteLine("Listing activities");
+                    Console.WriteLine("\n" + "Listing activities: " + "\n");
                     ListProjectActivities();
                     ActivitiesMenu(pro);
                     ActivitiesMenuSwitch(pro);
@@ -239,6 +239,8 @@ namespace PO
                     case 3:
                     Console.WriteLine("Entering new activity");
                     EnterNewActivity(pro);
+                    ActivitiesMenu(pro);
+                    
                     break;
                     case 4:
                     Console.WriteLine("Activity go bye bye");
@@ -270,7 +272,7 @@ namespace PO
 
                 id = Utilities.U01UserInputs.InputInt("Input activity ID: "),
                 Name = Utilities.U01UserInputs.InputString("Activity name: "),
-                Description = Utilities.U01UserInputs.InputString("Input activity description"),
+                Description = Utilities.U01UserInputs.InputString("Input activity description: "),
                 DateStart = Utilities.U01UserInputs.InputDateTime("Start date: "),
                 DateFinish = Utilities.U01UserInputs.InputDateTime("Deadline: "),
                 Folder = Utilities.U01UserInputs.InputInt("Belong to the folder: "),
