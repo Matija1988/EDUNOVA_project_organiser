@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PO.ObjectClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,6 +68,11 @@ namespace PO.Utilities
             }
 
             
+        }
+
+        internal static O02Project ReturnAssocietedProject (O02Project pro)
+        {
+            return pro;
         }
     }
 
