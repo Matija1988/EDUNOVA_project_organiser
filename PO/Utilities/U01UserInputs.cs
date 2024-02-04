@@ -9,6 +9,7 @@ namespace PO.Utilities
 {
     internal class U01UserInputs
     {
+        public static bool dev; 
         public static string InputString (string v)
         {
             string s;
