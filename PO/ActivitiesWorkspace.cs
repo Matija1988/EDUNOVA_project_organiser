@@ -6,28 +6,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable enable
+
 namespace PO
 {
     internal class ActivitiesWorkspace
     {
+        public List<O02Project> Projects { get; }
         public List<O03Activity> Activities { get; }
         
-        public List<O02Project> Projects { get; }
-
-
+       
         private Main Main {  get;  }
-        private ProjectWorkspace ProjectWork { get; }
+        private ProjectWorkspace ProjectWorkspace { get; }
 
-        public ActivitiesWorkspace(Main Main, ProjectWorkspace ProjectWorkspace):this()
+        public ActivitiesWorkspace(Main Main):this()
         {
             this.Main = Main;
-            this.ProjectWork = ProjectWorkspace;
+           
+        }
+
+        public ActivitiesWorkspace(ProjectWorkspace ProjectWorkspace):this()
+        {
+            this.ProjectWorkspace = ProjectWorkspace;
         }
 
         public ActivitiesWorkspace() 
         { 
             Activities = new List<O03Activity>();
-
+            
             if(U01UserInputs.dev)
             {
                 TestData();
@@ -38,7 +44,7 @@ namespace PO
 
        
 
-        public void ActivitiesMenu (O02Project pro)
+        public void ActivitiesMenu (O02Project? pro)
         {
             Console.WriteLine("\n" + "Working on " + pro.Name + ", " + pro.UniqueID + " activities.");
 
@@ -77,7 +83,7 @@ namespace PO
                     Console.WriteLine("Activity go bye bye");
                     break;
                 case 5:
-                 ProjectWork.SelectedProjectMenu( pro);
+                 ProjectWorkspace.SelectedProjectMenu( pro);
                     
                     break;
                 case 6:
@@ -106,7 +112,7 @@ namespace PO
                 Description = Utilities.U01UserInputs.InputString("Input activity description: "),
                 DateStart = Utilities.U01UserInputs.InputDateTime("Start date: "),
                 DateFinish = Utilities.U01UserInputs.InputDateTime("Deadline: "),
-                Folder = Utilities.U01UserInputs.InputInt("Belong to the folder: "),
+           //     Folder = Utilities.U01UserInputs.InputInt("Belong to the folder: "),
                 IsFinished = Utilities.U01UserInputs.InputBool("Is finished (Y / N): 0"),
                 DateAccepted = Utilities.U01UserInputs.InputDateTime("Date accepted: "),
                 AssociatedProject = Utilities.U01UserInputs.ReturnAssocietedProject(pro)
@@ -133,8 +139,8 @@ namespace PO
             //    id = 1,
             //    Name = "1.1. Izrada media plana",
             //    Description = "Potrebno je izraditi media plan koji obuhvaca lokalne medije",
-            //    Folder = 1,
-            //    AssociatedProject = Projects[0]
+            //    //    Folder = 1,
+            //    AssociatedProject = ProjectWorkspace.Projects[0]
 
 
             //});
@@ -144,7 +150,7 @@ namespace PO
             //    id = 2,
             //    Name = "1. Dizajn slikovnice",
             //    Description = "Dizajn slikovnice koja ide uz pametnu olovku te prikazuje floru i faunu podrucja PP Biokovo.",
-            //    Folder = 2,
+            //    //  Folder = 2,
             //    AssociatedProject = Projects[1]
 
 

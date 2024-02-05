@@ -21,7 +21,7 @@ namespace PO.ObjectClasses
 
         public override string ToString ()
         {
-            return Name + " || " + UniqueID; 
+            return "ID:" + id + " - " + Name + " - " + UniqueID + " -  \n" +  "   Date start: " + DateStart.ToString() + "\n" + "   Date end: " + DateEnd.ToString() + "\n" + "   Project finished: " + IsFinished;
 
         }
 

@@ -14,8 +14,7 @@ namespace PO.ObjectClasses
        
         public DateTime DateFinish { get; set; }
 
-        public int Folder { get; set; } // vanjski kljuc pretvoriti u listu
-
+        public List<O05Folder> Folders { get; set; } 
         public DateTime DateAccepted { get; set; }
 
         public O02Project AssociatedProject { get; set; }

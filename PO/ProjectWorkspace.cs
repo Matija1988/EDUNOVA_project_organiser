@@ -15,7 +15,8 @@ namespace PO
 
         private Main Main {  get; }
 
-        private ActivitiesWorkspace ActivitiesWork { get; }
+        private ActivitiesWorkspace ActivitiesWorkspace { get; }
+
         public ProjectWorkspace(Main main):this()
         { 
             
@@ -23,9 +24,9 @@ namespace PO
             
         }
 
-        public ProjectWorkspace(ActivitiesWorkspace activitiesWork) : this()
+        public ProjectWorkspace(ActivitiesWorkspace activitiesWorkspace) : this()
         {
-            this.ActivitiesWork = activitiesWork;
+            this.ActivitiesWorkspace = activitiesWorkspace;
         }
 
         public ProjectWorkspace() 
@@ -65,32 +66,37 @@ namespace PO
             {
                 case 1:
                     Console.WriteLine("\n" + "List active projects" + "\n" +
-                                      "************************************************************");
+                                      "************************************************************" + "\n");
                     ListActiveProjects();
                     ProjectsMenu();
-                    ProjectMenuSwitch();
+                    
                     break;
                 case 2:
-                    Console.WriteLine("Enter project:");
+                    Console.WriteLine("\n" + "Enter project:" + "\n" +
+                                      "************************************************************" + "\n");
                     EnterProjectsMenu();
                     break;
                 case 3:
                     Console.WriteLine("Add new project");
-                    AddNewProject();
-                    ProjectsMenu();
-                    ProjectMenuSwitch();
+                    AddNewProject();    
                     break;
                 case 4:
                     Console.WriteLine("Delete project");
+                    DeleteProject();
                     break;
                 case 5:
-                    Console.WriteLine("List finished projects");
+                    Console.WriteLine("\n" + "List finished projects" + "\n" +
+                                      "************************************************************" + "\n");
+                    ListFinishedProjects();
+                    ProjectsMenu();
                     break;
                 case 6:
                     Console.WriteLine("Enter finished projects");
+                    EnterFinishedProjectsMenu();
                     break;
                 case 7:
                     Console.WriteLine("Returning to main menu");
+                    
                     Main.MainMenu();
                     break;
                 case 8:
@@ -98,36 +104,73 @@ namespace PO
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("\n" +
-                                      "!!!!!!!!!!!!!!!!!!! WRONG INPUT !!!!!!!!!!!!!!!!!!!!!!");
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
                     Console.WriteLine("!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!!!");
                     break;
 
             }
 
+        }
 
 
+        private void DeleteProject ()
+        {
+            ListActiveProjects();
+            Projects.RemoveAt(U01UserInputs.InputInt("Select the project you wish to delete: ") - 1);
+
+            ProjectsMenu();
         }
 
         private void EnterProjectsMenu ()
         {
             ListActiveProjects();
 
+            Console.WriteLine("************************************************************");
+
             try
             {
-                var pro = Projects[Utilities.U01UserInputs.InputInt("ID of the project you wish to enter: ") - 1];
+                var pro = Projects[U01UserInputs.InputInt("ID of the project you wish to enter: ") - 1];
 
+               
                 Console.WriteLine("\n" + "Entering selected project" + "\n");
+
                 SelectedProjectMenu(pro);
+                
 
             }
             catch
             {
 
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!! WRONG INPUT !!!!!!!!!!!!!!!!!!!!!!");
+                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                Console.WriteLine("!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!!!");
+                EnterProjectsMenu();
+            }
+
+        }
+        private void EnterFinishedProjectsMenu ()
+        {
+            ListFinishedProjects();
+
+            Console.WriteLine("************************************************************");
+
+            try
+            {
+                var pro = Projects[U01UserInputs.InputInt("ID of the project you wish to enter: ") - 1];
+                if(pro.IsFinished == false) {
+                Console.WriteLine("\n" + "Entering selected project" + "\n");
+
+                SelectedProjectMenu(pro);
+                }
+            }
+            catch
+            {
+
+                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
                 Console.WriteLine("!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!!!");
 
             }
+
+
 
         }
         public void SelectedProjectMenu (O02Project pro)
@@ -145,13 +188,14 @@ namespace PO
             SelectedProjectMenuSwitch(pro);
         }
 
-        public void SelectedProjectMenuSwitch (O02Project pro)
+        public void SelectedProjectMenuSwitch (O02Project? pro)
         {
-            switch (Utilities.U01UserInputs.InputInt("Input: "))
+            switch (U01UserInputs.InputInt("Input: "))
             {
                 case 1:
                     Console.WriteLine("Managing " + pro.Name + " activities");
-                   ActivitiesWork.ActivitiesMenu(pro);
+                    ActivitiesWorkspace.ActivitiesMenu(pro);
+                  
                     break;
                 case 2:
                     Console.WriteLine("Updating " + pro.Name + " information");
@@ -179,27 +223,70 @@ namespace PO
             }
 
         }
-            private void AddNewProject ()
-            {
-                Projects.Add(new O02Project()
+        private void AddNewProject ()
+        {
+
+            int id = U01UserInputs.InputInt("Input project id: ");
+            string name = U01UserInputs.InputString("Project name: ");
+            string UniqueID = U01UserInputs.InputString("UniqueID: ");
+            DateTime dateStart = U01UserInputs.InputDateTime("Start date (format dd/mm/yyyy): ");
+            DateTime dateEnd = U01UserInputs.InputDateTime("End date (format dd/mm/yyyy): ");
+
+            bool isFinished = U01UserInputs.InputBool("Is finished (1) Yes / 2) No): ");
+
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(id + " - " + name + " - " + UniqueID + " - " + "Start date: " + dateStart + " - " + "End date: " + dateEnd + " - " + isFinished);
+
+            Console.WriteLine("New project: " + 
+                              "\n" + sb);
+
+
+            if (U01UserInputs.InputBool("Accept this input (1) Yes / 2) No): ")) 
+            { 
+
+            Projects.Add(new O02Project()
                 {
 
-                    id = Utilities.U01UserInputs.InputInt("Input project id: "),
-                    Name = Utilities.U01UserInputs.InputString("Project name: "),
-                    UniqueID = Utilities.U01UserInputs.InputString("UniqueID: "),
-                    DateStart = Utilities.U01UserInputs.InputDateTime("Start date: "),
-                    DateEnd = Utilities.U01UserInputs.InputDateTime("Date end: "),
-                    IsFinished = Utilities.U01UserInputs.InputBool("Is finished (Y / N): ")
+                    id = id,
+                    Name = name,
+                    UniqueID = UniqueID,
+                    DateStart = dateStart,
+                    DateEnd = dateEnd,
+                    IsFinished = isFinished
 
 
-                });
+                }) ;
             }
+            ProjectsMenu();
+        }
+    
 
-            private void ListActiveProjects ()
+        private void ListActiveProjects ()
             {
                 var i = 0;
-                Projects.ForEach(p => { Console.WriteLine(++i + ") " + p); });
+                Projects.ForEach(p => {
+                    if (p.IsFinished)
+                    {
+                        Console.WriteLine(++i + ") " + p);
+
+                    }
+                    });
+
+            
             }
+        private void ListFinishedProjects ()
+        {
+            var i = 0;
+            Projects.ForEach(p =>
+            {
+                if (p.IsFinished == false)
+                {
+                    Console.WriteLine(++i + ") " + p);
+                }
+
+            });
+        }
         private void TestData ()
         {
             Projects.Add(new O02Project()
@@ -207,6 +294,9 @@ namespace PO
                 id = 1,
                 UniqueID = "K.K. 2711",
                 Name = "Urbana aglomeracija zamisljeni grad",
+                DateStart = DateTime.Now,
+                DateEnd = DateTime.Now,
+                IsFinished = false
 
 
             });
@@ -215,8 +305,21 @@ namespace PO
             {
                 id = 2,
                 UniqueID = "JUPP 412",
-                Name = "Izrada interaktivne slikovnice JU PP Biokovo"
+                Name = "Izrada interaktivne slikovnice JU PP Biokovo",
+                DateStart = DateTime.Now,
+                DateEnd = DateTime.Now,
+                IsFinished = false
 
+            });
+
+            Projects.Add(new O02Project()
+            {
+                id = 3,
+                UniqueID = "K.K 712",
+                Name = "Izrada studijsko-projektne dokumentacije",
+                DateStart = DateTime.Now,
+                DateEnd = DateTime.Now,
+                IsFinished = true
 
             });
         }

@@ -20,7 +20,8 @@ namespace PO.Utilities
                 s = Console.ReadLine();
                 if (s.Trim().Length == 0)
                 {
-                    Console.WriteLine("!!!!WRONG INPUT!!!!");
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                   
                     continue;
                 }
 
@@ -37,41 +38,95 @@ namespace PO.Utilities
                 try
                 {
                     int a = int.Parse(Console.ReadLine());
-                    return a;
+
+                    if(a == 0 ) { a++; } // This prevents entering 0 as a value when this method is called. Blokira unosenje nule kao vrijednosti u .npr Sifre.
+
+                    if(a <= -1) 
+                    {
+                        Console.WriteLine("\n" + "!!!!!!!!!! INCORRECT INPUT - USE POSITIVE NUMBERS !!!!!!!!!!" + "\n");
+                        continue;
+
+                    } if(a > 0) return a;
                 }
                 catch
                 {
-                    Console.WriteLine("!!!!!!!!! WRONG INPUT !!!!!!!!!!");
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
                 }
-
 
             }
         }
 
         internal static DateTime InputDateTime (string v)
         {
-           return DateTime.Today;
+          
+            while(true)
+            {
+                try
+                {
+                    Console.Write(v);
+                    return DateTime.Parse(Console.ReadLine());
+
+                } catch
+                {
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                }
+            }
         }
 
         internal static bool InputBool (string v)
         {
-            if (v == null)
+            while(true)
             {
-                Console.WriteLine("Unspecified input!!! Please check the validity of your input!!!");
-                InputBool(v);
-                return false; 
-            } else if (v == "Y" || v == "y")
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+                Console.Write(v);
 
+                try
+                {
+                    int a = int.Parse(Console.ReadLine());
+
+                    switch(a)
+                    {
+                        case 1:
+                            return true;
+                           
+                            case 2: 
+                            return false;
+
+                        default:
+                            Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                            break;
+                    }
+
+                }catch
+                {
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                }
+
+            }
             
         }
+   
 
-        internal static O02Project ReturnAssocietedProject (O02Project pro)
+        public static int CheckID<T>(List<T> entity, Func<T, int> catchID) 
+        {
+            int entry;
+
+            while(true) 
+            {
+                entry = InputInt("Enter id: ");
+
+                if(!entity.Any(entity => catchID(entity) == entry))
+                {
+                    return entry;
+                }
+
+                Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
+            }
+    
+        }
+
+       
+
+        public static O02Project ReturnAssocietedProject (O02Project pro)
         {
             return pro;
         }

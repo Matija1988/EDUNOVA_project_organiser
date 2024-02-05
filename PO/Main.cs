@@ -12,10 +12,11 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace PO
 {
-  //  public List<O04Member> Members { get;  }
+  
 
     internal class Main
     {
+        public List<O04Member> Members { get; }
         public ProjectWorkspace ProjectWorkspace { get;  }
         public MembersWorkspace MembersWorkspace { get; }
         public ActivitiesWorkspace ActivitiesWorkspace { get; }
@@ -23,9 +24,9 @@ namespace PO
         public Main()
         {
             U01UserInputs.dev = true;
-            ProjectWorkspace = new ProjectWorkspace();
-            MembersWorkspace = new MembersWorkspace();  
-            ActivitiesWorkspace = new ActivitiesWorkspace();
+            ProjectWorkspace = new ProjectWorkspace(this);
+            MembersWorkspace = new MembersWorkspace(this);  
+            ActivitiesWorkspace = new ActivitiesWorkspace(this);
 
             StartUpMessage();
             LogIn();
@@ -56,7 +57,7 @@ namespace PO
                         {
 
                             MainMenu();
-
+                            break; 
                         }
                         else
                         {
@@ -115,7 +116,7 @@ namespace PO
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("\n" + "!!!!!!!!!!!!!!!!! WRONG INPUT !!!!!!!!!!!!!!!!!");
+                    Console.WriteLine("\n" + U02ErrorMessages.ErrorMessageInput());
                     Console.WriteLine("!!!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!");
                     break;
 
