@@ -10,19 +10,17 @@ namespace PO.ObjectClasses
     {
         
         public string Description { get; set; }
+                   
 
-       
-        public DateTime DateFinish { get; set; }
-
-        public List<O05Folder> Folders { get; set; } 
+        public O05Folder Folder { get; set; } 
         public DateTime DateAccepted { get; set; }
 
         public O02Project AssociatedProject { get; set; }
 
         public override string ToString ()
         {
-            return Name + " || " + Description + " || "  + AssociatedProject + " || " + id;
-        }
+            return id + " || " + Name + " || \n" + Description + " || \n"  + AssociatedProject + " || " + id + " || \n" + DateStart + " || " + DateEnd + " || \n" + Folder + " || " + IsFinished + " || " + DateAccepted; 
+        } 
 
     }
 }

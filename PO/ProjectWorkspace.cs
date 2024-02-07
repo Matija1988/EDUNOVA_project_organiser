@@ -501,8 +501,8 @@ namespace PO
                 id = 1,
                 UniqueID = "K.K. 2711",
                 Name = "Urbana aglomeracija zamisljeni grad",
-                DateStart = DateTime.Now,
-                DateEnd = DateTime.Now,
+                DateStart = DateTime.Parse("07.01.2021."),
+                DateEnd = DateTime.Parse("12.05.2024."),
                 IsFinished = false
 
 
@@ -513,8 +513,8 @@ namespace PO
                 id = 2,
                 UniqueID = "JUPP 412",
                 Name = "Izrada interaktivne slikovnice JU PP Biokovo",
-                DateStart = DateTime.Now,
-                DateEnd = DateTime.Now,
+                DateStart = DateTime.Parse("10.04.2021."),
+                DateEnd = DateTime.Parse("10.05.2022."),
                 IsFinished = false
 
             });

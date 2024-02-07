@@ -11,7 +11,7 @@ namespace PO.ObjectClasses
         public string Location { get; set; }
         public string ContractActivityName { get; set; }
 
-        public int ProofOfDelivery { get; set; }
+        public O06ProofOfDelivery ProofOfDelivery { get; set; }
 
 
     }

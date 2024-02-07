@@ -14,25 +14,36 @@ namespace PO
     {
         public List<O02Project> Projects { get; }
         public List<O03Activity> Activities { get; }
+
+        public List<O04Member> Members { get; }
+
+        public List<O05Folder> Folders { get; }
+
+        public List<O06ProofOfDelivery> ProofOfDeliveries { get; }
         
        
         private Main Main {  get;  }
         private ProjectWorkspace ProjectWorkspace { get; }
 
-        public ActivitiesWorkspace(Main Main):this()
+        private MembersWorkspace MembersWorkspace { get; }
+
+        public ActivitiesWorkspace(Main Main, ProjectWorkspace ProjectWorkspace, MembersWorkspace MembersWorkspace):this()
         {
             this.Main = Main;
-           
+            this.ProjectWorkspace = Main.ProjectWorkspace;
+            this.MembersWorkspace = Main.MembersWorkspace;
+            
         }
-
-        public ActivitiesWorkspace(ProjectWorkspace ProjectWorkspace):this()
-        {
-            this.ProjectWorkspace = ProjectWorkspace;
-        }
+              
 
         public ActivitiesWorkspace() 
-        { 
-            Activities = new List<O03Activity>();
+        {
+            Folders = new();
+            ProofOfDeliveries = new();
+            Activities = new();
+            
+            
+
             
             if(U01UserInputs.dev)
             {
@@ -68,7 +79,7 @@ namespace PO
                     Console.WriteLine("\n" + "Listing activities: " + "\n");
                     ListProjectActivities(pro);
                     ActivitiesMenu(pro);
-                    ActivitiesMenuSwitch(pro);
+                  
                     break;
                 case 2:
                     Console.WriteLine("Selecting activity");
@@ -111,7 +122,7 @@ namespace PO
                 Name = Utilities.U01UserInputs.InputString("Activity name: "),
                 Description = Utilities.U01UserInputs.InputString("Input activity description: "),
                 DateStart = Utilities.U01UserInputs.InputDateTime("Start date: "),
-                DateFinish = Utilities.U01UserInputs.InputDateTime("Deadline: "),
+                DateEnd = Utilities.U01UserInputs.InputDateTime("Deadline: "),
            //     Folder = Utilities.U01UserInputs.InputInt("Belong to the folder: "),
                 IsFinished = Utilities.U01UserInputs.InputBool("Is finished (Y / N): 0"),
                 DateAccepted = Utilities.U01UserInputs.InputDateTime("Date accepted: "),
@@ -134,27 +145,69 @@ namespace PO
 
         private void TestData ()
         {
-            //Activities.Add(new O03Activity()
-            //{
-            //    id = 1,
-            //    Name = "1.1. Izrada media plana",
-            //    Description = "Potrebno je izraditi media plan koji obuhvaca lokalne medije",
-            //    //    Folder = 1,
-            //    AssociatedProject = ProjectWorkspace.Projects[0]
+            Activities.Add(new O03Activity()
+            {
+                id = 1,
+                Name = "1.1. Izrada media plana",
+                Description = "Potrebno je izraditi media plan koji obuhvaca lokalne medije",
+                DateStart = DateTime.Parse("10.02.2021."),
+                DateEnd = DateTime.Parse("10.03.2021."),
+                Folder = Folders[0],
+                IsFinished = true,
+                DateAccepted = DateTime.Parse("08.03.2021"),
+                AssociatedProject = ProjectWorkspace.Projects[0],
 
 
-            //});
 
-            //Activities.Add(new O03Activity()
-            //{
-            //    id = 2,
-            //    Name = "1. Dizajn slikovnice",
-            //    Description = "Dizajn slikovnice koja ide uz pametnu olovku te prikazuje floru i faunu podrucja PP Biokovo.",
-            //    //  Folder = 2,
-            //    AssociatedProject = Projects[1]
+            }) ;
+
+            Activities.Add(new O03Activity()
+            {
+                id = 2,
+                Name = "1. Dizajn slikovnice",
+                Description = "Dizajn slikovnice koja ide uz pametnu olovku te prikazuje floru i faunu podrucja PP Biokovo.",
+                DateStart = DateTime.Parse("11.04.2021."),
+                DateEnd = DateTime.Parse("01.12.2021."),
+                Folder = Folders[1],
+                IsFinished = true,
+                DateAccepted = DateTime.Parse("20.11.2021."),
+                AssociatedProject = Projects[1]
 
 
-            //});
+            });
+
+            Folders.Add(new O05Folder()
+            {
+                id = 1,
+                Location = "//Urbana aglomeracija zamisljeni grad//",
+                ContractActivityName = "1.1. Izrada media plana",
+                ProofOfDelivery = ProofOfDeliveries[0],
+
+
+            }) ;
+
+            Folders.Add(new O05Folder()
+            {
+                id = 1,
+                Location = "//Izrada interaktivne slikovnice JU PP Biokovo//",
+                ContractActivityName = "1. Dizajn slikovnice",
+                ProofOfDelivery = ProofOfDeliveries[1],
+
+
+            });
+
+            ProofOfDeliveries.Add(new O06ProofOfDelivery()
+            {
+                id = 1,
+                DocumentName = "Media plan",
+                Location = "//Urbana aglomeracija zamisljeni grad//1.1. Izrada media plana//",
+                MemberID = Main.MembersWorkspace.Members[0],
+                DateCreated = DateTime.Parse("12.11.2021."),
+
+
+            }) ;
+
+
         }
     }
 }
