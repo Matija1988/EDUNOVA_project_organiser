@@ -12,7 +12,7 @@ namespace PO.ObjectClasses
 
         public string Location { get; set; }
 
-        public int MemberID { get; set; }
+        public O04Member MemberID { get; set; }
 
         public DateTime DateCreated { get; set; }
 

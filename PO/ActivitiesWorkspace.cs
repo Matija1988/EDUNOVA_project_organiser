@@ -27,7 +27,9 @@ namespace PO
 
         private MembersWorkspace MembersWorkspace { get; }
 
-        public ActivitiesWorkspace(Main Main, ProjectWorkspace ProjectWorkspace, MembersWorkspace MembersWorkspace):this()
+      
+
+        public ActivitiesWorkspace(Main Main):this()
         {
             this.Main = Main;
             this.ProjectWorkspace = Main.ProjectWorkspace;
@@ -38,9 +40,11 @@ namespace PO
 
         public ActivitiesWorkspace() 
         {
+            Activities = new();
             Folders = new();
             ProofOfDeliveries = new();
-            Activities = new();
+            
+            
             
             
 
@@ -54,7 +58,6 @@ namespace PO
         }
 
        
-
         public void ActivitiesMenu (O02Project? pro)
         {
             Console.WriteLine("\n" + "Working on " + pro.Name + ", " + pro.UniqueID + " activities.");
@@ -92,6 +95,7 @@ namespace PO
                     break;
                 case 4:
                     Console.WriteLine("Activity go bye bye");
+                    DeleteActivity(pro);
                     break;
                 case 5:
                  ProjectWorkspace.SelectedProjectMenu( pro);
@@ -113,6 +117,39 @@ namespace PO
             }
         }
 
+        private void DeleteActivity (O02Project pro)
+        {
+            ListProjectActivities(pro);
+
+            try
+            {
+                
+                int index = U01UserInputs.InputInt("Delete activity: ") - 1;
+
+                bool verification = U01UserInputs.InputBool("\n" + "Delete activity " + "\n" + Activities[index] + "\n" + "1) YES / 2) NO | ");
+
+         
+
+
+                if (verification == true)
+                {
+
+                    Projects.RemoveAt(index);
+
+                }
+
+
+            }
+            catch
+            {
+
+                U02ErrorMessages.ErrorMessageInput();
+                DeleteActivity(pro);
+
+            }
+
+        }
+
         private void EnterNewActivity (O02Project pro)
         {
             Activities.Add(new O03Activity()
@@ -123,8 +160,8 @@ namespace PO
                 Description = Utilities.U01UserInputs.InputString("Input activity description: "),
                 DateStart = Utilities.U01UserInputs.InputDateTime("Start date: "),
                 DateEnd = Utilities.U01UserInputs.InputDateTime("Deadline: "),
-           //     Folder = Utilities.U01UserInputs.InputInt("Belong to the folder: "),
-                IsFinished = Utilities.U01UserInputs.InputBool("Is finished (Y / N): 0"),
+             //   Folder = Utilities.U01UserInputs.InputInt("Belong to the folder: "),
+                IsFinished = Utilities.U01UserInputs.InputBool("Is finished (1) YES / 2) NO): "),
                 DateAccepted = Utilities.U01UserInputs.InputDateTime("Date accepted: "),
                 AssociatedProject = Utilities.U01UserInputs.ReturnAssocietedProject(pro)
 
@@ -145,36 +182,17 @@ namespace PO
 
         private void TestData ()
         {
-            Activities.Add(new O03Activity()
+            ProofOfDeliveries.Add(new O06ProofOfDelivery()
             {
                 id = 1,
-                Name = "1.1. Izrada media plana",
-                Description = "Potrebno je izraditi media plan koji obuhvaca lokalne medije",
-                DateStart = DateTime.Parse("10.02.2021."),
-                DateEnd = DateTime.Parse("10.03.2021."),
-                Folder = Folders[0],
-                IsFinished = true,
-                DateAccepted = DateTime.Parse("08.03.2021"),
-                AssociatedProject = ProjectWorkspace.Projects[0],
-
-
-
-            }) ;
-
-            Activities.Add(new O03Activity()
-            {
-                id = 2,
-                Name = "1. Dizajn slikovnice",
-                Description = "Dizajn slikovnice koja ide uz pametnu olovku te prikazuje floru i faunu podrucja PP Biokovo.",
-                DateStart = DateTime.Parse("11.04.2021."),
-                DateEnd = DateTime.Parse("01.12.2021."),
-                Folder = Folders[1],
-                IsFinished = true,
-                DateAccepted = DateTime.Parse("20.11.2021."),
-                AssociatedProject = Projects[1]
+                DocumentName = "Media plan",
+                Location = "//Urbana aglomeracija zamisljeni grad//1.1. Izrada media plana//",
+            //    MemberID = Main.MembersWorkspace.Members[1],
+                DateCreated = DateTime.Parse("12.11.2021."),
 
 
             });
+
 
             Folders.Add(new O05Folder()
             {
@@ -184,28 +202,50 @@ namespace PO
                 ProofOfDelivery = ProofOfDeliveries[0],
 
 
-            }) ;
+            });
 
             Folders.Add(new O05Folder()
             {
                 id = 1,
                 Location = "//Izrada interaktivne slikovnice JU PP Biokovo//",
                 ContractActivityName = "1. Dizajn slikovnice",
-                ProofOfDelivery = ProofOfDeliveries[1],
+            //    ProofOfDelivery = ProofOfDeliveries[1],
 
 
             });
 
-            ProofOfDeliveries.Add(new O06ProofOfDelivery()
+
+
+            Activities.Add(new O03Activity()
             {
                 id = 1,
-                DocumentName = "Media plan",
-                Location = "//Urbana aglomeracija zamisljeni grad//1.1. Izrada media plana//",
-                MemberID = Main.MembersWorkspace.Members[0],
-                DateCreated = DateTime.Parse("12.11.2021."),
+                Name = "1.1. Izrada media plana",
+                Description = "Potrebno je izraditi media plan koji obuhvaca lokalne medije",
+                DateStart = DateTime.Parse("10.02.2021."),
+                DateEnd = DateTime.Parse("10.03.2021."),
+        //        Folder = Folders[0],
+                IsFinished = true,
+                DateAccepted = DateTime.Parse("08.03.2021"),
+           //     AssociatedProject = ProjectWorkspace.Projects[0],
 
 
-            }) ;
+
+            });
+
+            Activities.Add(new O03Activity()
+            {
+                id = 2,
+                Name = "1. Dizajn slikovnice",
+                Description = "Dizajn slikovnice koja ide uz pametnu olovku te prikazuje floru i faunu podrucja PP Biokovo.",
+                DateStart = DateTime.Parse("11.04.2021."),
+                DateEnd = DateTime.Parse("01.12.2021."),
+           //     Folder = Folders[1],
+                IsFinished = true,
+                DateAccepted = DateTime.Parse("20.11.2021."),
+          //      AssociatedProject = Projects[1]
+
+
+            });
 
 
         }

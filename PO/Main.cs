@@ -24,9 +24,10 @@ namespace PO
         public Main()
         {
             U01UserInputs.dev = true;
+            MembersWorkspace = new MembersWorkspace(this);
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
             ProjectWorkspace = new ProjectWorkspace(this);
-            MembersWorkspace = new MembersWorkspace(this);  
+           
            
 
             StartUpMessage();

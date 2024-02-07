@@ -230,7 +230,7 @@ namespace PO
             var i = 0;
             Projects.ForEach(p =>
             {
-                if (p.IsFinished)
+                if (p.IsFinished == true)
                 {
                     Console.WriteLine(++i + ") " + p);
                 }
@@ -321,19 +321,17 @@ namespace PO
 
         private void UpdateProject (O02Project pro)
         {
-
+            Console.WriteLine("1) Unique ID");
+            Console.WriteLine("2) Name");
+            Console.WriteLine("3) Date start");
+            Console.WriteLine("4) Date end");
+            Console.WriteLine("5) Project status");
+            Console.WriteLine("6) Update all");
+            Console.WriteLine("7) Return");
 
 
             try
-            {
-
-                Console.WriteLine("1) Unique ID");
-                Console.WriteLine("2) Name");
-                Console.WriteLine("3) Date start");
-                Console.WriteLine("4) Date end");
-                Console.WriteLine("5) Project status");
-                Console.WriteLine("6) Update all");
-                Console.WriteLine("7) Return");
+            {            
 
 
 
@@ -476,6 +474,7 @@ namespace PO
                         EnterFinishedProjectsMenu();
                         break;
                     default:
+                        U02ErrorMessages.ErrorMessageInput();
                         break;
 
                 }

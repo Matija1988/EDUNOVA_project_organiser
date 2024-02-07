@@ -19,7 +19,13 @@ namespace PO.ObjectClasses
 
         public override string ToString ()
         {
-            return id + " || " + Name + " || \n" + Description + " || \n"  + AssociatedProject + " || " + id + " || \n" + DateStart + " || " + DateEnd + " || \n" + Folder + " || " + IsFinished + " || " + DateAccepted; 
+            return "ID: " + id + " - " + "NAME: " + Name + "DESCRPITION: " + 
+                   "\n   " + Description + 
+                // "\n   " + "ASSOCIETED PROJECT: ID " + AssociatedProject.id + " NAME " + AssociatedProject.Name + 
+                   "\n   " + "START DATE: " + DateStart + " - DEADLINE: " + DateEnd + 
+                // "\n   " + Folder.Location + 
+                   "\n   " + "IS FINISHED: " + IsFinished + 
+                   "\n   " + DateAccepted; 
         } 
 
     }
