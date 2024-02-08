@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,30 +15,28 @@ namespace PO
     internal class MembersWorkspace
     {
         public List<O04Member> Members;
-
         private Main Main {  get;  }
-        
-        private ActivitiesWorkspace Activities { get;  }
 
+        public ActivitiesWorkspace ActivitiesWorkspace { get;  }
+             
         public MembersWorkspace(Main Main):this()
         { 
             
             this.Main = Main;
-        }
 
-        public MembersWorkspace() 
-        { 
-            Members = new List<O04Member>();
-
-            if(U01UserInputs.dev)
-            {
-                TestData(); 
-            }
-            
         
         }
 
-       
+        public MembersWorkspace ()
+        {
+
+            Members = new List<O04Member>();
+                     
+                TestData();
+           
+        }
+
+
 
         public void MembersMenu ()
         {
@@ -46,14 +46,9 @@ namespace PO
             Console.WriteLine("2) Add new member");
             Console.WriteLine("3) Edit member");
             Console.WriteLine("4) Delete member");
+                     
 
-            Console.WriteLine("5) Show member activities");
-            Console.WriteLine("6) Assign activity to a member");
-
-            Console.WriteLine("7) Assign team leader");
-            Console.WriteLine("8) Remove team leader");
-
-            Console.WriteLine("9) Return to main menu");
+            Console.WriteLine("5) Return to main menu");
             Console.WriteLine("0) Exit");
 
             MembersMenuSwitch();
@@ -66,7 +61,7 @@ namespace PO
             {
                 case 1:
                     Console.WriteLine("\nListing all members\n");
-                    ListAllMember();
+                    ListAllMembers();
                     MembersMenu();
                     
                     break;
@@ -82,19 +77,8 @@ namespace PO
                     Console.WriteLine("\nDeleting member\n");
                     DeleteMember();
                     break;
+                
                 case 5:
-                    Console.WriteLine("\nMember acivities\n");
-                    break;
-                case 6:
-                    Console.WriteLine("Assigning activity to a member");
-                    break;
-                case 7:
-                    Console.WriteLine("Member promoted to team leader");
-                    break;
-                case 8:
-                    Console.WriteLine("Team leader relegated");
-                    break;
-                case 9:
                     Main.MainMenu();
                     break;
                 case 0:
@@ -109,7 +93,7 @@ namespace PO
 
         }
 
-        private void ListAllMember ()
+        private void ListAllMembers ()
         {
             int index = 0;
             Members.ForEach(member => { Console.WriteLine(++index + ") " + member); });
@@ -117,7 +101,7 @@ namespace PO
 
         private void AddNewMember ()
         {
-            ListAllMember ();
+            ListAllMembers ();
 
             int id = U01UserInputs.InputInt("Enter new member ID: ");
 
@@ -139,7 +123,7 @@ namespace PO
 
             Members.ForEach(member => { if (member.Password == password)
                 {
-                    U02ErrorMessages.ErrorMessageInputExists();
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
                     AddNewMember();
                 }
             });
@@ -161,9 +145,12 @@ namespace PO
 
         }
 
+
+     
+
         private void UpdateMember ()
         {
-            ListAllMember();
+            ListAllMembers();
 
             U03GraphicElements.PrintStars();
 
@@ -292,7 +279,7 @@ namespace PO
         {
             U03GraphicElements.PrintStars();
           
-            ListAllMember();
+            ListAllMembers();
 
             U03GraphicElements.PrintStars();
 
@@ -302,16 +289,26 @@ namespace PO
 
                 var member = Members[index - 1];
 
-                string validationPassword = U01UserInputs.InputString("Enter your password to validate action!!!");
+                string validationPassword = U01UserInputs.InputString("Enter your password to validate action: ");
 
                 bool validation = false;
-
+                                
                 Members.ForEach(member => { if (member.Password == validationPassword && member.IsTeamLeader == true) validation = true;  });
+
+                if(Main.LoggedInUser == member)
+                {
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageCannotDeleteYourself());
+                    MembersMenu();
+                }
             
-                if(validation == true) 
+                if(validation != true) 
+                {
+                    U02ErrorMessages.ErrorMessageInput();
+                                 
+                }                
+                else
                 {
                     Members.Remove(member);
-                
                 }
             } 
             catch {

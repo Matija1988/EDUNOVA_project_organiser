@@ -10,9 +10,10 @@ namespace PO.Utilities
     {
 
         internal static void PrintStars() 
-        { 
-        
-        for (int i = 0; i < 60; i++) 
+        {
+            Console.WriteLine("\n");
+
+            for (int i = 0; i < 60; i++) 
             
             {
 
@@ -20,7 +21,7 @@ namespace PO.Utilities
 
             }
 
-            Console.WriteLine();
+            Console.WriteLine("\n");
         }
 
 

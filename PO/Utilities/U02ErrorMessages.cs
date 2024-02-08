@@ -26,6 +26,15 @@ namespace PO.Utilities
             return sb.ToString();
         }
 
+        internal static string ErrorMessageCannotDeleteYourself () 
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("\n" +
+                      "!!!!!!!!!!!!!!!! USER CANNOT DELETE HIMSELF !!!!!!!!!!!!!!!!" +
+                      "\n");
+            return sb.ToString();
+
+        }
         
 
 

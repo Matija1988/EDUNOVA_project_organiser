@@ -16,10 +16,12 @@ namespace PO
 
     internal class Main
     {
-        public List<O04Member> Members { get; }
+  
         public ProjectWorkspace ProjectWorkspace { get;  }
         public MembersWorkspace MembersWorkspace { get; }
         public ActivitiesWorkspace ActivitiesWorkspace { get; }
+
+        public O04Member LoggedInUser { get; set; }
 
         public Main()
         {
@@ -28,8 +30,7 @@ namespace PO
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
             ProjectWorkspace = new ProjectWorkspace(this);
            
-           
-
+        
             StartUpMessage();
             LogIn();
         
@@ -57,9 +58,12 @@ namespace PO
                         Console.WriteLine("Welcome " + MembersWorkspace.Members[i].ToString());
                         if (MembersWorkspace.Members[i].IsTeamLeader == true)
                         {
-
+                            
+                            
+                            var loggedInUser = MembersWorkspace.Members[i];
+                            LoggedInUser = loggedInUser;
                             MainMenu();
-                            break; 
+                         
                         }
                         else
                         {
@@ -85,6 +89,7 @@ namespace PO
 
         }
 
+      
 
         public  void MainMenu ()
         {

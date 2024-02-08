@@ -30,10 +30,9 @@ namespace PO
         {
             Projects = new List<O02Project>();
 
-            if (U01UserInputs.dev)
-            {
+            
                 TestData();
-            }
+            
 
 
         }
@@ -102,7 +101,7 @@ namespace PO
                     break;
                 default:
                     Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
-                    Console.WriteLine("!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!!!");
+                   
                     break;
 
             }
@@ -310,9 +309,8 @@ namespace PO
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("\n" +
-                                      "!!!!!!!!!!!!!!!!!!! WRONG INPUT !!!!!!!!!!!!!!!!!!!!!!");
-                    Console.WriteLine("!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!!!");
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                   
                     break;
 
             }
@@ -453,11 +451,11 @@ namespace PO
 
                         validation = U01UserInputs.InputBool("\n" + "Change project information? " +
                                                               "\n" +
-                                                               "\n" + "Prijasnji unos: " + pro +
+                                                               "\n" + "Previus input: " + pro +
                                                                 "\n" + "New unique ID: " + uniqueId + " || " + "New project name: " + name + " || " + "New start date: " + dateStart +
                                                                        " || " + "New deadline: " + dateEnd + " || " + "Is finished: " + isFinished +
                                                                  "\n" +
-                                                                  "\n" + "Prihvati promjene: 1) DA / 2) NE | ");
+                                                                  "\n" + "Accept changes: 1) YES / 2) NO | ");
 
                         if (validation)
                         {
@@ -474,7 +472,7 @@ namespace PO
                         EnterFinishedProjectsMenu();
                         break;
                     default:
-                        U02ErrorMessages.ErrorMessageInput();
+                        Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
                         break;
 
                 }
