@@ -61,15 +61,19 @@ namespace PO
             switch (U01UserInputs.InputInt("\n" + "Project menu input: "))
             {
                 case 1:
-                    Console.WriteLine("\n" + "List active projects" + "\n" +
-                                      "************************************************************" + "\n");
+                    Console.WriteLine("\n" + "List active projects");
+
+                    U03GraphicElements.PrintStars();
+
                     ListActiveProjects();
                     ProjectsMenu();
 
                     break;
                 case 2:
-                    Console.WriteLine("\n" + "Enter project:" + "\n" +
-                                      "************************************************************" + "\n");
+                    Console.WriteLine("\n" + "Enter project:");
+
+                    U03GraphicElements.PrintStars();
+
                     EnterProjectsMenu();
                     break;
                 case 3:
@@ -81,8 +85,10 @@ namespace PO
                     DeleteProject();
                     break;
                 case 5:
-                    Console.WriteLine("\n" + "List finished projects" + "\n" +
-                                      "************************************************************" + "\n");
+                    Console.WriteLine("\n" + "List finished projects");
+
+                    U03GraphicElements.PrintStars();
+
                     ListFinishedProjects();
                     ProjectsMenu();
                     break;
@@ -125,7 +131,7 @@ namespace PO
         {
             ListActiveProjects();
 
-            Console.WriteLine("************************************************************");
+            U03GraphicElements.PrintStars();
 
             try
             {

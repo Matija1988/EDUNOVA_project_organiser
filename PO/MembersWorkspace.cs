@@ -14,42 +14,33 @@ namespace PO
 {
     internal class MembersWorkspace
     {
-        public List<O04Member> Members;
-        private Main Main {  get;  }
+        public List<O04Member> Members { get; set; }
+        private Main Main { get; }
 
-        public ActivitiesWorkspace ActivitiesWorkspace { get;  }
-             
-        public MembersWorkspace(Main Main):this()
-        { 
-            
+     
+
+        public MembersWorkspace (Main Main) : this()
+        {
+
             this.Main = Main;
 
-        
+
         }
 
         public MembersWorkspace ()
         {
 
             Members = new List<O04Member>();
-                     
-                TestData();
-           
+
+            TestData();
+
         }
 
 
 
         public void MembersMenu ()
         {
-            Console.WriteLine("\n" +
-               ">>>>>>>>>>>>>>>>>>>>> Members menu <<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
-            Console.WriteLine("1) List all members ");
-            Console.WriteLine("2) Add new member");
-            Console.WriteLine("3) Edit member");
-            Console.WriteLine("4) Delete member");
-                     
-
-            Console.WriteLine("5) Return to main menu");
-            Console.WriteLine("0) Exit");
+            U04MenuTexts.MembersMenuText();
 
             MembersMenuSwitch();
         }
@@ -63,7 +54,7 @@ namespace PO
                     Console.WriteLine("\nListing all members\n");
                     ListAllMembers();
                     MembersMenu();
-                    
+
                     break;
                 case 2:
                     Console.WriteLine("\nAdding new member \n");
@@ -77,7 +68,7 @@ namespace PO
                     Console.WriteLine("\nDeleting member\n");
                     DeleteMember();
                     break;
-                
+
                 case 5:
                     Main.MainMenu();
                     break;
@@ -101,11 +92,12 @@ namespace PO
 
         private void AddNewMember ()
         {
-            ListAllMembers ();
+            ListAllMembers();
 
             int id = U01UserInputs.InputInt("Enter new member ID: ");
 
-            Members.ForEach(member => {
+            Members.ForEach(member =>
+            {
 
                 if (member.id == id)
                 {
@@ -119,15 +111,17 @@ namespace PO
             string name = U01UserInputs.InputString("Name: ");
             string lastName = U01UserInputs.InputString("Last name: ");
             string userName = U01UserInputs.InputString("Username: ");
-            string password = U01UserInputs.InputString ("Password: ");
+            string password = U01UserInputs.InputString("Password: ");
 
-            Members.ForEach(member => { if (member.Password == password)
+            Members.ForEach(member =>
+            {
+                if (member.Password == password)
                 {
                     Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
                     AddNewMember();
                 }
             });
-          
+
             bool isTeamLeader = U01UserInputs.InputBool("Is team leader: 1) YES / 2) NO ");
 
             Members.Add(new O04Member()
@@ -139,14 +133,14 @@ namespace PO
                 Password = password,
                 IsTeamLeader = isTeamLeader
 
-            }) ;
+            });
 
             MembersMenu();
 
         }
 
 
-     
+
 
         private void UpdateMember ()
         {
@@ -175,7 +169,7 @@ namespace PO
                                                                  "\n" + "Previous input: " + member.Name +
                                                                   "\n" + "New input: ");
 
-                     
+
                         bool validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                                        "\n" +
                                                                         "\n" + "Previous entry: " + member.Name +
@@ -231,7 +225,8 @@ namespace PO
                                                                 "\n" + "New input: " + password +
                                                                  "\n" + "Accept change: 1) YES / 2) NO | ");
 
-                        Members.ForEach(member => {
+                        Members.ForEach(member =>
+                        {
                             if (member.Password == password)
                             {
                                 U02ErrorMessages.ErrorMessageInputExists();
@@ -278,47 +273,49 @@ namespace PO
         private void DeleteMember ()
         {
             U03GraphicElements.PrintStars();
-          
+
             ListAllMembers();
 
             U03GraphicElements.PrintStars();
 
-            try { 
+            try
+            {
 
-            int index = U01UserInputs.InputInt("Choose member you wish to delete: ");
+                int index = U01UserInputs.InputInt("Choose member you wish to delete: ");
 
                 var member = Members[index - 1];
 
                 string validationPassword = U01UserInputs.InputString("Enter your password to validate action: ");
 
                 bool validation = false;
-                                
-                Members.ForEach(member => { if (member.Password == validationPassword && member.IsTeamLeader == true) validation = true;  });
 
-                if(Main.LoggedInUser == member)
+                Members.ForEach(member => { if (member.Password == validationPassword && member.IsTeamLeader == true) validation = true; });
+
+                if (Main.LoggedInUser == member)
                 {
                     Console.WriteLine(U02ErrorMessages.ErrorMessageCannotDeleteYourself());
                     MembersMenu();
                 }
-            
-                if(validation != true) 
+
+                if (validation != true)
                 {
-                    U02ErrorMessages.ErrorMessageInput();
-                                 
-                }                
+                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+
+                }
                 else
                 {
                     Members.Remove(member);
                 }
-            } 
-            catch {
+            }
+            catch
+            {
 
-                U02ErrorMessages.ErrorMessageInput();
+                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
             }
             MembersMenu();
         }
 
-        private void TestData ()
+        public void TestData ()
         {
 
             Members.Add(new O04Member()

@@ -27,6 +27,8 @@ namespace PO
 
         private MembersWorkspace MembersWorkspace { get; }
 
+        private ProofWorkspace ProofWorkspace { get; }
+
 
 
         private Main Main {  get;  }
@@ -34,9 +36,11 @@ namespace PO
              
         public ActivitiesWorkspace(Main main):this()
         {
-            this.MembersWorkspace = main.MembersWorkspace;
+      
             this.Main = main;
+            this.MembersWorkspace = MembersWorkspace;
             this.ProjectWorkspace = main.ProjectWorkspace;
+            this.ProofWorkspace = main.ProofWorkspace;
 
 
             TestData();
@@ -60,7 +64,7 @@ namespace PO
         }
 
        
-        public void ActivitiesMenu (O02Project? pro)
+        public void ActivitiesMenu (O02Project pro)
         {
             Console.WriteLine("\n" + "Working on " + pro.Name + ", " + pro.UniqueID + " activities.");
 
@@ -69,9 +73,10 @@ namespace PO
             Console.WriteLine("2) Enter new activity");
             Console.WriteLine("3) Edit activity");
             Console.WriteLine("4) Delete activity");
-            Console.WriteLine("5) Return to previous menu");
-            Console.WriteLine("6) Return to main menu");
-            Console.WriteLine("7) Exit");
+            Console.WriteLine("5) Manage proof collection");
+            Console.WriteLine("6) Return to previous menu");
+            Console.WriteLine("7) Return to main menu");
+            Console.WriteLine("0) Exit");
 
             ActivitiesMenuSwitch(pro);
            
@@ -104,14 +109,18 @@ namespace PO
                     DeleteActivity(pro);
                     break;
                 case 5:
+                    ProofWorkspace.ProofMenu(); 
+                    break;
+
+                case 6:
                  ProjectWorkspace.SelectedProjectMenu( pro);
                     
                     break;
-                case 6:
+                case 7:
                     Main.MainMenu();
                     
                     break;
-                case 7:
+                case 0:
                     Console.WriteLine("Exiting application");
                     Environment.Exit(0);
                     break;
@@ -200,16 +209,7 @@ namespace PO
         {
            
 
-            ProofOfDeliveries.Add(new O06ProofOfDelivery()
-            {
-                id = 1,
-                DocumentName = "Media plan",
-                Location = "//Urbana aglomeracija zamisljeni grad//1.1. Izrada media plana//",
-                Member = MembersWorkspace.Members[0],
-                DateCreated = DateTime.Parse("12.11.2021."),
-
-
-            });
+         
 
 
             Folders.Add(new O05Folder()
@@ -217,14 +217,14 @@ namespace PO
                 id = 1,
                 Location = "//Urbana aglomeracija zamisljeni grad//",
                 ContractActivityName = "1.1. Izrada media plana",
-                ProofOfDelivery = ProofOfDeliveries[0],
+              //  ProofOfDelivery = ProofOfDeliveries[0],
 
 
             });
 
             Folders.Add(new O05Folder()
             {
-                id = 1,
+                id = 2,
                 Location = "//Izrada interaktivne slikovnice JU PP Biokovo//",
                 ContractActivityName = "1. Dizajn slikovnice",
             //    ProofOfDelivery = ProofOfDeliveries[1],

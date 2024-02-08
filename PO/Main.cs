@@ -16,10 +16,15 @@ namespace PO
 
     internal class Main
     {
-  
+        public List<O04Member> Members { get; }
+
         public ProjectWorkspace ProjectWorkspace { get;  }
         public MembersWorkspace MembersWorkspace { get; }
         public ActivitiesWorkspace ActivitiesWorkspace { get; }
+
+        public ProofWorkspace ProofWorkspace { get; }
+
+        public FoldersWorkspace FoldersWorkspace { get; }
 
         public O04Member LoggedInUser { get; set; }
 
@@ -27,6 +32,9 @@ namespace PO
         {
             U01UserInputs.dev = true;
             MembersWorkspace = new MembersWorkspace(this);
+            
+            FoldersWorkspace = new FoldersWorkspace(this);
+            ProofWorkspace = new ProofWorkspace(this);
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
             ProjectWorkspace = new ProjectWorkspace(this);
            

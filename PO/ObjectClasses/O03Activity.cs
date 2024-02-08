@@ -30,10 +30,10 @@ namespace PO.ObjectClasses
                    "\n   " + "DESCRPITION: " + Description +
                    //   "\n   " + "ASSOCIATED PROJECT: ID " + AssociatedProject.id + " NAME " + AssociatedProject.Name + 
                    "\n   " + "START DATE: " + DateStart + " - DEADLINE: " + DateEnd +
-                   "\n   " + "FOLDER LOCATION: " + Folder.Location + 
+                   "\n   " + "FOLDER LOCATION: " + Folder.Location +
                    "\n   " + "IS FINISHED: " + IsFinished +
                    "\n   " + DateAccepted +
-                   "\n   " + "Delegated to: " + Member.Name;
+                   "\n   " + "Delegated to: "; // + Member.Name;
          } 
 
     }
