@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PO.ObjectClasses
+namespace Organiser.ObjectClasses
 {
-    public abstract class O01Entity
+    public  class Entity
     {
         [Key]
         public int id { get; set; }

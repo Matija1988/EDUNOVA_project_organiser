@@ -16,12 +16,14 @@ namespace PO
 
         public List<O04Member> Members { get; }
 
-        public List<O06ProofOfDelivery> ProofOfDeliveries;
-        private Main Main { get; }
-
+        public List<O06ProofOfDelivery> ProofOfDeliveries { get; set;  }
         private MembersWorkspace MembersWorkspace { get; }
 
+      
+        private Main Main { get; }
+
         private ActivitiesWorkspace ActivitiesWorkspace { get; }
+
 
         public ProofWorkspace (Main main) : this()
         {
@@ -29,7 +31,7 @@ namespace PO
             this.Main = main;
             this.MembersWorkspace = main.MembersWorkspace;
             this.ActivitiesWorkspace = main.ActivitiesWorkspace;
-
+            
 
         }
 
@@ -37,6 +39,8 @@ namespace PO
         public ProofWorkspace ()
         {
             ProofOfDeliveries = new List<O06ProofOfDelivery>();
+
+
 
             TestData();
         }
@@ -46,38 +50,39 @@ namespace PO
         public void TestData ()
         {
 
+
             ProofOfDeliveries.Add(new O06ProofOfDelivery()
-            { 
+            {
 
                 id = 1,
                 DocumentName = "Media plan",
                 Location = "//Urbana aglomeracija zamisljeni grad//1.1. Izrada media plana//",
-                Member = Members[0],
+            //    Member = Main.MembersWorkspace.Members[1],
                 DateCreated = DateTime.Parse("12.11.2021."),
 
 
             });
-          
-           
 
-            
+
+
+
         }
 
-        public  void ProofMenu ()
+        public void ProofMenu ()
         {
             U04MenuTexts.ProofMenuText();
-            ProofMenuSwitch(); 
+            ProofMenuSwitch();
         }
 
-        private  void ProofMenuSwitch ()
+        private void ProofMenuSwitch ()
         {
             switch (U01UserInputs.InputInt("Proof menu input: "))
             {
                 case 1:
                     Console.WriteLine("Listing proofs");
                     U03GraphicElements.PrintStars();
-                    ListProofs(); 
-                    
+                    ListProofs();
+
                     break;
 
                 case 2:
@@ -94,7 +99,11 @@ namespace PO
                     Console.WriteLine("Delete proof");
                     break;
 
-                    case 5:
+                case 5:
+                   // ActivitiesWorkspace.ActivitiesMenu();
+                    break;
+
+                case 6:
                     Main.MainMenu();
                     break;
 
@@ -102,15 +111,16 @@ namespace PO
 
                     break;
             }
-                    
+
         }
 
-        private  void ListProofs ()
+        private void ListProofs ()
         {
 
             var index = 0;
 
             ProofOfDeliveries.ForEach(p => { Console.WriteLine(++index + ") " + p); });
+
 
             ProofMenu();
 

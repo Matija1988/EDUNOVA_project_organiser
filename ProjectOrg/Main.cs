@@ -1,162 +1,150 @@
-﻿using PO.ObjectClasses;
-using PO.Utilities;
+﻿using ProjectOrg.ObjectClasses;
+using ProjectOrg.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel.Design;
-using System.Security.Cryptography.X509Certificates;
 
-namespace PO
+namespace ProjectOrg
 {
-  
-
     internal class Main
     {
-        public List<O04Member> Members { get; }
 
 
         public ProjectWorkspace ProjectWorkspace { get; }
         public MembersWorkspace MembersWorkspace { get; }
         public ActivitiesWorkspace ActivitiesWorkspace { get; }
+
         public ProofWorkspace ProofWorkspace { get; }
-        public FoldersWorkspace FoldersWorkspace { get; }
 
-       
+        public TestDataConstructor TestDataConstructor { get; }
 
+        public MembersUpdates MembersUpdates { get; }
 
-        public O04Member LoggedInUser { get; set; }
+        public ProjectsUpdate ProjectsUpdate { get; }
 
-        public Main()
+        public ActivitiesUpdater ActivitiesUpdater { get; }
+
+        //    public FoldersWorkspace FoldersWorkspace { get; }
+
+        public Member LoggedInUser { get; set; }
+
+        public Main ()
         {
             U01UserInputs.dev = true;
 
-            MembersWorkspace = new MembersWorkspace(this);
+            TestDataConstructor = new TestDataConstructor(this);
 
-            FoldersWorkspace = new FoldersWorkspace(this);
-            ProofWorkspace = new ProofWorkspace(this);
+            MembersWorkspace = new MembersWorkspace(this);
+            MembersUpdates = new MembersUpdates(this);
+
+            //    FoldersWorkspace = new FoldersWorkspace(this);
 
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
+            ActivitiesUpdater = new ActivitiesUpdater(this);
+
             ProjectWorkspace = new ProjectWorkspace(this);
+            ProjectsUpdate = new ProjectsUpdate(this);
 
-            FoldersWorkspace = new FoldersWorkspace(this);
+            ProofWorkspace = new ProofWorkspace(this);
 
-
-            LoggedInUser = new O04Member(); 
-           
-        
             StartUpMessage();
             LogIn();
-        
+
         }
-        private void LogIn ()
+        private Member LogIn ()
         {
 
             string LogInName = U01UserInputs.InputString("Username: ");
 
             string Password = U01UserInputs.InputString("Password: ");
 
-            var p = MembersWorkspace.Members.Count;
+            var p = TestDataConstructor.Members.Count;
 
-
-            for (int i = 0; i <= p; i++)
+            try
             {
 
-                try
+                TestDataConstructor.Members.ForEach(member =>
                 {
-                    if (MembersWorkspace.Members[i].Username == LogInName && MembersWorkspace.Members[i].Password == Password)
+                    if (member.Username == LogInName && member.Password == Password)
 
                     {
-
-
-                        Console.WriteLine("Welcome " + MembersWorkspace.Members[i].ToString());
-                        if (MembersWorkspace.Members[i].IsTeamLeader == true)
-                        {
-                            
-                            
-                            var loggedInUser = MembersWorkspace.Members[i];
-                            LoggedInUser = loggedInUser;
-                            MainMenu();
-                         
-                        }
-                        else
-                        {
-
-                            ProjectWorkspace.ProjectsMenu();
-
-                        }
+                        Console.WriteLine("Welcome " + member.Name + " " + member.LastName);
+                        var loggedInUser = member;
+                        LoggedInUser = loggedInUser;
+                        MainMenu();
 
                     }
-                }
-                catch
-                {
-
-                    Console.WriteLine("!!!!!!!!!! INVALID USERNAME OR PASSWORD !!!!!!!!!!");
-                    LogIn();
-
-
-                }
-
-
-
+                });
+            }
+            catch
+            {
+                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
             }
 
+            return LoggedInUser;
         }
 
-      
 
-        public  void MainMenu ()
+
+        public void MainMenu ()
         {
             U04MenuTexts.MainMenuText();
 
             MainMenuSwitch();
         }
 
-       
-        private  void MainMenuSwitch ()
+
+        private void MainMenuSwitch ()
         {
 
-            switch (U01UserInputs.InputInt("Input: "))
+            switch (U01UserInputs.InputIntZeroAllowed("Input: "))
             {
                 case 1:
-                    Console.WriteLine("Entering projects");
                     ProjectWorkspace.ProjectsMenu();
 
                     break;
                 case 2:
-                    Console.WriteLine("Entering projects");
                     ActivitiesWorkspace.ActivitiesMenu();
-                    
+
                     break;
                 case 3:
-                    Console.WriteLine("Entering projects");
                     ProofWorkspace.ProofMenu();
 
                     break;
                 case 4:
-                    Console.WriteLine("Entering members");
-                   MembersWorkspace.MembersMenu();
-                 
+
+                    if (LoggedInUser.Password == U01UserInputs.InputString("\n" + "Verify your indentity! Enter password: ") && LoggedInUser.IsTeamLeader == true)
+                    {
+                        MembersWorkspace.MembersMenu();
+                    } else
+                    {
+                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        MainMenu();
+                    }
+
+
+
                     break;
-                case 5:
-                    Console.WriteLine("Exiting application");
+                case 0:
                     Environment.Exit(0);
+
                     break;
+
                 default:
                     Console.WriteLine("\n" + U02ErrorMessages.ErrorMessageInput());
-                    Console.WriteLine("!!!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!");
+
                     break;
 
             }
 
 
         }
-            
 
-     
+
+
 
         private static void StartUpMessage ()
         {
@@ -172,6 +160,9 @@ namespace PO
                                     + "\n");
 
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>> User Login <<<<<<<<<<<<<<<<<<<<<<<<<");
+
+
         }
+
     }
 }

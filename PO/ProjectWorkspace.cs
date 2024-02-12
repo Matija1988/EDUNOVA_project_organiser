@@ -17,6 +17,8 @@ namespace PO
 
         private ActivitiesWorkspace ActivitiesWorkspace { get; }
 
+    
+
         public ProjectWorkspace (Main main) : this()
         {
 
@@ -34,10 +36,44 @@ namespace PO
                 TestData();
             
 
-
         }
 
+        private void TestData ()
+        {
+            Projects.Add(new O02Project()
+            {
+                id = 1,
+                UniqueID = "K.K. 2711",
+                Name = "Urbana aglomeracija zamisljeni grad",
+                DateStart = DateTime.Parse("07.01.2021."),
+                DateEnd = DateTime.Parse("12.05.2024."),
+                IsFinished = false
 
+
+            });
+
+            Projects.Add(new O02Project()
+            {
+                id = 2,
+                UniqueID = "JUPP 412",
+                Name = "Izrada interaktivne slikovnice JU PP Biokovo",
+                DateStart = DateTime.Parse("10.04.2021."),
+                DateEnd = DateTime.Parse("10.05.2022."),
+                IsFinished = false
+
+            });
+
+            Projects.Add(new O02Project()
+            {
+                id = 3,
+                UniqueID = "K.K 712",
+                Name = "Izrada studijsko-projektne dokumentacije",
+                DateStart = DateTime.Now,
+                DateEnd = DateTime.Now,
+                IsFinished = true
+
+            });
+        }
         public void ProjectsMenu ()
         {
 
@@ -135,13 +171,13 @@ namespace PO
 
             try
             {
-                var pro = Projects[U01UserInputs.InputInt("ID of the project you wish to enter: ") - 1];
+                var SelectedProject = Projects[U01UserInputs.InputInt("ID of the project you wish to enter: ") - 1];
 
 
                 Console.WriteLine("\n" + "Entering selected project" + "\n");
 
 
-                SelectedProjectMenu(pro);
+                SelectedProjectMenu(SelectedProject);
 
 
             }
@@ -149,7 +185,7 @@ namespace PO
             {
 
                 Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
-                Console.WriteLine("!!!!!!!!! CHECK THE VALIDITY OF YOUR INPUT !!!!!!!!!!!");
+               
                 EnterProjectsMenu();
             }
 
@@ -224,10 +260,31 @@ namespace PO
 
         private void DeleteProject ()
         {
-            ListActiveProjects();
-            Projects.RemoveAt(U01UserInputs.InputInt("Select the project you wish to delete: ") - 1);
+            ListAllProjects();
 
+            int indexID = U01UserInputs.InputInt("Select the project ID you wish to delete: ");
+
+            if(Main.LoggedInUser.IsTeamLeader == true) { 
+
+            Projects.ForEach(p =>
+            {
+                if (p.id == indexID)
+                {
+                    Projects.Remove(p);
+                    ProjectsMenu();
+                    
+                }
+            }) ;
+            } else
+            {
+                Console.WriteLine(U02ErrorMessages.ErrorNotAuthorisedForAction());
+                ProjectsMenu();
+            }
+           
+
+            
             ProjectsMenu();
+          
         }
 
         private void ListFinishedProjects ()
@@ -269,11 +326,11 @@ namespace PO
 
 
         }
-        public void SelectedProjectMenu (O02Project pro)
+        public void SelectedProjectMenu (O02Project SelectedProject)
         {
             U03GraphicElements.PrintStars();
 
-            Console.WriteLine("Working on " + pro.Name + ", " + pro.UniqueID + " project." + "Try not to commit suicide before the final report has been accepted and signed!!!");
+            Console.WriteLine("Working on " + SelectedProject.Name + ", " + SelectedProject.UniqueID + " project." + "Try not to commit suicide before the final report has been accepted and signed!!!");
             Console.WriteLine("Have a good day!!!");
 
             Console.WriteLine("\n" +
@@ -283,22 +340,23 @@ namespace PO
             Console.WriteLine("4) Return to main menu");
             Console.WriteLine("5) Exit");
 
-            SelectedProjectMenuSwitch(pro);
+            SelectedProjectMenuSwitch(SelectedProject);
         }
 
-        public void SelectedProjectMenuSwitch (O02Project pro)
+        public void SelectedProjectMenuSwitch (O02Project SelectedProject)
         {
             switch (U01UserInputs.InputInt("Input: "))
             {
                 case 1:
-                    Console.WriteLine("Managing " + pro.Name + " activities");
-                    ActivitiesWorkspace.ActivitiesMenu(pro);
+                    Console.WriteLine("Managing " + SelectedProject.Name + " activities");
+                   
+                    ActivitiesWorkspace.ActivitiesMenu(SelectedProject);
 
                     break;
                 case 2:
-                    Console.WriteLine("\n" + "Updating " + pro.Name + " information" + "\n");
+                    Console.WriteLine("\n" + "Updating " + SelectedProject.Name + " information" + "\n");
                     U03GraphicElements.PrintStars();
-                    UpdateProject(pro);
+                    UpdateProject(SelectedProject);
                     break;
                 case 3:
                     Console.WriteLine("Returning to projects menu");
@@ -323,7 +381,7 @@ namespace PO
 
         }
 
-        private void UpdateProject (O02Project pro)
+        private void UpdateProject (O02Project SelectedProject)
         {
             Console.WriteLine("1) Unique ID");
             Console.WriteLine("2) Name");
@@ -344,7 +402,7 @@ namespace PO
 
                     case 1:
                         string uniqueId = U01UserInputs.InputString("\n" + "_______________________________________" +
-                                                                     "\n" + "Previous unique ID: " + pro.UniqueID +
+                                                                     "\n" + "Previous unique ID: " + SelectedProject.UniqueID +
                                                                       "\n" + "New unique ID: ");
 
                         Projects.ForEach(p => {
@@ -352,7 +410,7 @@ namespace PO
                             if (p.UniqueID == uniqueId)
                             {
                                 Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
-                                UpdateProject(pro);
+                                UpdateProject(SelectedProject);
                             }
 
 
@@ -360,104 +418,104 @@ namespace PO
 
                         bool validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                                        "\n" +
-                                                                        "\n" + "Previous entry: " + pro.UniqueID +
+                                                                        "\n" + "Previous entry: " + SelectedProject.UniqueID +
                                                                          "\n" + "New entry: " + uniqueId +
                                                                           "\n" + "Accept change: 1) YES / 2) NO | ");
                         if (validation)
                         {
-                            pro.UniqueID = uniqueId;
+                            SelectedProject.UniqueID = uniqueId;
                         }
                         break;
 
                     case 2:
                         string name = U01UserInputs.InputString("\n" + "_______________________________________" +
-                                                                 "\n" + "Previous project name: " + pro.Name +
+                                                                 "\n" + "Previous project name: " + SelectedProject.Name +
                                                                   "\n" + "New project name: ");
 
                         validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                               "\n" +
-                                                               "\n" + "Previous project name: " + pro.Name +
+                                                               "\n" + "Previous project name: " + SelectedProject.Name +
                                                                 "\n" + "New project name: " + name +
                                                                  "\n" + "Accept change: 1) YES / 2) NO | ");
 
                         if (validation)
                         {
-                            pro.Name = name;
+                            SelectedProject.Name = name;
                         }
                         break;
 
                     case 3:
                         DateTime dateStart = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
-                                                                          "\n" + "Previous input: " + pro.DateStart +
+                                                                          "\n" + "Previous input: " + SelectedProject.DateStart +
                                                                            "\n" + "New input: ");
 
                         validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                               "\n" +
-                                                               "\n" + "Previous input: " + pro.DateStart +
+                                                               "\n" + "Previous input: " + SelectedProject.DateStart +
                                                                 "\n" + "New input: " + dateStart +
                                                                  "\n" + "Accept change: 1) YES / 2) NO | ");
                         if (validation)
                         {
-                            pro.DateStart = dateStart;
+                            SelectedProject.DateStart = dateStart;
                         }
                         break;
 
                     case 4:
                         DateTime dateEnd = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
-                                                                        "\n" + "Previous input: " + pro.DateEnd +
+                                                                        "\n" + "Previous input: " + SelectedProject.DateEnd +
                                                                          "\n" + "New input: ");
 
                         validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                               "\n" +
-                                                               "\n" + "Previous input: " + pro.DateEnd +
+                                                               "\n" + "Previous input: " + SelectedProject.DateEnd +
                                                                 "\n" + "New input: " + dateEnd +
                                                                  "\n" + "Accept change: 1) YES / 2) NO | ");
                         if (validation)
                         {
-                            pro.DateEnd = dateEnd;
+                            SelectedProject.DateEnd = dateEnd;
                         }
                         break;
 
                     case 5:
                         bool isFinished = U01UserInputs.InputBool("\n" + "_______________________________________" +
-                                                                   "\n" + "Project finished: " + pro.IsFinished +
+                                                                   "\n" + "Project finished: " + SelectedProject.IsFinished +
                                                                     "\n" + "New status: 1) Finished / 2) Ongoing | ");
 
                         validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                               "\n" +
-                                                               "\n" + "Previous is finished: " + pro.IsFinished +
+                                                               "\n" + "Previous is finished: " + SelectedProject.IsFinished +
                                                                 "\n" + "New is finished: " + isFinished +
                                                                  "\n" + "Accept change: 1) YES / 2) NO | ");
                         if (validation)
                         {
-                            pro.IsFinished = isFinished;
+                            SelectedProject.IsFinished = isFinished;
                         }
                         break;
 
                     case 6:
                         uniqueId = U01UserInputs.InputString("\n" + "_______________________________________" +
-                                                              "\n" + "Previous unique ID: " + pro.UniqueID +
+                                                              "\n" + "Previous unique ID: " + SelectedProject.UniqueID +
                                                                "\n" + "New unique ID: ");
 
                         name = U01UserInputs.InputString("\n" + "_______________________________________" +
-                                                          "\n" + "Previous project name: " + pro.Name +
+                                                          "\n" + "Previous project name: " + SelectedProject.Name +
                                                            "\n" + "Name project name: ");
 
                         dateStart = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
-                                                                 "\n" + "Previous input: " + pro.DateStart +
+                                                                 "\n" + "Previous input: " + SelectedProject.DateStart +
                                                                   "\n" + "New input: ");
 
                         dateEnd = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
-                                                               "\n" + "Previous input: " + pro.DateEnd +
+                                                               "\n" + "Previous input: " + SelectedProject.DateEnd +
                                                                 "\n" + "New input: ");
 
                         isFinished = U01UserInputs.InputBool("\n" + "_______________________________________" +
-                                                              "\n" + "Previous is finished: " + pro.IsFinished +
+                                                              "\n" + "Previous is finished: " + SelectedProject.IsFinished +
                                                                "\n" + "New status: 1) Finished / 2) Ongoing | ");
 
                         validation = U01UserInputs.InputBool("\n" + "Change project information? " +
                                                               "\n" +
-                                                               "\n" + "Previus input: " + pro +
+                                                               "\n" + "Previus input: " + SelectedProject +
                                                                 "\n" + "New unique ID: " + uniqueId + " || " + "New project name: " + name + " || " + "New start date: " + dateStart +
                                                                        " || " + "New deadline: " + dateEnd + " || " + "Is finished: " + isFinished +
                                                                  "\n" +
@@ -466,11 +524,11 @@ namespace PO
                         if (validation)
                         {
 
-                            pro.UniqueID = uniqueId;
-                            pro.Name = name;
-                            pro.DateStart = dateStart;
-                            pro.DateEnd = dateEnd;
-                            pro.IsFinished = isFinished;
+                            SelectedProject.UniqueID = uniqueId;
+                            SelectedProject.Name = name;
+                            SelectedProject.DateStart = dateStart;
+                            SelectedProject.DateEnd = dateEnd;
+                            SelectedProject.IsFinished = isFinished;
                         }
                         break;
 
@@ -489,49 +547,14 @@ namespace PO
 
                 Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
                
-                UpdateProject(pro);
+                UpdateProject(SelectedProject);
 
             }
 
-            SelectedProjectMenu(pro);
+            SelectedProjectMenu(SelectedProject);
         }
-   
-
-        private void TestData ()
-        {
-            Projects.Add(new O02Project()
-            {
-                id = 1,
-                UniqueID = "K.K. 2711",
-                Name = "Urbana aglomeracija zamisljeni grad",
-                DateStart = DateTime.Parse("07.01.2021."),
-                DateEnd = DateTime.Parse("12.05.2024."),
-                IsFinished = false
 
 
-            });
-
-            Projects.Add(new O02Project()
-            {
-                id = 2,
-                UniqueID = "JUPP 412",
-                Name = "Izrada interaktivne slikovnice JU PP Biokovo",
-                DateStart = DateTime.Parse("10.04.2021."),
-                DateEnd = DateTime.Parse("10.05.2022."),
-                IsFinished = false
-
-            });
-
-            Projects.Add(new O02Project()
-            {
-                id = 3,
-                UniqueID = "K.K 712",
-                Name = "Izrada studijsko-projektne dokumentacije",
-                DateStart = DateTime.Now,
-                DateEnd = DateTime.Now,
-                IsFinished = true
-
-            });
-        }
+      
     }
 }

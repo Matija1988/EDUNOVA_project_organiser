@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PO.ObjectClasses
+namespace Organiser.ObjectClasses
 {
-    internal class O02Project : O01Entity
+    public  class Project : Entity, IProject
     {
         [Required]
         public string UniqueID { get; set; }
@@ -19,11 +19,10 @@ namespace PO.ObjectClasses
         public DateTime DateEnd { get; set; }
         public bool IsFinished { get; set; }
 
-        public override string ToString ()
-        {
-            return "ID:" + id + " - " + Name + " - " + UniqueID + " -  \n" + "   Date start: " + DateStart.ToString() + "\n" + "   Date end: " + DateEnd.ToString() + "\n" + "   Project finished: " + IsFinished;
+        //public override string ToString ()
+        //{
+        //    return "ID:" + id + " - " + Name + " - " + UniqueID + " -  \n" + "   Date start: " + DateStart.ToString() + "\n" + "   Date end: " + DateEnd.ToString() + "\n" + "   Project finished: " + IsFinished;
 
-        }
-
+        //}
     }
 }

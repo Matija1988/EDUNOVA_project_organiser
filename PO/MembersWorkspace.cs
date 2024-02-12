@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,25 +15,30 @@ namespace PO
 {
     internal class MembersWorkspace
     {
-        public List<O04Member> Members { get; set; }
+
+        public List<O04Member> Members;
         private Main Main { get; }
 
-     
+        private ActivitiesWorkspace ActivitiesWorkspace { get; }
+       
+
 
         public MembersWorkspace (Main Main) : this()
         {
 
             this.Main = Main;
+            this.ActivitiesWorkspace = ActivitiesWorkspace;
 
-
-        }
+    }
 
         public MembersWorkspace ()
         {
 
-            Members = new List<O04Member>();
+            Members = new List<O04Member> ();
+            
+             TestData();
 
-            TestData();
+
 
         }
 
@@ -72,7 +78,7 @@ namespace PO
                 case 5:
                     Main.MainMenu();
                     break;
-                case 0:
+                case 9:
                     Console.WriteLine("Exiting application");
                     Environment.Exit(0);
                     break;
@@ -144,23 +150,22 @@ namespace PO
 
         private void UpdateMember ()
         {
-            ListAllMembers();
 
-            U03GraphicElements.PrintStars();
+           
+            while(true) {
 
-            int chooseMember = U01UserInputs.InputInt("Choose a member you wish to update: ");
-            var member = Members[chooseMember - 1];
+                U03GraphicElements.PrintStars();
 
-            Console.WriteLine("1) Update first name");
-            Console.WriteLine("2) Update last name");
-            Console.WriteLine("3) Update username");
-            Console.WriteLine("4) Update password");
-            Console.WriteLine("5) Is team leader");
-            Console.WriteLine("6) Return to members menu");
+                ListAllMembers();
 
+                int chooseMember = U01UserInputs.InputInt("Choose a member you wish to update: ");
+                var member = Members[chooseMember - 1];
+
+                U04MenuTexts.UpdateMemberMenu();
 
 
-            try
+
+                try
             {
                 switch (U01UserInputs.InputInt("\n" + "Choose which element you wish to change: "))
                 {
@@ -268,7 +273,9 @@ namespace PO
             {
                 U02ErrorMessages.ErrorMessageInput();
             }
-            UpdateMember();
+            }
+            
+                       
         }
         private void DeleteMember ()
         {

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PO.ObjectClasses
+namespace ProjectOrg.ObjectClasses
 {
-    public class O04Member : O01Entity
+    internal   class Member : Entity
     {
-
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
@@ -17,9 +16,7 @@ namespace PO.ObjectClasses
 
         public override string ToString ()
         {
-            return Name + " " + LastName;
+            return Name + " " + LastName + " ||" + " ID: " + id;
         }
-
-
     }
 }

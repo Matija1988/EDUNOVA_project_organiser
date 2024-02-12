@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PO.ObjectClasses
+namespace ProjectOrg.ObjectClasses
 {
-    internal class O02Project : O01Entity
+    internal  class Project : Entity
     {
         [Required]
         public string UniqueID { get; set; }

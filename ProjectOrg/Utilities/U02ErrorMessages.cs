@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PO.Utilities
+namespace ProjectOrg.Utilities
 {
     internal class U02ErrorMessages
     {
+     
         internal static string ErrorMessageInput ()
         {
             StringBuilder sb = new StringBuilder();
@@ -26,7 +27,7 @@ namespace PO.Utilities
             return sb.ToString();
         }
 
-        internal static string ErrorMessageCannotDeleteYourself () 
+        internal static string ErrorMessageCannotDeleteYourself ()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\n" +
@@ -35,16 +36,23 @@ namespace PO.Utilities
             return sb.ToString();
 
         }
-        
-        internal static string ErrorNotAuthorisedForAction()
+
+        internal static string ErrorMessageUnexpectedBehaviourInAutoIncrementID ()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\n" +
-                      "!!!!!!! YOU ARE NOT AUTHORISED TO PERFORM THIS ACTION !!!!!!" +
+                      "!!!!!!!! UNEXPECTED BEHAVIOUR IN AUTOINCREMENT ID !!!!!!!!" +
                       "\n");
             return sb.ToString();
         }
 
-
+        internal static string LackOfAuthority()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("\n" +
+                      "!!!!! USER IS NOT AUTHORISED TO PERFORM THIS ACTION !!!!!" +
+                      "\n");
+            return sb.ToString();
+        }
     }
 }

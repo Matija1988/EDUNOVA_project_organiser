@@ -9,6 +9,17 @@ namespace PO.Utilities
     internal class U04MenuTexts
     {
 
+        internal static void MainMenuText()
+        {
+            Console.WriteLine("\n" +
+               ">>>>>>>>>>>>>>>>>>>>>>> Main menu <<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.WriteLine("1) Manage projects");
+            Console.WriteLine("2) Manage activities");
+            Console.WriteLine("3) Manage proof collection");
+            Console.WriteLine("4) Manage members");
+            Console.WriteLine("5) Exit");
+        }
+
         internal static void ProofMenuText()
         {
             U03GraphicElements.PrintStars();
@@ -40,6 +51,21 @@ namespace PO.Utilities
             Console.WriteLine("0) Exit");
         }
 
+        internal static void UpdateMemberMenu()
+        {
+            U03GraphicElements.PrintStars();
 
+            Console.WriteLine("1) Update first name");
+            Console.WriteLine("2) Update last name");
+            Console.WriteLine("3) Update username");
+            Console.WriteLine("4) Update password");
+            Console.WriteLine("5) Is team leader");
+            Console.WriteLine("6) Return to members menu");
+
+        }
+
+
+
+        
     }
 }
