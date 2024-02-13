@@ -27,7 +27,9 @@ namespace ProjectOrg
 
         public ActivitiesUpdater ActivitiesUpdater { get; }
 
-        //    public FoldersWorkspace FoldersWorkspace { get; }
+        public ProofsUpdate ProofsUpdate { get; }
+
+        public FolderWorkspace FoldersWorkspace { get; }
 
         public Member LoggedInUser { get; set; }
 
@@ -40,7 +42,7 @@ namespace ProjectOrg
             MembersWorkspace = new MembersWorkspace(this);
             MembersUpdates = new MembersUpdates(this);
 
-            //    FoldersWorkspace = new FoldersWorkspace(this);
+           FoldersWorkspace = new FolderWorkspace(this);
 
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
             ActivitiesUpdater = new ActivitiesUpdater(this);
@@ -49,6 +51,7 @@ namespace ProjectOrg
             ProjectsUpdate = new ProjectsUpdate(this);
 
             ProofWorkspace = new ProofWorkspace(this);
+            ProofsUpdate = new ProofsUpdate(this);
 
             StartUpMessage();
             LogIn();

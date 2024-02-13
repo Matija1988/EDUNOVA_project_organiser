@@ -64,6 +64,8 @@ namespace ProjectOrg
 
                 case 4:
                     Console.WriteLine("Delete proof");
+                    DeleteProof();
+                    ProofMenu();
                     break;
 
                 case 5:
@@ -81,9 +83,25 @@ namespace ProjectOrg
 
         }
 
+        private void DeleteProof ()
+        {
+            ListProofs();
+
+            int index = U01UserInputs.InputInt("Input the ID od the entry you wish to delete: ");
+
+            ProofOfDelivery proofOfDelivery = Main.TestDataConstructor.ProofOfDeliveries[0];
+
+            Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => { if (p.id == index) { proofOfDelivery = p; } });
+
+            Main.TestDataConstructor.ProofOfDeliveries.Remove(proofOfDelivery); 
+            
+        }
+
         private void UpdateProof ()
         {
-            throw new NotImplementedException();
+            ListProofs();
+
+            Main.ProofsUpdate.UpdateProofs();   
         }
 
         private void AddNewProof ()
@@ -124,7 +142,7 @@ namespace ProjectOrg
 
             var index = 0;
 
-            Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => { Console.WriteLine(++index + ") " + p); });
+            Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => { Console.WriteLine(++index + ") " + p ); U03GraphicElements.PrintMinus(); });
 
 
 

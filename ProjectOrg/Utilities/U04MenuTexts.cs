@@ -38,7 +38,7 @@ namespace ProjectOrg.Utilities
             Console.WriteLine("\n");
         }
 
-        internal static void ActivitiecMenuText()
+        internal static void ActivitiesMenuText()
         {
             U03GraphicElements.PrintStars();
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>> Activities menu <<<<<<<<<<<<<<<<<<<<<<<" + "\n");
@@ -127,6 +127,20 @@ namespace ProjectOrg.Utilities
             Console.WriteLine("4) Update password");
             Console.WriteLine("5) Is team leader");
             Console.WriteLine("6) Return to members menu");
+        }
+
+        internal static void UpdateProofsMenu ()
+        {
+            U03GraphicElements.PrintStars();
+
+            Console.WriteLine("1) Update entry name");
+            Console.WriteLine("2) Upodate entry location");
+            Console.WriteLine("3) Update creator of entry");
+            Console.WriteLine("4) Update date of creation");
+            Console.WriteLine("5) Update all");
+            Console.WriteLine("0) Return");
+
+
         }
     }
 }

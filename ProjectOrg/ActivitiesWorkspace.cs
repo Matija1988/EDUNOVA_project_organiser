@@ -50,15 +50,11 @@ namespace ProjectOrg
         public ActivitiesWorkspace ()
         {
 
-
             Folders = new List<Folder>();
 
             ProofOfDeliveries = new List<ProofOfDelivery>();
 
             Activities = new List<Activity>();
-
-
-
 
         }
 
@@ -66,7 +62,7 @@ namespace ProjectOrg
         public void ActivitiesMenu ()
         {
 
-            U04MenuTexts.ActivitiecMenuText();
+            U04MenuTexts.ActivitiesMenuText();
 
             ActivitiesMenuSwitch();
 
