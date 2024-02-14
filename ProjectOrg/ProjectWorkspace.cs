@@ -41,12 +41,10 @@ namespace ProjectOrg
         public void ProjectMenuSwitch ()
         {
 
-            switch (U01UserInputs.InputInt("\n" + "Project menu input: "))
+            switch (U01UserInputs.InputIntZeroAllowed("\n" + "Project menu input: "))
             {
                 case 1:
                     Console.WriteLine("\n" + "List active projects");
-
-                    U03GraphicElements.PrintStars();
 
                     ListActiveProjects();
                     ProjectsMenu();
@@ -62,13 +60,20 @@ namespace ProjectOrg
                     break;
 
                 case 4:
-                    DeleteProject();
+                    if (Main.LoggedInUser.Password == U01UserInputs.InputString("\n" + "Verify your indentity! Enter password: ") && Main.LoggedInUser.IsTeamLeader == true)
+                    {
+                        DeleteProject(); 
+                    }
+                    else
+                    {
+                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        Main.MainMenu();
+                    }
+                    
                     break;
 
                 case 5:
                     Console.WriteLine("\n" + "List finished projects");
-
-                    U03GraphicElements.PrintStars();
 
                     ListFinishedProjects();
                     ProjectsMenu();
@@ -88,7 +93,7 @@ namespace ProjectOrg
                     break;
 
                 default:
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                    U02ErrorMessages.ErrorMessageInput();
 
                     break;
 
@@ -97,12 +102,19 @@ namespace ProjectOrg
         }
         private void ListActiveProjects ()
         {
+           
+            U03GraphicElements.PrintStars();
+           
+
             var i = 0;
             Main.TestDataConstructor.Projects.ForEach(p =>
             {
                 if (p.IsFinished == false)
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(++i + ") " + p);
+                    Console.ResetColor();
+                    U03GraphicElements.PrintMinus();
 
                 }
             });
@@ -113,7 +125,13 @@ namespace ProjectOrg
         public void ListAllProjects ()
         {
             var i = 0;
-            Main.TestDataConstructor.Projects.ForEach(p => { Console.WriteLine(++i + ") " + p); });
+            Main.TestDataConstructor.Projects.ForEach(p => 
+            { 
+                Console.ForegroundColor= ConsoleColor.Cyan;
+                Console.WriteLine(++i + ") " + p);
+                Console.ResetColor();
+                U03GraphicElements.PrintMinus();
+            });
 
             Console.WriteLine("\n");
 
@@ -141,7 +159,7 @@ namespace ProjectOrg
 
             string UniqueID = U01UserInputs.InputString("UniqueID: ");
 
-            Main.TestDataConstructor.Projects.ForEach(p => { if (p.UniqueID == UniqueID) { Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists()); AddNewProject(); } });
+            Main.TestDataConstructor.Projects.ForEach(p => { if (p.UniqueID == UniqueID) { U02ErrorMessages.ErrorMessageInputExists(); AddNewProject(); } });
 
             DateTime dateStart = U01UserInputs.InputDateTime("Start date (format dd/mm/yyyy): ");
 
@@ -187,12 +205,17 @@ namespace ProjectOrg
 
         private void ListFinishedProjects ()
         {
+            U03GraphicElements.PrintStars();
+
             var i = 0;
             Main.TestDataConstructor.Projects.ForEach(p =>
               {
                   if (p.IsFinished == true)
                   {
+                      Console.ForegroundColor = ConsoleColor.Cyan;
                       Console.WriteLine(++i + ") " + p);
+                      Console.ResetColor();
+                      U03GraphicElements.PrintMinus();
                   }
 
               });

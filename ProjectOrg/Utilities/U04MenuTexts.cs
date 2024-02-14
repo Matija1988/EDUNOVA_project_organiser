@@ -11,23 +11,29 @@ namespace ProjectOrg.Utilities
          
         internal static void MainMenuText()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>> Main menu <<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   MAIN MENU   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
             Console.WriteLine("1) Manage projects");
             Console.WriteLine("2) Manage activities");
             Console.WriteLine("3) Manage proof collection");
             Console.WriteLine("4) Manage members");
-            Console.WriteLine("5) Folders menu");
+     
             Console.WriteLine("0) Exit");
             Console.WriteLine("\n");
         }
 
         internal static void ProjectMenuText()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>> Projects menu <<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>   PROJECTS MENU   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ResetColor();
             Console.WriteLine("1) List active projects");
             Console.WriteLine("2) Add new project"); 
             Console.WriteLine("3) Update project");
@@ -41,8 +47,13 @@ namespace ProjectOrg.Utilities
 
         internal static void ActivitiesMenuText()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>> Activities menu <<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>    ACTIVITIES MENU    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ResetColor();
             Console.WriteLine("1) List project activities");
             Console.WriteLine("2) Enter new activity");
             Console.WriteLine("3) Edit activity");
@@ -57,9 +68,13 @@ namespace ProjectOrg.Utilities
 
         internal static void ProofMenuText ()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>> Proofs menu <<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>    PROOFS MENU    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ResetColor();
             Console.WriteLine("1) List proofs");
             Console.WriteLine("2) Add new proof");
             Console.WriteLine("3) Edit existing proof");
@@ -73,9 +88,11 @@ namespace ProjectOrg.Utilities
 
         internal static void MembersMenuText ()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>> Members menu <<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   MEMBERS MENU    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
             Console.WriteLine("1) List all members ");
             Console.WriteLine("2) Add new member");
             Console.WriteLine("3) Edit member");
@@ -90,8 +107,9 @@ namespace ProjectOrg.Utilities
 
         internal static void UpdateProjectText()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
-
+            Console.ResetColor();
             Console.WriteLine("1) Unique ID");
             Console.WriteLine("2) Name");
             Console.WriteLine("3) Date start");
@@ -104,7 +122,9 @@ namespace ProjectOrg.Utilities
 
         internal static void EditActivitiesMenuText ()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
             Console.WriteLine("1) Name");
             Console.WriteLine("2) Description");
@@ -121,7 +141,9 @@ namespace ProjectOrg.Utilities
 
         internal static void UpdateMenuText ()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
             Console.WriteLine("1) Update first name");
             Console.WriteLine("2) Update last name");
@@ -133,7 +155,9 @@ namespace ProjectOrg.Utilities
 
         internal static void UpdateProofsMenu ()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
             Console.WriteLine("1) Update entry name");
             Console.WriteLine("2) Upodate entry location");

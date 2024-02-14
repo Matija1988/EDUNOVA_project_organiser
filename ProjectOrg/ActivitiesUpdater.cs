@@ -261,7 +261,7 @@ namespace ProjectOrg
             }
             catch
             {
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                U02ErrorMessages.ErrorMessageInput();
             }
 
             Main.ActivitiesWorkspace.ActivitiesMenu();

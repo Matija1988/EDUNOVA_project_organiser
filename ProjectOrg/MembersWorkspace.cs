@@ -108,7 +108,7 @@ namespace ProjectOrg
               {
                   if (member.Password == password)
                   {
-                      Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
+                        U02ErrorMessages.ErrorMessageInputExists();
                       AddNewMember();
                   }
               });
@@ -160,13 +160,14 @@ namespace ProjectOrg
 
                 if (Main.LoggedInUser == member)
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageCannotDeleteYourself());
+                    U02ErrorMessages.ErrorMessageCannotDeleteYourself();
+                    
                     MembersMenu();
                 }
 
                 if (validation != true)
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                    U02ErrorMessages.ErrorMessageInput();
 
                 }
                 else
@@ -177,7 +178,7 @@ namespace ProjectOrg
             catch
             {
 
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                U02ErrorMessages.ErrorMessageInput();
             }
             MembersMenu();
         }

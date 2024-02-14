@@ -92,7 +92,16 @@ namespace ProjectOrg
 
                 case 4:
                     Console.WriteLine("Activity go bye bye");
-                    DeleteActivity();
+                    if (Main.LoggedInUser.Password == U01UserInputs.InputString("\n" + "Verify your indentity! Enter password: ") && Main.LoggedInUser.IsTeamLeader == true)
+                    {
+                        DeleteActivity();
+                    }
+                    else
+                    {
+                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        Main.MainMenu();
+                    }
+                   
                     break;
                 case 5:
                     ListAllActivities();
@@ -109,7 +118,7 @@ namespace ProjectOrg
 
                     break;
                 default:
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                    U02ErrorMessages.ErrorMessageInput();
                     break;
             }
         }
@@ -178,28 +187,32 @@ namespace ProjectOrg
 
         public void ListProjectActivities ()
         {
-
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
             var i = 0;
 
             Main.ProjectWorkspace.ListAllProjects();
 
-
+           
             var pro = Main.TestDataConstructor.Projects[U01UserInputs.InputInt("Choose a project whose activities you wish to list: ") - 1];
-
+            
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
-
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Main.TestDataConstructor.Activities.ForEach(a => { if (a.AssociatedProject == pro) { Console.WriteLine(++i + ") " + a); U03GraphicElements.PrintMinus(); } });
-
+            Console.ResetColor();
 
         }
 
         public void ListAllActivities ()
         {
             var i = 0;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Main.TestDataConstructor.Activities.ForEach(a => { Console.WriteLine(++i + ") " + a); U03GraphicElements.PrintMinus(); });
-
+            Console.ResetColor();
         }
 
     }

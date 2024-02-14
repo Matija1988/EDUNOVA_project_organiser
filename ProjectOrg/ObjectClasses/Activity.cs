@@ -15,7 +15,7 @@ namespace ProjectOrg.ObjectClasses
         public DateTime DateStart { get; set; }
 
         public DateTime DateEnd { get; set; }
-        public Folder Folder { get; set; }
+        public Folder? Folder { get; set; }
         public DateTime DateAccepted { get; set; }
 
         public bool IsFinished { get; set; }

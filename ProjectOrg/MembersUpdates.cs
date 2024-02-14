@@ -109,7 +109,7 @@ namespace ProjectOrg
                         {
                             if (member.Password == password)
                             {
-                                Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
+                                U02ErrorMessages.ErrorMessageInputExists();
                                 UpdateMember();
                             }
                         });

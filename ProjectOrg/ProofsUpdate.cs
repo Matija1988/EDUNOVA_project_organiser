@@ -139,13 +139,13 @@ namespace ProjectOrg
                                                                    "\n" + "Previous input: " + ProofOfDelivery.DateCreated +
                                                                     "\n" + "New input: ");
 
-
+                        
                         validation = U01UserInputs.InputBool("\n" + "Change activity information? " +
                                                               "\n" +
                                                                "\n" + "Previus input: " + ProofOfDelivery +
                                                                 "\n" + "New name: " + documentName + " || " + "New location: " + location + " || " + "Created on: " + dateCreated +
-                                                                      " || " + "Created by: " + member +
-                                                                    "\n" + "Accept changes: 1) YES / 2) NO | ");
+                                                                      " || " + "Created by: " + member + 
+                                                                  "\n" + "Accept changes: 1) YES / 2) NO | ");
 
                         if(validation)
                         {
@@ -169,7 +169,7 @@ namespace ProjectOrg
             }
             catch
             {
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                U02ErrorMessages.ErrorMessageInput();
             }
             Main.ProjectWorkspace.ProjectsMenu();
         }

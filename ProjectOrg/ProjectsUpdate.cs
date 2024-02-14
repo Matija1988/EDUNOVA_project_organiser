@@ -46,7 +46,7 @@ namespace ProjectOrg
 
                             if (p.UniqueID == uniqueId)
                             {
-                                Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
+                                U02ErrorMessages.ErrorMessageInputExists();
                                 ProjectsUpdates();
                             }
 
@@ -173,7 +173,7 @@ namespace ProjectOrg
                         Main.ProjectWorkspace.ProjectsMenu();
                         break;
                     default:
-                        Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                        U02ErrorMessages.ErrorMessageInput();
                         break;
 
                 }
@@ -182,7 +182,7 @@ namespace ProjectOrg
             catch
             {
 
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                U02ErrorMessages.ErrorMessageInput();
 
                 ProjectsUpdates();
 

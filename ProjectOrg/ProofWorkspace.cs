@@ -42,7 +42,7 @@ namespace ProjectOrg
 
         private void ProofMenuSwitch ()
         {
-            switch (U01UserInputs.InputInt("Proof menu input: "))
+            switch (U01UserInputs.InputIntZeroAllowed("Proof menu input: "))
             {
                 case 1:
                     Console.WriteLine("Listing proofs");
@@ -64,8 +64,17 @@ namespace ProjectOrg
 
                 case 4:
                     Console.WriteLine("Delete proof");
-                    DeleteProof();
-                    ProofMenu();
+                    if (Main.LoggedInUser.Password == U01UserInputs.InputString("\n" + "Verify your indentity! Enter password: ") && Main.LoggedInUser.IsTeamLeader == true)
+                    {
+                        DeleteProof();
+                    }
+                    else
+                    {
+                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        Main.MainMenu();
+                    }
+                   
+                    
                     break;
 
                 case 5:
@@ -93,8 +102,10 @@ namespace ProjectOrg
 
             Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => { if (p.id == index) { proofOfDelivery = p; } });
 
-            Main.TestDataConstructor.ProofOfDeliveries.Remove(proofOfDelivery); 
-            
+            Main.TestDataConstructor.ProofOfDeliveries.Remove(proofOfDelivery);
+
+            ProofMenu();
+
         }
 
         private void UpdateProof ()
@@ -114,7 +125,7 @@ namespace ProjectOrg
               {
                   if (p.id == inputID)
                   {
-                      Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
+                      U02ErrorMessages.ErrorMessageInputExists();
                       AddNewProof();
 
                   }
@@ -131,7 +142,7 @@ namespace ProjectOrg
             });
             } catch
             {
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                U02ErrorMessages.ErrorMessageInput();
                 AddNewProof ();
             }
             ProofMenu();
@@ -141,9 +152,9 @@ namespace ProjectOrg
         {
 
             var index = 0;
-
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => { Console.WriteLine(++index + ") " + p ); U03GraphicElements.PrintMinus(); });
-
+            Console.ResetColor();
 
 
 

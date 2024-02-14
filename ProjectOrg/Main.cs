@@ -1,11 +1,13 @@
 ﻿using ProjectOrg.ObjectClasses;
 using ProjectOrg.Utilities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ProjectOrg
 {
@@ -29,8 +31,6 @@ namespace ProjectOrg
 
         public ProofsUpdate ProofsUpdate { get; }
 
-        public FolderWorkspace FoldersWorkspace { get; }
-
         public Member LoggedInUser { get; set; }
 
         public Main ()
@@ -41,8 +41,6 @@ namespace ProjectOrg
 
             MembersWorkspace = new MembersWorkspace(this);
             MembersUpdates = new MembersUpdates(this);
-
-           FoldersWorkspace = new FolderWorkspace(this);
 
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
             ActivitiesUpdater = new ActivitiesUpdater(this);
@@ -60,9 +58,12 @@ namespace ProjectOrg
         private Member LogIn ()
         {
 
-            string LogInName = U01UserInputs.InputString("Username: ");
+            char[] LogInName = U01UserInputs.ReturnCharArray("Username: ");
 
-            string Password = U01UserInputs.InputString("Password: ");
+            char[] Password = U01UserInputs.ReturnCharArray("Password: ");
+
+            string checkedLoggedIn = U01UserInputs.ReturnString(LogInName);
+            string checkedPassword = U01UserInputs.ReturnString(Password);
 
             var p = TestDataConstructor.Members.Count;
 
@@ -71,7 +72,7 @@ namespace ProjectOrg
 
                 TestDataConstructor.Members.ForEach(member =>
                 {
-                    if (member.Username == LogInName && member.Password == Password)
+                    if (member.Username == checkedLoggedIn && member.Password == checkedPassword)
 
                     {
                         Console.WriteLine("Welcome " + member.Name + " " + member.LastName);
@@ -84,7 +85,8 @@ namespace ProjectOrg
             }
             catch
             {
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                U02ErrorMessages.ErrorMessageInput();
+               
             }
 
             return LoggedInUser;
@@ -137,7 +139,7 @@ namespace ProjectOrg
                     break;
 
                 default:
-                    Console.WriteLine("\n" + U02ErrorMessages.ErrorMessageInput());
+                    U02ErrorMessages.ErrorMessageInput();
 
                     break;
 
@@ -146,23 +148,19 @@ namespace ProjectOrg
 
         }
 
-
-
-
         private static void StartUpMessage ()
         {
-            Console.WriteLine("************************************************************");
-            Console.WriteLine("*         Console application - Project organiser          *");
-            Console.WriteLine("************************************************************");
-            Console.WriteLine("!!!!!!!!!!!!!!!!!!App under development!!!!!!!!!!!!!!!!!!!!!");
-            Console.WriteLine("Final exam - certified course C# web programing in EDUNOVA  ");
-            Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine("                                    Author: Matija Pavković");
-            Console.WriteLine("                                    Mentor: Tomislav Jakopec");
-            Console.WriteLine("************************************************************"
-                                    + "\n");
+            U03GraphicElements.PrintIntroGraphics();
+       
+            U03GraphicElements.PrintStars();
+         ;
 
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>> User Login <<<<<<<<<<<<<<<<<<<<<<<<<");
+            Console.WriteLine("\n!!!!!!!!!!!!!!!!!!!!!!!!!!  App under development  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        
+            U03GraphicElements.PrintMinus();
+           
+
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   USER LOGIN   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
 
         }

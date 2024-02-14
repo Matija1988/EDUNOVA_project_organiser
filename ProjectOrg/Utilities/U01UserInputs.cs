@@ -21,7 +21,7 @@ namespace ProjectOrg.Utilities
                 s = Console.ReadLine();
                 if (s.Trim().Length == 0)
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                  U02ErrorMessages.ErrorMessageInput();
 
                     continue;
                 }
@@ -53,7 +53,7 @@ namespace ProjectOrg.Utilities
                 }
                 catch
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                   U02ErrorMessages.ErrorMessageInput();
                 }
 
             }
@@ -68,7 +68,7 @@ namespace ProjectOrg.Utilities
                 try
                 {
                     int a = int.Parse(Console.ReadLine());
-                                    
+
 
                     if (a <= -1)
                     {
@@ -80,7 +80,7 @@ namespace ProjectOrg.Utilities
                 }
                 catch
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                   U02ErrorMessages.ErrorMessageInput();
                 }
 
             }
@@ -99,7 +99,7 @@ namespace ProjectOrg.Utilities
                 }
                 catch
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                    U02ErrorMessages.ErrorMessageInput();
                 }
             }
         }
@@ -123,14 +123,14 @@ namespace ProjectOrg.Utilities
                             return false;
 
                         default:
-                            Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                            U02ErrorMessages.ErrorMessageInput();
                             break;
                     }
 
                 }
                 catch
                 {
-                    Console.WriteLine(U02ErrorMessages.ErrorMessageInput());
+                    U02ErrorMessages.ErrorMessageInput();
                 }
 
             }
@@ -150,24 +150,62 @@ namespace ProjectOrg.Utilities
                 {
                     return entry;
                 }
-
-                Console.WriteLine(U02ErrorMessages.ErrorMessageInputExists());
+                U02ErrorMessages.ErrorMessageInputExists();
             }
 
         }
-        
+
         public static int AutoIncrementID<T> (List<T> myList)
-                    
-        {           
-            int arraySize = myList.Count;
+
+        {
+            int arraySize = myList.Count();
             int newArraySize = arraySize + 1;
-                       
-            return newArraySize; 
+
+            return newArraySize;
         }
-           
+
         public static Project ReturnAssocietedProject (Project pro)
         {
             return pro;
+        }
+
+        public static char[] ReturnCharArray (string v)
+        {
+
+            string s;
+
+            while (true)
+            {
+                Console.Write(v);
+                s = Console.ReadLine();
+
+                foreach (var item in s)
+                {
+                    if (s.Trim().Length == 0)
+                    {
+                        U02ErrorMessages.ErrorMessageInput();
+                        continue;
+                    }
+                    if (item.Equals("[") || item.Equals("{") || item.Equals("drop"))
+                    {
+                        Console.WriteLine(U02ErrorMessages.YourInputContainsUnwantedCharacters());
+                        break;                       
+
+                    }
+                    return s.ToCharArray();
+
+                }
+
+            }
+
+        }
+
+        public static string ReturnString (char[] v)
+        {
+            string s = new string(v);
+
+            return s;
+
         }
     }
 }
