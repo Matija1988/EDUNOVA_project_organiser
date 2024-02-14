@@ -12,7 +12,7 @@ use projectsApp;
 
 create table projects (
 id int not null primary key identity (1,1), 
-uniqueIDnumber varchar(50) not null, -- identifikacijska sifra projekta npr. K.K. 1012
+uniqueID varchar(50) not null, -- identifikacijska sifra projekta npr. K.K. 1012
 projectName varchar(100) not null, -- puni naziv projekta
 dateStart datetime,  
 dateEnd datetime, 
@@ -37,7 +37,7 @@ activityName varchar(100) not null,
 description varchar(500),  
 dateStart datetime not null, -- planirani pocetak aktivnosti
 dateFinish datetime not null, -- planirani kraj aktivnosti
-folderID int,
+proofOfDeliveryID int,
 isFinished bit, -- team leader ima ovlastenje zatvoriti pojedinu aktivnost
 dateAccepted datetime, -- kraj aktivnosti
 projectID int not null -- jedna aktivnost pripada jednom projektu  
@@ -52,13 +52,6 @@ dateCreated datetime
 );
 
 
-create table folders(  
-id int not null primary key identity(1,1), 
-location varchar(100) not null,
-contractActivityName varchar(100) not null, -- ovo je ujedno i folder name. 
-proofOfDelivery int 
-);
-
 create table activitiesConnector(
 activityID int not null,
 memberID int not null
@@ -66,14 +59,15 @@ memberID int not null
 
 -----------REFERENCE KEYS--------------
 
-alter table activities add foreign key (folderID) references folders(id);
+alter table activities add foreign key (proofOfDeliveryID) references proofOfDelivery(id);
 alter table activities add foreign key (projectID) references projects(id);
 alter table activitiesConnector add foreign key (activityID) references activities(id); 
 alter table activitiesConnector add foreign key (memberID) references members(id);
-alter table folders add foreign key (id) references proofOfDelivery(id); 
 alter table proofOfDelivery add foreign key (memberID) references members(id);
 
-insert into projects (uniqueIDnumber, projectName, dateStart, dateEnd, isFinished) 
+--------------INSERTS-------------
+
+insert into projects (uniqueID, projectName, dateStart, dateEnd, isFinished) 
 values 
 ('JP21-21KD', 'Poboljšanje energetske učinkovitosti zgrade Zamišljena Adresa 2', '2023-5-21 09:00:00', 
 '2024-11-21 12:00:00', 0),
@@ -88,9 +82,6 @@ values
 ,'2023-1-20 10:00:00','2023-10-20',1);
 
 
---------------INSERTS-------------
-
-
 insert into proofOfDelivery (documentName, dateCreated)
 values 
 ('Analiza troškova i koristi','2023-12-15 12:00:00'),
@@ -103,31 +94,7 @@ values
 '2023-9-12 12:00:00'),
 ('Zapisnik', '2021-2-20 12:00:00');
 
-insert into folders (location, contractActivityName, proofOfDelivery)
-values 
-('JP21-21KD\1.1. Izrada analize troškova i korsti/',
-'Analiza troškova i koristi',1),
-
-('UZ-54-2-I\1.3 Izrada komunikacijske strategije\', 
-'Izrada komunikacijske strategije',2),
-
-('A4-K-7-762\2.1. Zakup medijskog prostora na nacionalnim radio postajama',
-'Potvrda o emitiranju Otvoreni radio',3), 
-
-('UZ-54-2-I\4.1. Koordinacijski sastanci\4.1.1.\',
-'Dokaznica o održanom mjesečnom koordinacijskom sastanku 2021_1_15',4), 
-
-('A4-K-7-762\3.2. Redovno fotografiranje aktivnosti projekta\','Postavljanje edukativnih tabli.zip',5),
-
-('INTER-REG HU-CRO','2.1. Educational workshop on agricultural sustainability',6),
-
-('UZ-54-2-I\7. Izrada videozapisa o aktivnostima projekta\7.12.\',
-'7.12.Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca.zip',7),
-
-('UZ-54-2-I\4.1. Koordinacijski sastanci\4.1.2.\','Dokaznica o održanom mjesečnom 
-koordinacijskom sastanku 2021_2_20',4); 
-
-insert activities (activityName, description, dateStart, dateFinish, folderID, isFinished, dateAccepted, projectID)
+insert activities (activityName, description, dateStart, dateFinish, proofOfDeliveryID, isFinished, dateAccepted, projectID)
 values 
 ('1.1.Izrada analize troškova i koristi',
 'Energetska obnova zgrade ... mora uključivatiizolaciju vanjskog zida, dizalicu topline, ugradnju PVC stolarije, fotonaponske ćelije 12 kw/h ...',
@@ -187,9 +154,8 @@ values
 --------------SELECTS-------------	
 
 
-select a.projectName, b.activityName, d.documentName 
+select a.projectName, b.activityName, C.documentName 
 from projects a inner join activities b on a.id = b.projectID
-inner join folders c on b.folderID = c.id
-inner join proofOfDelivery d on d.id = c.proofOfDelivery
+inner join proofOfDelivery c on c.id = b.proofOfDeliveryID
 where b.projectID is not null 
 order by 1 desc;
