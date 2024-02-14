@@ -18,6 +18,7 @@ namespace ProjectOrg.Utilities
             Console.WriteLine("2) Manage activities");
             Console.WriteLine("3) Manage proof collection");
             Console.WriteLine("4) Manage members");
+            Console.WriteLine("5) Folders menu");
             Console.WriteLine("0) Exit");
             Console.WriteLine("\n");
         }
@@ -79,6 +80,7 @@ namespace ProjectOrg.Utilities
             Console.WriteLine("2) Add new member");
             Console.WriteLine("3) Edit member");
             Console.WriteLine("4) Delete member");
+            
 
 
             Console.WriteLine("5) Return to main menu");
