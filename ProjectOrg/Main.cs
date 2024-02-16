@@ -80,13 +80,17 @@ namespace ProjectOrg
                         LoggedInUser = loggedInUser;
                         MainMenu();
 
+                    } else
+                    {
+                        U02ErrorMessages.ErrorMessageInput();
+                        LogIn();
                     }
                 });
             }
             catch
             {
                 U02ErrorMessages.ErrorMessageInput();
-               
+                LogIn();
             }
 
             return LoggedInUser;

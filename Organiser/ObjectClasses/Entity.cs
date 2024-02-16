@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Organiser.ObjectClasses
 {
-    public  class Entity
+    public abstract  class Entity
     {
         [Key]
         public int id { get; set; }

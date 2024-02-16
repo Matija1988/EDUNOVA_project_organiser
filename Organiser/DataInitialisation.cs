@@ -37,6 +37,7 @@ namespace Organiser
         private void FillProjectsList()
         {
             IProject project = Factory.ProjectFactory();
+            project.id = 1;
             project.UniqueID = "KK 21";
             project.Name = "Hakuna matata";
             project.DateStart = DateTime.Parse("12.11.2023.");
@@ -46,6 +47,7 @@ namespace Organiser
             _projects.Add((Project)project);
 
             IProject project1 = Factory.ProjectFactory();
+            project1.id = 2;
             project1.UniqueID = "LOL 20220";
             project1.Name = "Mlad razuzdan i lud";
             project1.DateStart = DateTime.Parse("12.11.2023.");

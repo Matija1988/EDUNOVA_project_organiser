@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Organiser.ObjectClasses
 {
-    public  class Project : Entity, IProject
+    public  class Project : IProject
     {
+
+        [Key]
+        public int id { get; set; }
         [Required]
         public string UniqueID { get; set; }
         [Required]

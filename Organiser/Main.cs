@@ -16,7 +16,7 @@ namespace Organiser
 
         public List<Member> _members { get;}
 
-        private DataInitialisation DataInitialisation { get; }
+        public DataInitialisation DataInitialisation { get; }
 
         private ProjectWorkspace ProjectWorkspace { get; }
 
@@ -37,7 +37,7 @@ namespace Organiser
 
         private void TestPrint ()
         {
-            DataInitialisation._projects.ForEach(project => { Console.WriteLine(project.Name + " " + project.UniqueID); });
+           
             DataInitialisation._members.ForEach(member => { Console.WriteLine(member.Name + " " + member.LastName); }); 
 
         }
@@ -51,9 +51,7 @@ namespace Organiser
 
             string checkedLoggedIn = U01UserInputs.ReturnString(LogInName);
             string checkedPassword = U01UserInputs.ReturnString(Password);
-
-            var p = DataInitialisation._members.Count;
-
+                       
             try
             {
                
@@ -67,13 +65,17 @@ namespace Organiser
                         LoggedInUser = loggedInUser;
                         MainMenu();
 
+                    } else
+                    {
+                        U02ErrorMessages.ErrorMessageInput();
+                        LogIn();
                     }
                 });
             }
             catch
             {
                 U02ErrorMessages.ErrorMessageInput();
-
+                LogIn();
             }
 
             return LoggedInUser;
@@ -95,7 +97,7 @@ namespace Organiser
             {
                 case 1:
                     Console.WriteLine("Entering projects");
-                   // ProjectWorkspace.ProjectsMenu();
+                    ProjectWorkspace.ProjectsMenu();
 
                     break;
             
