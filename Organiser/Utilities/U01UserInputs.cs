@@ -1,16 +1,14 @@
-﻿using ProjectOrg.ObjectClasses;
+﻿using Organiser.ObjectClasses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjectOrg.Utilities
+namespace Organiser.Utilities
 {
     internal class U01UserInputs
     {
-        public static bool dev;
         public static string InputString (string v)
         {
             string s;
@@ -21,7 +19,7 @@ namespace ProjectOrg.Utilities
                 s = Console.ReadLine();
                 if (s.Trim().Length == 0)
                 {
-                  U02ErrorMessages.ErrorMessageInput();
+                    U02ErrorMessages.ErrorMessageInput();
 
                     continue;
                 }
@@ -53,7 +51,7 @@ namespace ProjectOrg.Utilities
                 }
                 catch
                 {
-                   U02ErrorMessages.ErrorMessageInput();
+                    U02ErrorMessages.ErrorMessageInput();
                 }
 
             }
@@ -80,7 +78,7 @@ namespace ProjectOrg.Utilities
                 }
                 catch
                 {
-                   U02ErrorMessages.ErrorMessageInput();
+                    U02ErrorMessages.ErrorMessageInput();
                 }
 
             }
@@ -158,15 +156,10 @@ namespace ProjectOrg.Utilities
         public static int AutoIncrementID<T> (List<T> myList)
 
         {
-            //var firstInArray = myList.First();
-            //var lastInArray = myList.Last();
-
-                       
             int arraySize = myList.Count();
             int newArraySize = arraySize + 1;
-                      
-             return newArraySize;
-                                 
+
+            return newArraySize;
         }
 
         public static Project ReturnAssocietedProject (Project pro)
@@ -194,7 +187,7 @@ namespace ProjectOrg.Utilities
                     if (item.Equals("[") || item.Equals("{") || item.Equals("drop"))
                     {
                         Console.WriteLine(U02ErrorMessages.YourInputContainsUnwantedCharacters());
-                        break;                       
+                        break;
 
                     }
                     return s.ToCharArray();

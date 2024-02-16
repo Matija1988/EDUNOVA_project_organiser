@@ -153,15 +153,12 @@ namespace ProjectOrg
             U03GraphicElements.PrintIntroGraphics();
        
             U03GraphicElements.PrintStars();
-         ;
-
+         
             Console.WriteLine("\n!!!!!!!!!!!!!!!!!!!!!!!!!!  App under development  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
             U03GraphicElements.PrintMinus();
-           
-
+         
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   USER LOGIN   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-
 
         }
 
