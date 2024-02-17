@@ -43,7 +43,7 @@ dateAccepted datetime, -- kraj aktivnosti
 projectID int not null -- jedna aktivnost pripada jednom projektu  
 );
 
-create table proofOfDelivery(
+create table proofOfDeliveries(
 id int not null primary key identity(1,1), 
 documentName varchar(100), -- dokument dokaznice npr. izvjesce o provedenoj 
 --aktivnosti 4.1. izrada cost benefit analize
@@ -59,11 +59,11 @@ memberID int not null
 
 -----------REFERENCE KEYS--------------
 
-alter table activities add foreign key (proofOfDeliveryID) references proofOfDelivery(id);
+alter table activities add foreign key (proofOfDeliveryID) references proofOfDeliveries(id);
 alter table activities add foreign key (projectID) references projects(id);
 alter table activitiesConnector add foreign key (activityID) references activities(id); 
 alter table activitiesConnector add foreign key (memberID) references members(id);
-alter table proofOfDelivery add foreign key (memberID) references members(id);
+alter table proofOfDeliveries add foreign key (memberID) references members(id);
 
 --------------INSERTS-------------
 
@@ -82,7 +82,7 @@ values
 ,'2023-1-20 10:00:00','2023-10-20',1);
 
 
-insert into proofOfDelivery (documentName, dateCreated)
+insert into proofOfDeliveries (documentName, dateCreated)
 values 
 ('Analiza troškova i koristi','2023-12-15 12:00:00'),
 ('RCKSSB marketing plan Otvoreni radio','2021-10-10 11:00:00'), 
@@ -156,6 +156,6 @@ values
 
 select a.projectName, b.activityName, C.documentName 
 from projects a inner join activities b on a.id = b.projectID
-inner join proofOfDelivery c on c.id = b.proofOfDeliveryID
+inner join proofOfDeliveries c on c.id = b.proofOfDeliveryID
 where b.projectID is not null 
 order by 1 desc;
