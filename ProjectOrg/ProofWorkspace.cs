@@ -70,7 +70,7 @@ namespace ProjectOrg
                     }
                     else
                     {
-                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        U02ErrorMessages.LackOfAuthority();
                         Main.MainMenu();
                     }
                    
@@ -153,7 +153,9 @@ namespace ProjectOrg
 
             var index = 0;
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => { Console.WriteLine(++index + ") " + p ); U03GraphicElements.PrintMinus(); });
+            Main.TestDataConstructor.ProofOfDeliveries.ForEach(p => {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine(++index + ") " + p ); U03GraphicElements.PrintMinus(); });
             Console.ResetColor();
 
 

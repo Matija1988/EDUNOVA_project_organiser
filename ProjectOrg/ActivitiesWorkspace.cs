@@ -98,7 +98,7 @@ namespace ProjectOrg
                     }
                     else
                     {
-                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        U02ErrorMessages.LackOfAuthority();
                         Main.MainMenu();
                     }
                    
@@ -201,8 +201,10 @@ namespace ProjectOrg
             Console.ForegroundColor = ConsoleColor.DarkGray;
             U03GraphicElements.PrintStars();
             Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Main.TestDataConstructor.Activities.ForEach(a => { if (a.AssociatedProject == pro) { Console.WriteLine(++i + ") " + a); U03GraphicElements.PrintMinus(); } });
+          
+            Main.TestDataConstructor.Activities.ForEach(a => {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                if (a.AssociatedProject == pro) { Console.WriteLine(++i + ") " + a); U03GraphicElements.PrintMinus(); } });
             Console.ResetColor();
 
         }

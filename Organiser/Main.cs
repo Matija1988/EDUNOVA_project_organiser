@@ -25,7 +25,7 @@ namespace Organiser
         public Main() 
         {
             DataInitialisation = new DataInitialisation(this);
-            ProjectWorkspace = new ProjectWorkspace(this); 
+            ProjectWorkspace = new ProjectWorkspace(this);
 
            
             StartUpMessage();

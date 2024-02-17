@@ -69,7 +69,7 @@ namespace ProjectOrg
 
             try
             {
-
+                while (true) { 
                 TestDataConstructor.Members.ForEach(member =>
                 {
                     if (member.Username == checkedLoggedIn && member.Password == checkedPassword)
@@ -80,12 +80,11 @@ namespace ProjectOrg
                         LoggedInUser = loggedInUser;
                         MainMenu();
 
-                    } else
-                    {
-                        U02ErrorMessages.ErrorMessageInput();
-                        LogIn();
                     }
                 });
+                    U02ErrorMessages.ErrorMessageInput();
+                    LogIn();
+                }
             }
             catch
             {
@@ -130,7 +129,7 @@ namespace ProjectOrg
                         MembersWorkspace.MembersMenu();
                     } else
                     {
-                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        U02ErrorMessages.LackOfAuthority();
                         MainMenu();
                     }
 

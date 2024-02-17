@@ -51,13 +51,16 @@ namespace ProjectOrg.Utilities
             return sb.ToString();
         }
 
-        internal static string LackOfAuthority()
+        internal static void LackOfAuthority()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("\n" +
+            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n" +
                       "!!!!!! USER IS NOT AUTHORISED TO PERFORM THIS ACTION !!!!!!" +
                       "\n");
-            return sb.ToString();
+           
+            Console.ResetColor();
+            
         }
 
         internal static string YourInputContainsUnwantedCharacters ()

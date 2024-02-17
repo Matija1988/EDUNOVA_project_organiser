@@ -66,7 +66,7 @@ namespace ProjectOrg
                     }
                     else
                     {
-                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        U02ErrorMessages.LackOfAuthority();
                         Main.MainMenu();
                     }
                     
@@ -197,7 +197,7 @@ namespace ProjectOrg
 
         private void DeleteProject ()
         {
-            ListActiveProjects();
+            ListAllProjects();
             Main.TestDataConstructor.Projects.RemoveAt(U01UserInputs.InputInt("Select the project you wish to delete: ") - 1);
 
             ProjectsMenu();

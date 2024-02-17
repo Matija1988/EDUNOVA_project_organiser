@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Organiser.Workspaces
 {
-    internal class ProjectWorkspace
+    internal class ProjectWorkspace : IWorkspace
     {
         private Main Main;
 
@@ -104,6 +104,26 @@ namespace Organiser.Workspaces
         {
             var i = 0;
            Main.DataInitialisation._projects.ForEach(project => { Console.WriteLine(++i + ") " +  project.id + " " +  project.Name + " " + project.UniqueID); });
+        }
+
+        public void Add ()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void List ()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update ()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete ()
+        {
+            throw new NotImplementedException();
         }
     }
 }
