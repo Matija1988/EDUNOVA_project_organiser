@@ -12,20 +12,22 @@ namespace Organiser
 {
     internal class Main
     {
-        public List<Project> _projects { get;}
-
-        public List<Member> _members { get;}
-
+        
         public DataInitialisation DataInitialisation { get; }
 
-        private ProjectWorkspace ProjectWorkspace { get; }
+        public UpdateProjectWorkspace UpdateProjectWorkspace { get; }
+        public ProjectWorkspace ProjectWorkspace { get; }
+
+        public ActivitiesWorkspace ActivitiesWorkspace { get; }
 
         public Member LoggedInUser { get; set; }
 
         public Main() 
         {
             DataInitialisation = new DataInitialisation(this);
+            UpdateProjectWorkspace = new UpdateProjectWorkspace(this);
             ProjectWorkspace = new ProjectWorkspace(this);
+            
 
            
             StartUpMessage();
@@ -44,6 +46,7 @@ namespace Organiser
 
         private Member LogIn ()
         {
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   USER LOGIN   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
             char[] LogInName = U01UserInputs.ReturnCharArray("Username: ");
 
@@ -51,7 +54,7 @@ namespace Organiser
 
             string checkedLoggedIn = U01UserInputs.ReturnString(LogInName);
             string checkedPassword = U01UserInputs.ReturnString(Password);
-                       
+
             try
             {
                
@@ -127,7 +130,7 @@ namespace Organiser
 
             U03GraphicElements.PrintMinus();
 
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   USER LOGIN   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+          
         }
     }
 }

@@ -22,5 +22,9 @@ namespace Organiser
             return new Member();
         }
 
+        public static IActivity ActivityFactory()
+        {
+            return new Activity();
+        }
     }
 }

@@ -38,23 +38,43 @@ namespace Organiser
         {
             IProject project = Factory.ProjectFactory();
             project.id = 1;
-            project.UniqueID = "KK 21";
-            project.Name = "Hakuna matata";
-            project.DateStart = DateTime.Parse("12.11.2023.");
-            project.DateEnd = DateTime.Parse("04.02.2024.");
-            project.IsFinished = true;
+            project.UniqueID = "JP21-21KD";
+            project.Name = "Poboljšanje energetske učinkovitosti zgrade Zamišljena Adresa 2";
+            project.DateStart = DateTime.Parse("21.05.2023.");
+            project.DateEnd = DateTime.Parse("21.11.2024.");
+            project.IsFinished = false;
 
             _projects.Add((Project)project);
 
             IProject project1 = Factory.ProjectFactory();
             project1.id = 2;
-            project1.UniqueID = "LOL 20220";
-            project1.Name = "Mlad razuzdan i lud";
-            project1.DateStart = DateTime.Parse("12.11.2023.");
-            project1.DateEnd = DateTime.Parse("14.10.2024.");
-            project1.IsFinished = false;
+            project1.UniqueID = "UZ-54-2-I";
+            project1.Name = "Uspostava regionalnog centra kompetentnosti Srednja strukovna škola Bubimir";
+            project1.DateStart = DateTime.Parse("01.01.2021.");
+            project1.DateEnd = DateTime.Parse("29.12.2023.");
+            project1.IsFinished = true;
 
             _projects.Add((Project)project1);
+
+            IProject project2 = Factory.ProjectFactory();
+            project2.id = 3;
+            project2.UniqueID = "A4-K-7-762";
+            project2.Name = "Zelene staze Dunava i Drave";
+            project2.DateStart = DateTime.Parse("12.04.2019.");
+            project2.DateEnd = DateTime.Parse("01.05.2022.");
+            project2.IsFinished = true;
+
+            _projects.Add((Project)project2);
+
+            IProject project3 = Factory.ProjectFactory();
+            project3.id = 4;
+            project3.UniqueID = "INTER-HU-CRO-213-D-91";
+            project3.Name = "INTEREG-Hungary-Croatia cluster sustainability du dah";
+            project3.DateStart = DateTime.Parse("20.01.2023");
+            project3.DateEnd = DateTime.Parse("20.10.2023.");
+            project3.IsFinished = true;
+            
+            _projects.Add((Project)project3);
 
 
         }
@@ -74,7 +94,8 @@ namespace Organiser
             member1.Name = "Tester";
             member1.LastName = "Testic";
             member1.Username = "Tester";
-            member1.Password = "abcd";
+            member1.Password =  "abcd";
+
             member1.IsTeamLeader = false;
 
             _members.Add((Member)member1);

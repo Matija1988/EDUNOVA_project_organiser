@@ -24,7 +24,7 @@ namespace Organiser.ObjectClasses
 
         public override string ToString ()
         {
-            return "ID:" + id + " - " + Name + " - " + UniqueID + " -  \n" + "   Date start: " + DateStart.ToString() + "\n" + "   Date end: " + DateEnd.ToString() + "\n" + "   Project finished: " + IsFinished;
+            return "ID:" + id + " - " + Name + " - " + UniqueID + " -  \n" + "       Date start: " + DateStart.ToString() + "\n" + "       Date end: " + DateEnd.ToString() + "\n" + "       Project finished: " + IsFinished;
 
         }
     }
