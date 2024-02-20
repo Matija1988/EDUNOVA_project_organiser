@@ -26,5 +26,10 @@ namespace Organiser
         {
             return new Activity();
         }
+
+        public static IProofOfDelivery ProofOfDeliveryFactory()
+        {
+            return new ProofOfDelivery();
+        }
     }
 }

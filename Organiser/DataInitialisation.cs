@@ -17,6 +17,8 @@ namespace Organiser
 
         public List<Activity> _activities { get; set; }
 
+        public List<ProofOfDelivery> proofOfDeliveries { get; set; }
+
         private Main Main { get;  }
 
         public DataInitialisation (Main Main) : this()
@@ -184,6 +186,12 @@ namespace Organiser
             activity4.MemberID = 2;
 
             _activities.Add((Activity)activity4);
+
+        }
+
+        public void FillListProofOfDeliveries()
+        {
+            IProofOfDelivery proofOfDelivery = Factory.ProofOfDeliveryFactory();
 
         }
 
