@@ -90,7 +90,7 @@ namespace Organiser.Workspaces
             {
                 DateTime dateStart = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
                                                                   "\n" + "Previous input: " + project.DateStart +
-                                                                   "\n" + "New input: ");
+                                                                   "\n" + "New input (enter date format dd/MM/yyyy): ");
 
                 bool validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                            "\n" +
@@ -119,7 +119,7 @@ namespace Organiser.Workspaces
             {
                 DateTime dateEnd = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
                                                                 "\n" + "Previous input: " + project.DateEnd +
-                                                                 "\n" + "New input: ");
+                                                                 "\n" + "New input (enter date format dd/MM/yyyy): ");
 
                 bool validation = U01UserInputs.InputBool("\n" + "Change project information " +
                                                            "\n" +
@@ -179,11 +179,11 @@ namespace Organiser.Workspaces
 
                 DateTime dateStart = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
                                                                   "\n" + "Previous input: " + project.DateStart +
-                                                                   "\n" + "New input: ");
+                                                                   "\n" + "New input (enter date format dd/MM/yyyy): ");
 
                 DateTime dateEnd = U01UserInputs.InputDateTime("\n" + "_______________________________________" +
                                                                 "\n" + "Previous input: " + project.DateEnd +
-                                                                 "\n" + "New input: ");
+                                                                 "\n" + "New input (enter date format dd/MM/yyyy): ");
 
                 bool isFinished = U01UserInputs.InputBool("\n" + "_______________________________________" +
                                                            "\n" + "Previous is finished: " + project.IsFinished +

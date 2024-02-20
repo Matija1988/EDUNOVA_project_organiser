@@ -8,6 +8,7 @@ namespace Organiser.ObjectClasses
 {
     public  class Member : Entity, IMember
     {
+        public int id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }

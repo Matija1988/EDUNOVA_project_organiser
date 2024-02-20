@@ -52,5 +52,26 @@ namespace Organiser.Utilities
             Console.WriteLine("0) Return");
             Console.WriteLine("\n");
         }
+
+        internal static void ActivitiesMenuText()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            U03GraphicElements.PrintStars();
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>    ACTIVITIES MENU    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ResetColor();
+            Console.WriteLine("1) List project activities");
+            Console.WriteLine("2) Enter new activity");
+            Console.WriteLine("3) Edit activity");
+            Console.WriteLine("4) Delete activity");
+            Console.WriteLine("5) List all activities");
+
+            Console.WriteLine("6) Return to main menu");
+            Console.WriteLine("0) Exit");
+            Console.WriteLine("\n");
+        }
+
     }
 }

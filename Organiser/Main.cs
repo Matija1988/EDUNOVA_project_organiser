@@ -12,7 +12,7 @@ namespace Organiser
 {
     internal class Main
     {
-        
+
         public DataInitialisation DataInitialisation { get; }
 
         public UpdateProjectWorkspace UpdateProjectWorkspace { get; }
@@ -22,29 +22,30 @@ namespace Organiser
 
         public Member LoggedInUser { get; set; }
 
-        public Main() 
+        public Main()
         {
             DataInitialisation = new DataInitialisation(this);
             UpdateProjectWorkspace = new UpdateProjectWorkspace(this);
             ProjectWorkspace = new ProjectWorkspace(this);
-            
+            ActivitiesWorkspace = new ActivitiesWorkspace(this);
 
-           
+
+
             StartUpMessage();
             LogIn();
             MainMenu();
 
-           TestPrint();
+            TestPrint();
         }
 
-        private void TestPrint ()
+        private void TestPrint()
         {
-           
-            DataInitialisation._members.ForEach(member => { Console.WriteLine(member.Name + " " + member.LastName); }); 
+
+            DataInitialisation._members.ForEach(member => { Console.WriteLine(member.Name + " " + member.LastName); });
 
         }
 
-        private Member LogIn ()
+        private Member LogIn()
         {
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   USER LOGIN   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
@@ -57,7 +58,7 @@ namespace Organiser
 
             try
             {
-               
+
                 DataInitialisation._members.ForEach(member =>
                 {
                     if (member.Username == checkedLoggedIn && member.Password == checkedPassword)
@@ -68,7 +69,8 @@ namespace Organiser
                         LoggedInUser = loggedInUser;
                         MainMenu();
 
-                    } else
+                    }
+                    else
                     {
                         U02ErrorMessages.ErrorMessageInput();
                         LogIn();
@@ -85,7 +87,7 @@ namespace Organiser
         }
 
 
-        public void MainMenu ()
+        public void MainMenu()
         {
             U04MenuTexts.MainMenuText();
 
@@ -93,7 +95,7 @@ namespace Organiser
         }
 
 
-        private void MainMenuSwitch ()
+        private void MainMenuSwitch()
         {
 
             switch (U01UserInputs.InputIntZeroAllowed("Input: "))
@@ -103,10 +105,10 @@ namespace Organiser
                     ProjectWorkspace.ProjectsMenu();
 
                     break;
-            
+
                 case 2:
                     Console.WriteLine("Entering members");
-                  //  MembersWorkspace.MembersMenu();
+                    //  MembersWorkspace.MembersMenu();
 
                     break;
                 case 0:
@@ -115,22 +117,22 @@ namespace Organiser
                     break;
                 default:
                     U02ErrorMessages.ErrorMessageInput();
-                  
+                    MainMenu();
                     break;
             }
         }
 
-        private static void StartUpMessage ()
+        private static void StartUpMessage()
         {
             U03GraphicElements.PrintIntroGraphics();
 
             U03GraphicElements.PrintStars();
-            
+
             Console.WriteLine("\n!!!!!!!!!!!!!!!!!!!!!!!!!!  App under development  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             U03GraphicElements.PrintMinus();
 
-          
+
         }
     }
 }

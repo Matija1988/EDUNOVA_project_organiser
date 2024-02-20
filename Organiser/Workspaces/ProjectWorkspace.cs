@@ -14,12 +14,8 @@ namespace Organiser.Workspaces
     {
         private Main Main;
 
-        public Member LoggedInUser { get; }
-
-        private DataInitialisation DataInitialisation { get; }
-
-        private UpdateProjectWorkspace UpdateProjectWorkspace { get; }
-
+        public Project SelectedProject {  get; set; }   
+        
         public ProjectWorkspace (Main main)
         {
             this.Main = main;
@@ -101,7 +97,7 @@ namespace Organiser.Workspaces
 
                 default:
                     U02ErrorMessages.ErrorMessageInput();
-
+                    ProjectsMenu();
                     break;
 
             }
@@ -112,12 +108,24 @@ namespace Organiser.Workspaces
         {
             List();
 
+            try { 
+
             int projectID = U01UserInputs.InputInt("Choose the ID of the project you wish to manage: ");
 
             var project = Main.DataInitialisation._projects[0];
 
             Main.DataInitialisation._projects.ForEach(p => { if (p.id == projectID) { project = p; } });
 
+                SelectedProject = project;
+
+            Main.ActivitiesWorkspace.ActivitiesMenu(SelectedProject);
+
+            } catch 
+            {
+                U02ErrorMessages.ErrorMessageInput();
+                ProjectsMenu();
+            
+            }
 
 
         }
@@ -174,8 +182,8 @@ namespace Organiser.Workspaces
             project.id = id;
             project.UniqueID = U01UserInputs.InputString("Enter unique ID: ");
             project.Name = U01UserInputs.InputString("Enter project name: ");
-            project.DateStart = U01UserInputs.InputDateTime("Start data: ");
-            project.DateEnd = U01UserInputs.InputDateTime("Deadline: ");
+            project.DateStart = U01UserInputs.InputDateTime("Start date (enter date format dd/MM/yyyy): ");
+            project.DateEnd = U01UserInputs.InputDateTime("Deadline (enter date format dd/MM/yyyy): ");
             project.IsFinished = U01UserInputs.InputBool("Is finished 1) Finished / 2) Ongoing");
 
             StringBuilder sb = new StringBuilder();
