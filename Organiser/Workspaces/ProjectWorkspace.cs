@@ -184,7 +184,7 @@ namespace Organiser.Workspaces
             project.Name = U01UserInputs.InputString("Enter project name: ");
             project.DateStart = U01UserInputs.InputDateTime("Start date (enter date format dd/MM/yyyy): ");
             project.DateEnd = U01UserInputs.InputDateTime("Deadline (enter date format dd/MM/yyyy): ");
-            project.IsFinished = U01UserInputs.InputBool("Is finished 1) Finished / 2) Ongoing");
+            project.IsFinished = U01UserInputs.InputBool("Is finished 1) Finished / 2) Ongoing | ");
 
             StringBuilder sb = new StringBuilder();
 
@@ -193,7 +193,7 @@ namespace Organiser.Workspaces
             Console.WriteLine("New project: " +
             "\n" + sb);
 
-            if (U01UserInputs.InputBool("Accept this input 1) YES / 2) NO"))
+            if (U01UserInputs.InputBool("Accept this input 1) YES / 2) NO | "))
             {
                 Main.DataInitialisation._projects.Add((Project)project);
             }

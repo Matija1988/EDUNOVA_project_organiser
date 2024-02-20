@@ -28,10 +28,10 @@ namespace Organiser.ObjectClasses
         public int AssociatedProject { get; set; }
         [ForeignKey("Member")]
         public int? MemberID { get; set; }
-        
-        
 
-        public override string ToString()
+
+
+        public override string ToString ()
         {
             return "ID: " + id + " - " + "NAME: " + Name +
                    "\n   " + "DESCRPITION: " + Description +

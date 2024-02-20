@@ -67,10 +67,50 @@ namespace Organiser.Utilities
             Console.WriteLine("3) Edit activity");
             Console.WriteLine("4) Delete activity");
             Console.WriteLine("5) List all activities");
+            Console.WriteLine("6) Manage proofs of delivery");
+            Console.WriteLine("7) Return to project menu");
 
-            Console.WriteLine("6) Return to main menu");
+            Console.WriteLine("8) Return to main menu");
             Console.WriteLine("0) Exit");
             Console.WriteLine("\n");
+        }
+
+        internal static void UpdateActivitiesMenuText ()
+        {
+            
+            U03GraphicElements.PrintStars();
+           
+
+            Console.WriteLine("1) Name");
+            Console.WriteLine("2) Description");
+            Console.WriteLine("3) Date start");
+            Console.WriteLine("4) Deadline");
+            Console.WriteLine("5) Folder");
+            Console.WriteLine("6) Status");
+            Console.WriteLine("7) Date accepted");
+            Console.WriteLine("8) Associeted project");
+            Console.WriteLine("9) Delegate to");
+            Console.WriteLine("10) Edit all");
+            Console.WriteLine("0) Return");
+            Console.WriteLine("\n");
+        }
+
+
+        internal static void ProofMenuText ()
+        {         
+            U03GraphicElements.PrintStars();
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>    PROOFS MENU    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.ResetColor();
+            Console.WriteLine("1) List proofs");
+            Console.WriteLine("2) Add new proof");
+            Console.WriteLine("3) Edit existing proof");
+            Console.WriteLine("4) Delete proof");
+            Console.WriteLine("5) Return to main menu");
+            Console.WriteLine("0) Exit");
+            Console.WriteLine("\n");
+
         }
 
     }

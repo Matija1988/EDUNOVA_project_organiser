@@ -20,6 +20,10 @@ namespace Organiser
 
         public ActivitiesWorkspace ActivitiesWorkspace { get; }
 
+        public UpdateActivities UpdateActivities { get; }
+
+        public ProofsWorkspace ProofsWorkspace { get; }
+
         public Member LoggedInUser { get; set; }
 
         public Main()
@@ -28,6 +32,8 @@ namespace Organiser
             UpdateProjectWorkspace = new UpdateProjectWorkspace(this);
             ProjectWorkspace = new ProjectWorkspace(this);
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
+            UpdateActivities = new UpdateActivities(this);  
+            ProofsWorkspace = new ProofsWorkspace(this);
 
 
 
