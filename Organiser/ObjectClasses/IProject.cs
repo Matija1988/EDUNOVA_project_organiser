@@ -6,7 +6,7 @@ namespace Organiser.ObjectClasses
     public interface IProject 
     {
         [Key]
-        public int id { get; set; }
+        public int ProjectID { get; set; }
         DateTime DateEnd { get; set; }
         DateTime DateStart { get; set; }
         bool IsFinished { get; set; }

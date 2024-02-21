@@ -24,6 +24,8 @@ namespace Organiser
 
         public ProofsWorkspace ProofsWorkspace { get; }
 
+        public MembersWorkspace MembersWorkspace { get; }
+
         public Member LoggedInUser { get; set; }
 
         public Main()
@@ -34,23 +36,14 @@ namespace Organiser
             ActivitiesWorkspace = new ActivitiesWorkspace(this);
             UpdateActivities = new UpdateActivities(this);  
             ProofsWorkspace = new ProofsWorkspace(this);
-
-
+            MembersWorkspace = new MembersWorkspace(this);
 
             StartUpMessage();
             LogIn();
             MainMenu();
 
-            TestPrint();
         }
-
-        private void TestPrint()
-        {
-
-            DataInitialisation._members.ForEach(member => { Console.WriteLine(member.Name + " " + member.LastName); });
-
-        }
-
+               
         private Member LogIn()
         {
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   USER LOGIN   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
@@ -64,24 +57,24 @@ namespace Organiser
 
             try
             {
-
-                DataInitialisation._members.ForEach(member =>
+                while (true)
                 {
-                    if (member.Username == checkedLoggedIn && member.Password == checkedPassword)
-
+                    DataInitialisation._members.ForEach(member =>
                     {
-                        Console.WriteLine("Welcome " + member.Name + " " + member.LastName);
-                        var loggedInUser = member;
-                        LoggedInUser = loggedInUser;
-                        MainMenu();
+                        if (member.Username == checkedLoggedIn && member.Password == checkedPassword)
 
-                    }
-                    else
-                    {
-                        U02ErrorMessages.ErrorMessageInput();
-                        LogIn();
-                    }
-                });
+                        {
+                            Console.WriteLine("Welcome " + member.Name + " " + member.LastName);
+                            var loggedInUser = member;
+                            LoggedInUser = loggedInUser;
+                            MainMenu();
+
+                        }
+                        
+                    });
+                    U02ErrorMessages.ErrorMessageInput();
+                    LogIn();
+                }
             }
             catch
             {
@@ -114,7 +107,16 @@ namespace Organiser
 
                 case 2:
                     Console.WriteLine("Entering members");
-                    //  MembersWorkspace.MembersMenu();
+                    
+                    if(LoggedInUser.IsTeamLeader != true)
+                    {
+                        U02ErrorMessages.LackOfAuthority();
+                        MainMenu();
+                    } else
+                    {
+                        MembersWorkspace.MembersMenu();
+                    }
+                                     
 
                     break;
                 case 0:

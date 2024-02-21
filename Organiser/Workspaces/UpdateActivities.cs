@@ -227,7 +227,8 @@ namespace Organiser.Workspaces
                                                           "\n" + "Accept change: 1) YES / 2) NO | ");
                 if (validation)
                 {
-                    activity.AssociatedProject = project;
+                    var associatedProject = Main.DataInitialisation._projects[project];
+                    activity.AssociatedProject = associatedProject;
                 }
             }
             catch
@@ -306,6 +307,7 @@ namespace Organiser.Workspaces
 
                 if (validation)
                 {
+                    var associatedProject = Main.DataInitialisation._projects[project];
                     activity.Name = name;
                     activity.Description = description;
                     activity.DateStart = dateStart;
@@ -313,7 +315,7 @@ namespace Organiser.Workspaces
                    // activity.Folder = folder;
                     activity.IsFinished = isFinished;
                     activity.DateAccepted = dateAccepted;
-                    activity.AssociatedProject = project;
+                    activity.AssociatedProject = associatedProject;
                 }
             }
             catch

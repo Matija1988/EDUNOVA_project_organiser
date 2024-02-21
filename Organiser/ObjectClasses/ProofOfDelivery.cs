@@ -8,6 +8,7 @@ namespace Organiser.ObjectClasses
 {
     public  class ProofOfDelivery : Entity, IProofOfDelivery
     {
+        public int id { get; set; }
         public string DocumentName { get; set; }
 
         public string Location { get; set; }
@@ -16,17 +17,17 @@ namespace Organiser.ObjectClasses
 
         public DateTime DateCreated { get; set; }
 
-        //public override string ToString ()
-        //{
-        //    StringBuilder stringBuilder = new StringBuilder();
+        public override string ToString ()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
 
 
 
-        //    return stringBuilder.Append(DocumentName +
-        //                               "\n   " + Location +
-        //                               "\n   " + Member +
-        //                               "\n   " + DateCreated).ToString();
-        //}
+            return stringBuilder.Append(DocumentName +
+                                       "\n   " + Location +
+                                       "\n   " + Member +
+                                       "\n   " + DateCreated).ToString();
+        }
 
 
     }

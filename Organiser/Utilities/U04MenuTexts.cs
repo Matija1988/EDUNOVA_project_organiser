@@ -10,9 +10,11 @@ namespace Organiser.Utilities
     {
         internal static void MainMenuText ()
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\n" +
-                              ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   MAIN MENU   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
-            Console.WriteLine("1) Manage projects");
+                              ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   MAIN MENU   <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" +  "\n");
+            Console.ResetColor();
+             Console.WriteLine("1) Manage projects");
             Console.WriteLine("2) Manage members");
             Console.WriteLine("0) Exit");
         }
@@ -112,6 +114,23 @@ namespace Organiser.Utilities
             Console.WriteLine("\n");
 
         }
+        internal static void MembersMenuText ()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            U03GraphicElements.PrintStars();
+            Console.ResetColor();
 
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   MEMBERS MENU    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" + "\n");
+            Console.WriteLine("1) List all members ");
+            Console.WriteLine("2) Add new member");
+            Console.WriteLine("3) Edit member");
+            Console.WriteLine("4) Delete member");
+
+
+
+            Console.WriteLine("5) Return to main menu");
+            Console.WriteLine("0) Exit");
+            Console.WriteLine("\n");
+        }
     }
 }

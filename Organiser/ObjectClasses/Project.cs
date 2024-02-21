@@ -11,7 +11,7 @@ namespace Organiser.ObjectClasses
     {
 
         [Key]
-        public int id { get; set; }
+        public int ProjectID { get; set; }
         [Required]
         public string UniqueID { get; set; }
         [Required]
@@ -24,7 +24,7 @@ namespace Organiser.ObjectClasses
 
         public override string ToString ()
         {
-            return "ID:" + id + " - " + Name + " - " + UniqueID + " -  \n" + "       Date start: " + DateStart.ToString() + "\n" + "       Date end: " + DateEnd.ToString() + "\n" + "       Project finished: " + IsFinished;
+            return "ID:" + ProjectID + " - " + Name + " - " + UniqueID + " -  \n" + "       Date start: " + DateStart.ToString() + "\n" + "       Date end: " + DateEnd.ToString() + "\n" + "       Project finished: " + IsFinished;
 
         }
     }

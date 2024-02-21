@@ -40,6 +40,15 @@ namespace Organiser.Utilities
 
         }
 
+        internal static void TheSelectedIndexIsNotAssociatedToObject()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n" +
+                              "!!!!!!!!!!!!!    THE SELECTED INDEX IS NOT ASSOCIATED TO OBJECT    !!!!!!!!!!!!!" +
+                              "\n");
+            Console.ResetColor();
+        }
+
         internal static string ErrorMessageUnexpectedBehaviourInAutoIncrementID ()
         {
             StringBuilder sb = new StringBuilder();
@@ -49,13 +58,14 @@ namespace Organiser.Utilities
             return sb.ToString();
         }
 
-        internal static string LackOfAuthority ()
+        internal static void LackOfAuthority ()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("\n" +
-                      "!!!!!! USER IS NOT AUTHORISED TO PERFORM THIS ACTION !!!!!!" +
-                      "\n");
-            return sb.ToString();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n" +
+                              "!!!!!!!!!!!!    USER IS NOT AUTHORISED TO PERFORM THIS ACTION    !!!!!!!!!!" +
+                              "\n");
+            Console.ResetColor();
+
         }
 
         internal static string YourInputContainsUnwantedCharacters ()

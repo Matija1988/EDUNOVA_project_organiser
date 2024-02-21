@@ -19,13 +19,15 @@ namespace Organiser.ObjectClasses
         public DateTime DateStart { get; set; }
 
         public DateTime DateEnd { get; set; }
-        //[ForeignKey]
-        public int? ProofOfDelivery { get; set; }
+        [ForeignKey("ProofOfDeliveryID")]
+        public ProofOfDelivery ProofOfDelivery { get; set; }
+        public int? ProofOfDeliveryID { get; set; }
         public DateTime? DateAccepted { get; set; }
 
         public bool IsFinished { get; set; }
-        [ForeignKey("Project")]
-        public int AssociatedProject { get; set; }
+        [ForeignKey("ProjectID")]
+        public Project AssociatedProject { get; set; }
+        public int? ProjectID { get; set; }
         [ForeignKey("Member")]
         public int? MemberID { get; set; }
 
@@ -35,9 +37,9 @@ namespace Organiser.ObjectClasses
         {
             return "ID: " + id + " - " + "NAME: " + Name +
                    "\n   " + "DESCRPITION: " + Description +
-                   //  "\n   " + "ASSOCIATED PROJECT: ID " + AssociatedProject.id + " NAME " + AssociatedProject.Name + 
+                   "\n   " + "ASSOCIATED PROJECT: ID " + AssociatedProject.ProjectID + " NAME " + AssociatedProject.Name + 
                    "\n   " + "START DATE: " + DateStart + " - DEADLINE: " + DateEnd +
-                   //    "\n   " + "FOLDER LOCATION: " + ProofOfDelivery +
+                   "\n   " + "PROOF OF DELIVERY: " + ProofOfDelivery.DocumentName +
                    "\n   " + "IS FINISHED: " + IsFinished +
                    "\n   " + DateAccepted +
                    "\n   " + "Delegated to: " + MemberID;

@@ -69,7 +69,7 @@ namespace Organiser.Workspaces
                     }
                     else
                     {
-                        Console.WriteLine(U02ErrorMessages.LackOfAuthority());
+                        U02ErrorMessages.LackOfAuthority();
                         Main.MainMenu();
                     }
 
@@ -114,7 +114,7 @@ namespace Organiser.Workspaces
 
             var project = Main.DataInitialisation._projects[0];
 
-            Main.DataInitialisation._projects.ForEach(p => { if (p.id == projectID) { project = p; } });
+            Main.DataInitialisation._projects.ForEach(p => { if (p.ProjectID == projectID) { project = p; } });
 
                 SelectedProject = project;
 
@@ -170,7 +170,7 @@ namespace Organiser.Workspaces
             Main.DataInitialisation._projects.ForEach((project) =>
             {
 
-                if (project.id == id)
+                if (project.ProjectID == id)
                 {
 
                     id++;
@@ -179,7 +179,7 @@ namespace Organiser.Workspaces
             });
 
             IProject project = Factory.ProjectFactory();
-            project.id = id;
+            project.ProjectID = id;
             project.UniqueID = U01UserInputs.InputString("Enter unique ID: ");
             project.Name = U01UserInputs.InputString("Enter project name: ");
             project.DateStart = U01UserInputs.InputDateTime("Start date (enter date format dd/MM/yyyy): ");
@@ -188,7 +188,7 @@ namespace Organiser.Workspaces
 
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(project.id + " - " + project.Name + " - " + project.UniqueID + " - " + "Start date: " + project.DateStart + " - " + "End date: " + project.DateEnd + " - " + project.IsFinished);
+            sb.Append(project.ProjectID + " - " + project.Name + " - " + project.UniqueID + " - " + "Start date: " + project.DateStart + " - " + "End date: " + project.DateEnd + " - " + project.IsFinished);
 
             Console.WriteLine("New project: " +
             "\n" + sb);
@@ -224,7 +224,7 @@ namespace Organiser.Workspaces
 
                 var project = Main.DataInitialisation._projects[0];
 
-                Main.DataInitialisation._projects.ForEach(p => { if (p.id == index) { project = p; } });
+                Main.DataInitialisation._projects.ForEach(p => { if (p.ProjectID == index) { project = p; } });
 
                 U04MenuTexts.UpdateProjectText();
 
@@ -282,7 +282,7 @@ namespace Organiser.Workspaces
 
             var project = Main.DataInitialisation._projects[0];
 
-            Main.DataInitialisation._projects.ForEach(p => { if (p.id == id) { project = p; } });
+            Main.DataInitialisation._projects.ForEach(p => { if (p.ProjectID == id) { project = p; } });
 
             Main.DataInitialisation._projects.Remove(project);
 

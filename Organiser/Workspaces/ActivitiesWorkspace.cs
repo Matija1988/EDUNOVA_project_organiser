@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Organiser.Workspaces
@@ -16,6 +17,9 @@ namespace Organiser.Workspaces
         private Main Main { get; }
 
         public Project SelectedProject { get; }
+             
+
+        public ProofOfDelivery SelectedProof { get; set; }
 
         public ActivitiesWorkspace (Main Main) : this()
         {
@@ -31,9 +35,9 @@ namespace Organiser.Workspaces
         {
             U04MenuTexts.ActivitiesMenuText();
 
-            Console.WriteLine("Working on project: ");
+            Console.Write("Working on project: ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(project.Name + "\n");
+            Console.Write(Main.ProjectWorkspace.SelectedProject.Name + "\n");
             Console.ResetColor();
 
 
@@ -82,7 +86,7 @@ namespace Organiser.Workspaces
                     ActivitiesMenu(Main.ProjectWorkspace.SelectedProject);
                     break;
                 case 6:
-
+                    ManageProof();
                     break;
                 case 7:
                     Main.ProjectWorkspace.ProjectsMenu();
@@ -98,8 +102,48 @@ namespace Organiser.Workspaces
                     break;
                 default:
                     U02ErrorMessages.ErrorMessageInput();
+                    ActivitiesMenu(project);
                     break;
             }
+        }
+
+        private void ManageProof ()
+        {
+            List();
+            try { 
+
+            int proofID = U01UserInputs.InputInt("Choose the ID of the activity proof you wish to manage: ");
+
+                List<ProofOfDelivery> tempProofList = new List<ProofOfDelivery>();
+
+            var proof = Main.DataInitialisation._proofOfDeliveries[proofID];
+
+                Main.DataInitialisation._activities.ForEach(ac =>
+                {
+                    if (ac.ProofOfDelivery == proof)
+                    {
+                        proof = ac.ProofOfDelivery;
+                        tempProofList.Add(proof);
+                    }
+                });
+
+                tempProofList.ForEach(tpl => { Console.WriteLine(tpl); });
+
+                if (proof.id != proofID +1)
+                {
+                    U02ErrorMessages.TheSelectedIndexIsNotAssociatedToObject();
+                    ManageProof();
+                }
+
+                Main.ProofsWorkspace.ProofMenu(proof);
+             
+
+            } catch
+            {
+                U02ErrorMessages.ErrorMessageInput();
+                ActivitiesMenu(SelectedProject);
+            }
+
         }
 
         private void ListAllActivities ()
@@ -136,7 +180,7 @@ namespace Organiser.Workspaces
 
                 activity.IsFinished = U01UserInputs.InputBool("Activity status: 1) Finished / 2) Ongoing : ");
                 activity.DateAccepted = U01UserInputs.InputDateTime("Activity accepted as finished on (enter date format dd/MM/yyyy): ");
-                activity.AssociatedProject = Main.ProjectWorkspace.SelectedProject.id;
+                activity.AssociatedProject = Main.ProjectWorkspace.SelectedProject;
                 activity.MemberID = 1;
 
 
@@ -158,7 +202,7 @@ namespace Organiser.Workspaces
         {
             Main.DataInitialisation._activities.ForEach(a =>
             {
-                if (a.AssociatedProject == Main.ProjectWorkspace.SelectedProject.id)
+                if (a.AssociatedProject == Main.ProjectWorkspace.SelectedProject)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine(a);
@@ -177,7 +221,7 @@ namespace Organiser.Workspaces
 
             var activity = Main.DataInitialisation._activities[0];
 
-            int index = U01UserInputs.InputInt("Choose the ID of the activity you wish to update: ");
+            int index = U01UserInputs.InputIntZeroAllowed("Choose the ID of the activity you wish to update: ");
 
             Main.DataInitialisation._activities.ForEach(a => { if (a.id == index) { activity = a; } });
 

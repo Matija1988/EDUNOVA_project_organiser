@@ -1,4 +1,5 @@
-﻿using Organiser.Utilities;
+﻿using Organiser.ObjectClasses;
+using Organiser.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -12,6 +13,8 @@ namespace Organiser.Workspaces
     {
         private Main Main { get; }
 
+        public ProofOfDelivery SelectedProof { get; }
+
         public ProofsWorkspace (Main Main) : this()
         {
             this.Main = Main;
@@ -22,13 +25,19 @@ namespace Organiser.Workspaces
         
         }
 
-        public void ProofMenu ()
+        public void ProofMenu (ProofOfDelivery proof)
         {
+
+            Console.Write("Working on proof: ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(proof.DocumentName + "\n");
+            Console.ResetColor();
+
             U04MenuTexts.ProofMenuText();
-            ProofMenuSwitch();
+            ProofMenuSwitch(proof);
         }
 
-        private void ProofMenuSwitch ()
+        private void ProofMenuSwitch (ProofOfDelivery proof)
         {
             switch (U01UserInputs.InputIntZeroAllowed("Proof menu input: "))
             {
@@ -36,7 +45,7 @@ namespace Organiser.Workspaces
                     Console.WriteLine("Listing proofs");
                     U03GraphicElements.PrintStars();
                     List();
-                    ProofMenu();
+                    ProofMenu(proof);
                     break;
 
                 case 2:
