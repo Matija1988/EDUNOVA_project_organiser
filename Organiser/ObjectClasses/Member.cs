@@ -19,7 +19,7 @@ namespace Organiser.ObjectClasses
 
         public override string ToString ()
         {
-            return Name + " " + LastName + " \n" + "USERNAME: " + Username + " \n" + "PASSWORD: " + Password + "\n" +  "IS TEAM LEADER: " + IsTeamLeader;
+            return  "ID: " + id + " " +  Name + " " + LastName + " \n" + "USERNAME: " + Username + " \n" + "PASSWORD: " + Password + "\n" +  "IS TEAM LEADER: " + IsTeamLeader;
         }
 
     }

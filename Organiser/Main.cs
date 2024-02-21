@@ -26,6 +26,8 @@ namespace Organiser
 
         public MembersWorkspace MembersWorkspace { get; }
 
+        public UpdateMembers UpdateMembers { get; }
+
         public Member LoggedInUser { get; set; }
 
         public Main()
@@ -37,6 +39,7 @@ namespace Organiser
             UpdateActivities = new UpdateActivities(this);  
             ProofsWorkspace = new ProofsWorkspace(this);
             MembersWorkspace = new MembersWorkspace(this);
+            UpdateMembers = new UpdateMembers(this);
 
             StartUpMessage();
             LogIn();

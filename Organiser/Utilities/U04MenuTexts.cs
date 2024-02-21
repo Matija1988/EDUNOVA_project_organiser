@@ -132,5 +132,20 @@ namespace Organiser.Utilities
             Console.WriteLine("0) Exit");
             Console.WriteLine("\n");
         }
+
+        internal static void UpdateMemberMenuText ()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            U03GraphicElements.PrintStars();
+            Console.ResetColor();
+
+            Console.WriteLine("1) Update first name");
+            Console.WriteLine("2) Update last name");
+            Console.WriteLine("3) Update username");
+            Console.WriteLine("4) Update password");
+            Console.WriteLine("5) Is team leader");
+            Console.WriteLine("6) Update all");
+            Console.WriteLine("0) Return to members menu");
+        }
     }
 }

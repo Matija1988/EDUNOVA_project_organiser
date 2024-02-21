@@ -108,12 +108,64 @@ namespace Organiser.Workspaces
 
         public void Update ()
         {
-            throw new NotImplementedException();
+            List();
+
+            int id = U01UserInputs.InputInt("Choose ID of the member you wish to update: ");
+
+            var member = Main.DataInitialisation._members[0];
+            
+            Main.DataInitialisation._members.ForEach(m => { if (m.id == id) member = m; });
+
+            switch (U01UserInputs.InputIntZeroAllowed("Choose the attribute you wish to update: "))
+            {
+                case 1:
+
+                    break;
+            }
+
+            
+
         }
 
         public void Delete ()
         {
-            throw new NotImplementedException();
+            List();
+
+            try { 
+
+            int memberToDelete = U01UserInputs.InputInt("Choose ID of the memeber you wish to delete: ");
+
+            var deleteMember = Main.DataInitialisation._members[0];
+
+                Main.DataInitialisation._members.ForEach(m =>
+                {
+                    if (m.id == memberToDelete) { deleteMember = m; }
+                });
+
+                string validateAction = U01UserInputs.InputString("Enter you password to validate action: ");
+
+                bool validation = false;
+
+                Main.DataInitialisation._members.ForEach((m) => { if (m.Password == validateAction && m.IsTeamLeader == true) validation = true; });
+
+                if(Main.LoggedInUser == deleteMember)
+                {
+                    U02ErrorMessages.ErrorMessageCannotDeleteYourself(); 
+                    MembersMenu();
+                }
+                else
+                {
+                    Main.DataInitialisation._members.Remove(deleteMember);
+                }
+
+            } 
+            catch 
+            {
+                U02ErrorMessages.ErrorMessageInput();
+                Delete();
+            }
+
+            MembersMenu();
         }
     }
 }
