@@ -123,7 +123,7 @@ namespace Organiser.Workspaces
                     ManageProof();
                 }
 
-                Main.ProofsWorkspace.ProofMenu(proof);
+                Main.ProofsWorkspace.ProofMenu();
                 }
 
             } catch

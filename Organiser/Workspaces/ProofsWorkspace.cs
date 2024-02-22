@@ -25,19 +25,19 @@ namespace Organiser.Workspaces
         
         }
 
-        public void ProofMenu (ProofOfDelivery proof)
+        public void ProofMenu ()
         {
 
             Console.Write("Working on proof: ");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(proof.DocumentName + "\n");
+            Console.Write("");
             Console.ResetColor();
 
             U04MenuTexts.ProofMenuText();
-            ProofMenuSwitch(proof);
+            ProofMenuSwitch();
         }
 
-        private void ProofMenuSwitch (ProofOfDelivery proof)
+        private void ProofMenuSwitch ()
         {
             switch (U01UserInputs.InputIntZeroAllowed("Proof menu input: "))
             {
@@ -45,7 +45,7 @@ namespace Organiser.Workspaces
                     Console.WriteLine("Listing proofs");
                     U03GraphicElements.PrintStars();
                     List();
-                    ProofMenu(proof);
+                    ProofMenu();
                     break;
 
                 case 2:
