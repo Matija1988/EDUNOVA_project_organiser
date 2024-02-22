@@ -57,19 +57,14 @@ namespace Organiser.Workspaces
 
                     break;
                 case 2:
-                    Console.WriteLine("Entering new activity");
                     Add();
-
-
                     break;
 
                 case 3:
-                    Console.WriteLine("Edit activity");
                     Update();
                     break;
 
                 case 4:
-                    Console.WriteLine("Activity go bye bye");
                     if (Main.LoggedInUser.Password == U01UserInputs.InputString("\n" + "Verify your indentity! Enter password: ") && Main.LoggedInUser.IsTeamLeader == true)
                     {
                         Delete();
@@ -111,7 +106,7 @@ namespace Organiser.Workspaces
         {
             List();
             try { 
-
+                while(true) { 
             int proofID = U01UserInputs.InputInt("Choose the ID of the activity proof you wish to manage: ");
 
                 List<ProofOfDelivery> tempProofList = new List<ProofOfDelivery>();
@@ -126,9 +121,9 @@ namespace Organiser.Workspaces
                         tempProofList.Add(proof);
                     }
                 });
-
+                
                 tempProofList.ForEach(tpl => { Console.WriteLine(tpl); });
-
+                
                 if (proof.id != proofID +1)
                 {
                     U02ErrorMessages.TheSelectedIndexIsNotAssociatedToObject();
@@ -136,7 +131,7 @@ namespace Organiser.Workspaces
                 }
 
                 Main.ProofsWorkspace.ProofMenu(proof);
-             
+                }
 
             } catch
             {
@@ -175,8 +170,11 @@ namespace Organiser.Workspaces
                 activity.DateStart = U01UserInputs.InputDateTime("Input activity start date (enter date format dd/MM/yyyy): ");
                 activity.DateEnd = U01UserInputs.InputDateTime("Input activity end date (enter date format dd/MM/yyyy): ");
 
-                //   activity.ProofOfDelivery = null;
-                // Add this later
+                //int proofID = U01UserInputs.InputInt("Input proof of delivery ID associeted to this activity (press enter if not applicable): "); 
+
+
+                //activity.ProofOfDelivery = null;
+                
 
                 activity.IsFinished = U01UserInputs.InputBool("Activity status: 1) Finished / 2) Ongoing : ");
                 activity.DateAccepted = U01UserInputs.InputDateTime("Activity accepted as finished on (enter date format dd/MM/yyyy): ");

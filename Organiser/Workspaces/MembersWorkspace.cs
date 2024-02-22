@@ -10,25 +10,25 @@ namespace Organiser.Workspaces
 {
     internal class MembersWorkspace : IWorkspace
     {
-        private Main Main {  get;  }
+        private Main Main { get; }
 
-        public MembersWorkspace(Main Main) : this ()
-        { 
-        this.Main = Main;
-        }   
+        public MembersWorkspace(Main Main) : this()
+        {
+            this.Main = Main;
+        }
 
-        public MembersWorkspace ()
+        public MembersWorkspace()
         {
 
         }
-        public void MembersMenu ()
+        public void MembersMenu()
         {
             U04MenuTexts.MembersMenuText();
 
             MembersMenuSwitch();
         }
 
-        private void MembersMenuSwitch ()
+        private void MembersMenuSwitch()
         {
             switch (U01UserInputs.InputIntZeroAllowed("Input: "))
             {
@@ -66,7 +66,7 @@ namespace Organiser.Workspaces
 
         }
 
-        public void Add ()
+        public void Add()
         {
             List();
 
@@ -87,55 +87,80 @@ namespace Organiser.Workspaces
             Console.WriteLine("New member:" + member.Name + " " + member.LastName + "\n" + "USERNAME: " + member.Username + "\n" + "PASSWORD: " + member.Password + "\n" + "Is team leader: " + member.IsTeamLeader);
             Console.ResetColor();
 
-            if(U01UserInputs.InputBool("Accept this input 1) YES / 2) NO | "))
+            if (U01UserInputs.InputBool("Accept this input 1) YES / 2) NO | "))
             {
                 Main.DataInitialisation._members.Add((Member)member);
             }
 
             MembersMenu();
-                           
+
         }
 
-        public void List ()
+        public void List()
         {
-            Main.DataInitialisation._members.ForEach(m => { 
+            Main.DataInitialisation._members.ForEach(m =>
+            {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(m); 
+                Console.WriteLine(m);
                 Console.ResetColor();
                 U03GraphicElements.PrintMinus();
             });
         }
 
-        public void Update ()
+        public void Update()
         {
             List();
 
             int id = U01UserInputs.InputInt("Choose ID of the member you wish to update: ");
 
             var member = Main.DataInitialisation._members[0];
-            
+
             Main.DataInitialisation._members.ForEach(m => { if (m.id == id) member = m; });
+
+            U04MenuTexts.UpdateMemberMenuText();
 
             switch (U01UserInputs.InputIntZeroAllowed("Choose the attribute you wish to update: "))
             {
                 case 1:
-
+                    Main.UpdateMembers.UpdateMemberName(member);
+                    break;
+                case 2:
+                    Main.UpdateMembers.UpdateMemberLastName(member);
+                    break;
+                case 3:
+                    Main.UpdateMembers.UpdateMemberUsername(member);
+                    break;
+                case 4:
+                    Main.UpdateMembers.UpdateMemberPassword(member);
+                    break;
+                case 5:
+                    Main.UpdateMembers.UpdateMemberIsTeamLeader(member);
+                    break;
+                case 6:
+                    Main.UpdateMembers.UpdateMemberAll(member);
+                    break;
+                case 0:
+                    MembersMenu();
+                    break;
+                default:
+                    U02ErrorMessages.ErrorMessageInput();
                     break;
             }
 
-            
+
 
         }
 
-        public void Delete ()
+        public void Delete()
         {
             List();
 
-            try { 
+            try
+            {
 
-            int memberToDelete = U01UserInputs.InputInt("Choose ID of the memeber you wish to delete: ");
+                int memberToDelete = U01UserInputs.InputInt("Choose ID of the memeber you wish to delete: ");
 
-            var deleteMember = Main.DataInitialisation._members[0];
+                var deleteMember = Main.DataInitialisation._members[0];
 
                 Main.DataInitialisation._members.ForEach(m =>
                 {
@@ -148,9 +173,9 @@ namespace Organiser.Workspaces
 
                 Main.DataInitialisation._members.ForEach((m) => { if (m.Password == validateAction && m.IsTeamLeader == true) validation = true; });
 
-                if(Main.LoggedInUser == deleteMember)
+                if (Main.LoggedInUser == deleteMember)
                 {
-                    U02ErrorMessages.ErrorMessageCannotDeleteYourself(); 
+                    U02ErrorMessages.ErrorMessageCannotDeleteYourself();
                     MembersMenu();
                 }
                 else
@@ -158,8 +183,8 @@ namespace Organiser.Workspaces
                     Main.DataInitialisation._members.Remove(deleteMember);
                 }
 
-            } 
-            catch 
+            }
+            catch
             {
                 U02ErrorMessages.ErrorMessageInput();
                 Delete();

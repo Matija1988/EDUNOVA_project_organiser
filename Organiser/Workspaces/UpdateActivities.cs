@@ -140,19 +140,21 @@ namespace Organiser.Workspaces
         {
             try
             {
-                //ProofOfDelivery proofOfDelivery = Main.DataInitialisation.[U01UserInputs.InputInt("\n" + "_______________________________________" +
-                //                                                                                          "\n" + "Previous input: " + activity.DateEnd +
-                //                                                                                           "\n" + "New input: ") - 1];
+               
 
-                //bool validation = U01UserInputs.InputBool("\n" + "Change activity information " +
-                //                                      "\n" +
-                //                                       "\n" + "Previous entry: " + activity.Folder +
-                //                                        "\n" + "New entry: " + folder +
-                //                                         "\n" + "Accept change: 1) YES / 2) NO | ");
-                //if (validation)
-                //{
-                //    activity.ProofOfDelivery = proofOfDelivery;
-                //}
+                ProofOfDelivery proofOfDelivery = Main.DataInitialisation._proofOfDeliveries[U01UserInputs.InputInt("\n" + "_______________________________________" +
+                                                                                                          "\n" + "Previous input: " + activity.ProofOfDelivery +
+                                                                                                           "\n" + "New input: ") - 1];
+
+                bool validation = U01UserInputs.InputBool("\n" + "Change activity information " +
+                                                      "\n" +
+                                                       "\n" + "Previous entry: " + activity.ProofOfDelivery +
+                                                        "\n" + "New entry: " + proofOfDelivery +
+                                                         "\n" + "Accept change: 1) YES / 2) NO | ");
+                if (validation)
+                {
+                    activity.ProofOfDelivery = proofOfDelivery;
+                }
 
             }
             catch
