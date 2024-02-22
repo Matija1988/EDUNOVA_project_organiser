@@ -146,6 +146,7 @@ namespace Organiser
             proofOfDelivery2.Location = " ";
             proofOfDelivery2.Member = _members[0];
             proofOfDelivery2.DateCreated = DateTime.Parse("22.10.2019.");
+            proofOfDelivery1.Activity = _activities[2];
 
             _proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery2);
 
@@ -155,6 +156,7 @@ namespace Organiser
             proofOfDelivery3.Location = " ";
             proofOfDelivery3.Member = _members[1];
             proofOfDelivery3.DateCreated = DateTime.Parse("15.01.2021.");
+            proofOfDelivery1.Activity = _activities[3];
 
             _proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery3);
 
@@ -164,6 +166,7 @@ namespace Organiser
             proofOfDelivery4.Location = " ";
             proofOfDelivery4.Member = _members[1];
             proofOfDelivery4.DateCreated = DateTime.Parse("17.04.2020.");
+            proofOfDelivery1.Activity = _activities[4];
 
             _proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery4);
 
@@ -173,6 +176,7 @@ namespace Organiser
             proofOfDelivery5.Location = " ";
             proofOfDelivery5.Member = _members[1];
             proofOfDelivery5.DateCreated = DateTime.Parse("05.05.2023.");
+            proofOfDelivery1.Activity = _activities[5];
 
             _proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery5);
 

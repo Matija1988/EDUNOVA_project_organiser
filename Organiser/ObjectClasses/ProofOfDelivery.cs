@@ -25,10 +25,12 @@ namespace Organiser.ObjectClasses
 
 
 
-            return stringBuilder.Append(DocumentName +
-                                       "\n   " + Location +
-                                       "\n   " + Member +
-                                       "\n   " + DateCreated).ToString();
+            return stringBuilder.Append("ID: " + id +
+                                        "\n  " + "Document name: "+ DocumentName +
+                                        "\n  " + "Document Location: " +Location +
+                                        "\n  " + "Created by: "+Member.Name + " " + Member.LastName + 
+                                        "\n  " + "Associated activity: " + Activity.Name +   
+                                        "\n  " + "Date created: " + DateCreated).ToString();
         }
 
 

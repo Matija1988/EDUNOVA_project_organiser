@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Activity = Organiser.ObjectClasses.Activity;
 
 namespace Organiser.Workspaces
 {
@@ -18,6 +19,7 @@ namespace Organiser.Workspaces
 
         public Project SelectedProject { get; }
              
+        public Activity SelectedActivity { get; set; }
 
         public ProofOfDelivery SelectedProof { get; set; }
 
@@ -105,27 +107,20 @@ namespace Organiser.Workspaces
         private void ManageProof ()
         {
             List();
-            try { 
-                while(true) { 
-            int proofID = U01UserInputs.InputInt("Choose the ID of the activity proof you wish to manage: ");
-
-                List<ProofOfDelivery> tempProofList = new List<ProofOfDelivery>();
-
-            var proof = Main.DataInitialisation._proofOfDeliveries[proofID];
-
-             
-                
-                tempProofList.ForEach(tpl => { Console.WriteLine(tpl); });
-                
-                if (proof.id != proofID +1)
+            try {
+                while (true)
                 {
-                    U02ErrorMessages.TheSelectedIndexIsNotAssociatedToObject();
-                    ManageProof();
-                }
+                    int activityID = U01UserInputs.InputInt("Choose the ID of the activity proof you wish to manage: ");
+                                       
+                    var activity = Main.DataInitialisation._activities[0];
 
-                Main.ProofsWorkspace.ProofMenu();
-                }
+                    SelectedActivity = activity; 
 
+                    Main.DataInitialisation._activities.ForEach(a => { if (a.id == activityID) { activity = a; } });
+                    
+                    Main.ProofsWorkspace.ProofMenu();
+
+                }
             } catch
             {
                 U02ErrorMessages.ErrorMessageInput();
@@ -199,11 +194,11 @@ namespace Organiser.Workspaces
 
             var activity = Main.DataInitialisation._activities[0];
 
-            int index = U01UserInputs.InputIntZeroAllowed("Choose the ID of the activity you wish to update: ");
+            int index = U01UserInputs.InputInt("Choose the ID of the activity you wish to update: ");
 
             Main.DataInitialisation._activities.ForEach(a => { if (a.id == index) { activity = a; } });
 
-            switch (U01UserInputs.InputInt("Choose the attribute you wish to update: "))
+            switch (U01UserInputs.InputIntZeroAllowed("Choose the attribute you wish to update: "))
             {
                 case 1:
                     Main.UpdateActivities.UpdateActivityName(activity);

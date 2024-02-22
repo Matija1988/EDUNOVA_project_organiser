@@ -13,6 +13,8 @@ namespace Organiser.Workspaces
     {
         private Main Main { get; }
 
+        public Activity SelectedActivity { get;  }
+
         public ProofOfDelivery SelectedProof { get; }
 
         public ProofsWorkspace (Main Main) : this()
@@ -28,16 +30,16 @@ namespace Organiser.Workspaces
         public void ProofMenu ()
         {
 
-            Console.Write("Working on proof: ");
+            Console.Write("Working on proof for activity:  " );
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("");
+            Console.Write(Main.ActivitiesWorkspace.SelectedActivity.Name + "\n");
             Console.ResetColor();
 
             U04MenuTexts.ProofMenuText();
             ProofMenuSwitch();
         }
 
-        private void ProofMenuSwitch ()
+        private void ProofMenuSwitch ( )
         {
             switch (U01UserInputs.InputIntZeroAllowed("Proof menu input: "))
             {
@@ -97,7 +99,18 @@ namespace Organiser.Workspaces
 
         public void List ()
         {
-            throw new NotImplementedException();
+            U03GraphicElements.PrintStars ();
+
+            Main.DataInitialisation._proofOfDeliveries.ForEach(p => 
+            { 
+                if (p.Activity == Main.ActivitiesWorkspace.SelectedActivity) 
+                { 
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(p); 
+                    Console.ResetColor();
+                } 
+            });
+
         }
 
         public void Update ()
@@ -109,5 +122,7 @@ namespace Organiser.Workspaces
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }
