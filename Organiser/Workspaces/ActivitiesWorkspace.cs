@@ -113,14 +113,7 @@ namespace Organiser.Workspaces
 
             var proof = Main.DataInitialisation._proofOfDeliveries[proofID];
 
-                Main.DataInitialisation._activities.ForEach(ac =>
-                {
-                    if (ac.ProofOfDelivery == proof)
-                    {
-                        proof = ac.ProofOfDelivery;
-                        tempProofList.Add(proof);
-                    }
-                });
+             
                 
                 tempProofList.ForEach(tpl => { Console.WriteLine(tpl); });
                 
@@ -155,34 +148,21 @@ namespace Organiser.Workspaces
         {
             List();
 
-
             try
             {
-
                 int id = U01UserInputs.AutoIncrementID(Main.DataInitialisation._activities);
-
                 Main.DataInitialisation._activities.ForEach(a => { if (a.id == id) { id++; } });
-
                 IActivity activity = Factory.ActivityFactory();
+
                 activity.id = id;
                 activity.Name = U01UserInputs.InputString("Enter activity name (please follow contract naming convention): ");
                 activity.Description = U01UserInputs.InputString("Enter activity description: ");
                 activity.DateStart = U01UserInputs.InputDateTime("Input activity start date (enter date format dd/MM/yyyy): ");
                 activity.DateEnd = U01UserInputs.InputDateTime("Input activity end date (enter date format dd/MM/yyyy): ");
-
-                //int proofID = U01UserInputs.InputInt("Input proof of delivery ID associeted to this activity (press enter if not applicable): "); 
-
-
-                //activity.ProofOfDelivery = null;
-                
-
                 activity.IsFinished = U01UserInputs.InputBool("Activity status: 1) Finished / 2) Ongoing : ");
                 activity.DateAccepted = U01UserInputs.InputDateTime("Activity accepted as finished on (enter date format dd/MM/yyyy): ");
                 activity.AssociatedProject = Main.ProjectWorkspace.SelectedProject;
                 activity.MemberID = 1;
-
-
-
                 if (U01UserInputs.InputBool("Accept this input 1) YES / 2) NO | "))
                 {
                     Main.DataInitialisation._activities.Add((ObjectClasses.Activity)activity);
@@ -237,22 +217,20 @@ namespace Organiser.Workspaces
                 case 4:
                     Main.UpdateActivities.UpdateActivityDateEnd(activity);
                     break;
+                
                 case 5:
-                    Main.UpdateActivities.UpdateActivityProofOfDelivery(activity);
-                    break;
-                case 6:
                     Main.UpdateActivities.UpdateActivityIsFinished(activity);
                     break;
-                case 7:
+                case 6:
                     Main.UpdateActivities.UpdateActivityDateAccepted(activity);
                     break;
-                case 8:
+                case 7:
                     Main.UpdateActivities.UpdateActivityAssociatedProject(activity);
                     break;
-                case 9:
+                case 8:
                     Main.UpdateActivities.UpdateActivityDelegateTo(activity);
                     break;
-                case 10:
+                case 9:
                     Main.UpdateActivities.UpdateActivityAll(activity);
                     break;
                 case 0:

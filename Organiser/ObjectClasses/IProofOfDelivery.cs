@@ -8,5 +8,7 @@ namespace Organiser.ObjectClasses
         string DocumentName { get; set; }
         string Location { get; set; }
         Member Member { get; set; }
+
+       Activity Activity { get; set; }
     }
 }

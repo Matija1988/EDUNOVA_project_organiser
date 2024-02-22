@@ -126,9 +126,9 @@ trajanje 5 minuta, PAL',
 insert into proofOfDeliveries (documentName, dateCreated, memberID, activityID)
 values 
 ('Analiza troškova i koristi','2023-12-15 12:00:00', 1, 1),
-('RCKSSB marketing plan Otvoreni radio','2021-10-10 11:00:00', 1, 1), 
+('RCKSSB marketing plan Otvoreni radio','2021-10-10 11:00:00', 1, 2), 
 ('Komunikacijska strategija', '2019-10-22', 1, 1),
-('Zapisnik sa koordinacijskog sastanka', '2021-1-15 11:00:00', 2, 2),
+('Zapisnik sa koordinacijskog sastanka', '2021-1-15 11:00:00', 2, 3),
 ('export.zip',  '2020-4-17 21:00:00', 3, 3),
 ('Mađari predavanje', '2023-5-5 10:00:00', 2, 2),
 ('Videozapis o projektnoj aktivnosti stručnog usavršavanja mentora kod poslodavaca.mp4',

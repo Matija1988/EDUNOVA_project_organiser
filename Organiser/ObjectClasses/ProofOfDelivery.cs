@@ -17,6 +17,8 @@ namespace Organiser.ObjectClasses
 
         public DateTime DateCreated { get; set; }
 
+        public Activity Activity { get; set; }
+
         public override string ToString ()
         {
             StringBuilder stringBuilder = new StringBuilder();

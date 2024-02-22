@@ -169,18 +169,26 @@ namespace Organiser.Workspaces
 
             Main.DataInitialisation._projects.ForEach((project) =>
             {
-
                 if (project.ProjectID == id)
                 {
-
                     id++;
-
                 }
+            });
+
+            string uniqueID = U01UserInputs.InputString("Enter unique ID: ");
+
+            Main.DataInitialisation._projects.ForEach(p => 
+            { 
+                if (p.UniqueID == uniqueID) 
+                { 
+                    U02ErrorMessages.ErrorMessageInputExists();
+                    Add(); 
+                } 
             });
 
             IProject project = Factory.ProjectFactory();
             project.ProjectID = id;
-            project.UniqueID = U01UserInputs.InputString("Enter unique ID: ");
+            project.UniqueID = uniqueID;
             project.Name = U01UserInputs.InputString("Enter project name: ");
             project.DateStart = U01UserInputs.InputDateTime("Start date (enter date format dd/MM/yyyy): ");
             project.DateEnd = U01UserInputs.InputDateTime("Deadline (enter date format dd/MM/yyyy): ");

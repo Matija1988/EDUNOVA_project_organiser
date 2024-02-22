@@ -87,12 +87,11 @@ namespace Organiser.Utilities
             Console.WriteLine("2) Description");
             Console.WriteLine("3) Date start");
             Console.WriteLine("4) Deadline");
-            Console.WriteLine("5) Folder");
-            Console.WriteLine("6) Status");
-            Console.WriteLine("7) Date accepted");
-            Console.WriteLine("8) Associeted project");
-            Console.WriteLine("9) Delegate to");
-            Console.WriteLine("10) Edit all");
+            Console.WriteLine("5) Status");
+            Console.WriteLine("6) Date accepted");
+            Console.WriteLine("7) Associeted project");
+            Console.WriteLine("8) Delegate to");
+            Console.WriteLine("9) Edit all");
             Console.WriteLine("0) Return");
             Console.WriteLine("\n");
         }

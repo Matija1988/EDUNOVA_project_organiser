@@ -15,8 +15,7 @@ namespace Organiser.ObjectClasses
         DateTime DateEnd { get; set; }
         DateTime DateStart { get; set; }
         string Description { get; set; }
-        int? ProofOfDeliveryID { get; set; }
-        public ProofOfDelivery ProofOfDelivery { get; set; }
+       
         bool IsFinished { get; set; }
         int? MemberID { get; set; }
         string Name { get; set; }

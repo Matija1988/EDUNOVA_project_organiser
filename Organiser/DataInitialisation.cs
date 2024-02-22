@@ -39,8 +39,9 @@ namespace Organiser
 
             FillProjectsList();
             FillMembersList();
-            FillListProofOfDeliveries();
             FillActivitiesList();
+            FillListProofOfDeliveries();
+           
 
 
         }
@@ -125,6 +126,7 @@ namespace Organiser
             proofOfDelivery.Location = "/Poboljšanje energetske učinkovitosti zgrade Zamišljena Adresa 2/1.1.Izrada analize troškova i koristi";
             proofOfDelivery.Member = _members[0];
             proofOfDelivery.DateCreated = DateTime.Parse("15.12.2023.");
+            proofOfDelivery.Activity = _activities[0];
 
             _proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery);
 
@@ -134,6 +136,7 @@ namespace Organiser
             proofOfDelivery1.Location = " ";
             proofOfDelivery1.Member = _members[1];
             proofOfDelivery1.DateCreated = DateTime.Parse("15.01.2021.");
+            proofOfDelivery1.Activity = _activities[1];
 
             _proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery1);
 
@@ -184,7 +187,7 @@ namespace Organiser
             activity.Description = "Energetska obnova zgrade ... mora uključivati izolaciju vanjskog zida, dizalicu topline, ugradnju PVC stolarije, fotonaponske ćelije 12 kw/h ...";
             activity.DateStart = DateTime.Parse("01.06.2023.");
             activity.DateEnd = DateTime.Parse("01.08.2023.");
-            activity.ProofOfDelivery = _proofOfDeliveries[0];
+            
             activity.IsFinished = true;
             activity.DateAccepted = DateTime.Parse("29.07.2023.");
             activity.AssociatedProject = _projects[0];
@@ -198,7 +201,7 @@ namespace Organiser
             activity1.Description = "Izrada radio jingla 30 sekundi, zakup nacionalne radio postaje za 50 emitiranja";
             activity1.DateStart = DateTime.Parse("15.02.2021.");
             activity1.DateEnd = DateTime.Parse("28.03.2021.");
-            activity1.ProofOfDelivery = _proofOfDeliveries[1];
+           
             activity1.IsFinished = true;
             activity1.DateAccepted = DateTime.Parse("01.04.2021.");
             activity1.AssociatedProject = _projects[1];
@@ -214,7 +217,7 @@ namespace Organiser
                                     "1x nacionalnih radio postaja, 2x nacionalne dnevne novine .... ";
             activity2.DateStart = DateTime.Parse("01.05.2019.");
             activity2.DateEnd = DateTime.Parse("01.06.2019.");
-            activity2.ProofOfDelivery = _proofOfDeliveries[2];
+           
             activity2.IsFinished = true;
             activity2.DateAccepted = DateTime.Parse("03.06.2019.");
             activity2.AssociatedProject = _projects[2];
@@ -228,7 +231,7 @@ namespace Organiser
             activity3.Description = "Izvršitelj je dužan napraviti zapisnik, držati potpisne liste te osigurati fotografski dokaz mjesečnih koordinacijskih sastanaka";
             activity3.DateStart = DateTime.Parse("15.01.2021.");
             activity3.DateEnd = DateTime.Parse("16.01.2021.");
-            activity3.ProofOfDelivery = _proofOfDeliveries[3];
+           
             activity3.IsFinished = true;
             activity3.DateAccepted = DateTime.Parse("16.01.2021.");
             activity3.AssociatedProject = _projects[1];
@@ -242,7 +245,7 @@ namespace Organiser
             activity4.Description = "Na poziv Naručitelja Izvršitelj je dužan fotografirati ključne faze provedbe projekta, 10x dostvljanje min rezolucije 4000x3000 300dpi";
             activity4.DateStart = DateTime.Parse("17.04.2020.");
             activity4.DateEnd = DateTime.Parse("17.04.2020.");
-            activity4.ProofOfDelivery = _proofOfDeliveries[4];
+           
             activity4.IsFinished = true;
             activity4.DateAccepted = DateTime.Parse("18.04.2020.");
             activity4.AssociatedProject = _projects[2];
@@ -257,7 +260,7 @@ namespace Organiser
                 "i iz Hrvatske - osigurati audio tehniku i projektor - minimalno 30 sudionika - catering za 40 osoba - promocija na lokalnom web protalu (banner na 10 000 impresija i pr članak) ";
             activity5.DateStart = DateTime.Parse("04.05.2023.");
             activity5.DateEnd = DateTime.Parse("05.05.2023.");
-            activity5.ProofOfDelivery = _proofOfDeliveries[5];
+            
             activity5.IsFinished = true;
             activity5.DateAccepted = DateTime.Parse("07.05.2023.");
             activity5.AssociatedProject = _projects[3];
