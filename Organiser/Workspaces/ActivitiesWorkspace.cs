@@ -113,11 +113,12 @@ namespace Organiser.Workspaces
                     int activityID = U01UserInputs.InputInt("Choose the ID of the activity proof you wish to manage: ");
                                        
                     var activity = Main.DataInitialisation._activities[0];
-
-                    SelectedActivity = activity; 
-
+                                       
                     Main.DataInitialisation._activities.ForEach(a => { if (a.id == activityID) { activity = a; } });
-                    
+                                      
+                    SelectedActivity = activity;
+                                   
+
                     Main.ProofsWorkspace.ProofMenu();
 
                 }

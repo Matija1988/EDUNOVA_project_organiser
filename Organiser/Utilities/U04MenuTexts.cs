@@ -108,7 +108,8 @@ namespace Organiser.Utilities
             Console.WriteLine("2) Add new proof");
             Console.WriteLine("3) Edit existing proof");
             Console.WriteLine("4) Delete proof");
-            Console.WriteLine("5) Return to main menu");
+            Console.WriteLine("5) Return to project menu");
+            Console.WriteLine("6) Return to main menu");
             Console.WriteLine("0) Exit");
             Console.WriteLine("\n");
 

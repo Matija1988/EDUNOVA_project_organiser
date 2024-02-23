@@ -17,6 +17,8 @@ namespace Organiser.Workspaces
 
         public ProofOfDelivery SelectedProof { get; }
 
+        public Project SelectedProject { get; } 
+
         public ProofsWorkspace (Main Main) : this()
         {
             this.Main = Main;
@@ -77,6 +79,10 @@ namespace Organiser.Workspaces
                     break;
 
                 case 5:
+                    Main.ProjectWorkspace.ProjectsMenu();
+                    break;
+
+                case 6:
                     Main.MainMenu();
                     break;
 
@@ -94,7 +100,34 @@ namespace Organiser.Workspaces
 
         public void Add ()
         {
-            throw new NotImplementedException();
+
+
+            int id = U01UserInputs.AutoIncrementID(Main.DataInitialisation._projects);
+
+            Main.DataInitialisation._proofOfDeliveries.ForEach(p => { if (p.id == id) { id++; } });
+
+            string location = Main.ProjectWorkspace.SelectedProject.Name + "/" + Main.ActivitiesWorkspace.SelectedActivity.Name;
+
+            IProofOfDelivery proofOfDelivery = Factory.ProofOfDeliveryFactory();
+            proofOfDelivery.id = id;
+            proofOfDelivery.DocumentName = U01UserInputs.InputString("Enter document name: ");
+
+            Main.MembersWorkspace.List();
+            int memberid = U01UserInputs.InputInt("Created by:");
+            var member = Main.DataInitialisation._members[0];
+
+            Main.DataInitialisation._members.ForEach(m => { if (m.id == member.id) member = m; });
+
+            proofOfDelivery.Member = member; 
+            proofOfDelivery.Location = location;
+            proofOfDelivery.Activity = Main.ActivitiesWorkspace.SelectedActivity;
+
+            if(U01UserInputs.InputBool("Accept input: 1) YES / 2) NO | "))
+            {
+                Main.DataInitialisation._proofOfDeliveries.Add((ProofOfDelivery)proofOfDelivery);
+            }
+
+            ProofMenu(); 
         }
 
         public void List ()
@@ -120,7 +153,14 @@ namespace Organiser.Workspaces
 
         public void Delete ()
         {
-            throw new NotImplementedException();
+            int proofID = U01UserInputs.InputInt("Choose ID of proof you wish to delete: ");
+
+            var proof = Main.DataInitialisation._proofOfDeliveries[0];
+
+            Main.DataInitialisation._proofOfDeliveries.ForEach(p => { if (p.id == proof.id) proof = p;  });
+
+            Main.DataInitialisation._proofOfDeliveries.Remove(proof);
+
         }
 
        
