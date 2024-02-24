@@ -8,7 +8,7 @@ namespace Organiser.Utilities
 {
     internal class U02ErrorMessages
     {
-        internal static void ErrorMessageInput ()
+        internal static void ErrorMessageInput()
         {
 
             Console.ForegroundColor = ConsoleColor.Red;
@@ -19,7 +19,7 @@ namespace Organiser.Utilities
             Console.ResetColor();
         }
 
-        internal static void ErrorMessageInputExists ()
+        internal static void ErrorMessageInputExists()
         {
 
             Console.ForegroundColor = ConsoleColor.Red;
@@ -30,7 +30,7 @@ namespace Organiser.Utilities
 
         }
 
-        internal static void ErrorMessageCannotDeleteYourself ()
+        internal static void ErrorMessageCannotDeleteYourself()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n" +
@@ -49,7 +49,7 @@ namespace Organiser.Utilities
             Console.ResetColor();
         }
 
-        internal static string ErrorMessageUnexpectedBehaviourInAutoIncrementID ()
+        internal static string ErrorMessageUnexpectedBehaviourInAutoIncrementID()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\n" +
@@ -58,7 +58,7 @@ namespace Organiser.Utilities
             return sb.ToString();
         }
 
-        internal static void LackOfAuthority ()
+        internal static void LackOfAuthority()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n" +
@@ -68,7 +68,7 @@ namespace Organiser.Utilities
 
         }
 
-        internal static string YourInputContainsUnwantedCharacters ()
+        internal static string YourInputContainsUnwantedCharacters()
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("\n" +
@@ -77,6 +77,15 @@ namespace Organiser.Utilities
                       "!!!!!!!!!!!!! CHARS: [ AND { ARE NOT ALLOWED !!!!!!!!!!!!!" +
                       "\n");
             return sb.ToString();
+        }
+
+        internal static string ErrorStartDateIsLatterThenEndDate()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n" +
+                              "!!!!!!!!!!!!!!!!!!!    START / END DATE MISMATCH     !!!!!!!!!!!!!!!!!!!!!!" +
+                              "\n");
+            Console.ResetColor();
         }
     }
 }

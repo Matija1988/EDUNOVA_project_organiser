@@ -186,12 +186,27 @@ namespace Organiser.Workspaces
                 } 
             });
 
+            DateTime startDate = U01UserInputs.InputDateTime("Start date (enter date format dd/MM/yyyy): ");
+            DateTime endDate = U01UserInputs.InputDateTime("Deadline (enter date format dd/MM/yyyy): ");
+
             IProject project = Factory.ProjectFactory();
             project.ProjectID = id;
             project.UniqueID = uniqueID;
             project.Name = U01UserInputs.InputString("Enter project name: ");
-            project.DateStart = U01UserInputs.InputDateTime("Start date (enter date format dd/MM/yyyy): ");
-            project.DateEnd = U01UserInputs.InputDateTime("Deadline (enter date format dd/MM/yyyy): ");
+
+            int result = DateTime.Compare(startDate, endDate);
+
+            if(result < 0)
+            {
+                project.DateStart = startDate;
+                project.DateEnd = endDate;
+            } else  
+            {
+                U02ErrorMessages.ErrorStartDateIsLatterThenEndDate();
+                Add();
+            }
+
+          
             project.IsFinished = U01UserInputs.InputBool("Is finished 1) Finished / 2) Ongoing | ");
 
             StringBuilder sb = new StringBuilder();
