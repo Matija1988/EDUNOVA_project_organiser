@@ -79,7 +79,7 @@ namespace Organiser.Utilities
             return sb.ToString();
         }
 
-        internal static string ErrorStartDateIsLatterThenEndDate()
+        internal static void ErrorStartDateIsLatterThenEndDate()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\n" +
